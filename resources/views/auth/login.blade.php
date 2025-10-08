@@ -9,7 +9,7 @@
 <body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 via-yellow-50 to-green-50">
 
     <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md border border-green-100">
-        <!-- Logo dan Judul -->
+        <!-- Logo dan judul -->
         <div class="text-center mb-8">
             <div class="flex justify-center mb-3">
                 <img src="{{ asset('logo.png') }}" alt="Logo SDN 4 Jatilaba" class="w-16 h-16 rounded-full border-2 border-green-400 shadow-md">

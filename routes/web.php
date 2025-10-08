@@ -12,7 +12,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// 🔐 Login (pakai controller bawaan Breeze)
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
