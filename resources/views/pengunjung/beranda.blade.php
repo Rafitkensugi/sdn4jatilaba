@@ -63,28 +63,31 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative py-20 md:py-32">
-        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700 opacity-90"></div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                    Mendidik untuk Masa Depan yang Cemerlang
-                </h2>
-                <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                    Sekolah Harapan Bangsa menawarkan pendidikan berkualitas dengan kurikulum modern dan fasilitas lengkap untuk mendukung perkembangan akademik dan karakter siswa.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center">
-                        Daftar Sekarang <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                        Kunjungi Sekolah
-                    </button>
-                </div>
+   <!-- Hero Section -->
+<section id="home" 
+    class="relative py-20 md:py-32 bg-center bg-cover bg-no-repeat" 
+    style="background-image: url('{{ asset('images/hero.jpeg') }}');">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="container mx-auto px-4 relative z-10 text-center text-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Mendidik untuk Masa Depan yang Cemerlang
+            </h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto text-gray-100">
+                Sekolah Harapan Bangsa menawarkan pendidikan berkualitas dengan kurikulum modern dan fasilitas lengkap untuk mendukung perkembangan akademik dan karakter siswa.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center">
+                    Daftar Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+                <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    Kunjungi Sekolah
+                </button>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Stats Section -->
     <section class="py-16 bg-white">
