@@ -4,9 +4,9 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('beranda', function () {
+    return view('pengunjung.beranda'); // arahkan ke beranda.blade.php
+})->name('beranda');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
