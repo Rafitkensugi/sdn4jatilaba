@@ -6,7 +6,7 @@ use App\Http\Controllers\FasilitasController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('beranda', function () {
-    return view('pengunjung.beranda'); // arahkan ke beranda.blade.php
+    return view('pengunjung.beranda');
 })->name('beranda');
 
 Route::get('/dashboard', function () {
