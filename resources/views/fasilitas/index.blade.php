@@ -1,27 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
-    <div class="max-w-7xl mx-auto px-6">
-        <h1 class="text-4xl font-bold text-center mb-10 text-gray-800 dark:text-white">
-            Fasilitas Sekolah
-        </h1>
+<div class="bg-white py-10">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Fasilitas Sekolah</h1>
+        <p class="text-gray-600 mb-8">Berbagai sarana dan prasarana yang mendukung kegiatan belajar mengajar.</p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach ($fasilitas as $item)
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg transition transform hover:-translate-y-1">
-                    <img src="{{ asset($item['foto']) }}" alt="{{ $item['nama'] }}" 
-                         class="w-full h-56 object-cover rounded-t-2xl">
-
-                    <div class="p-5">
-                        <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                            {{ $item['nama'] }}
-                        </h2>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm">
-                            {{ $item['deskripsi'] }}
-                        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($fasilitas as $item)
+                <a href="{{ route('fasilitas.show', $item['slug']) }}"
+                   class="group block bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition">
+                    <div class="overflow-hidden">
+                        <img src="{{ asset($item['gambar']) }}"
+                             alt="{{ $item['nama'] }}"
+                             class="w-full h-56 object-cover group-hover:scale-105 transition duration-300">
                     </div>
-                </div>
+                    <div class="p-4 text-left">
+                        <h2 class="font-semibold text-lg text-gray-800 group-hover:text-blue-600">{{ $item['nama'] }}</h2>
+                        <p class="text-sm text-gray-600 mt-1">{{ Str::limit($item['deskripsi'], 80) }}</p>
+                    </div>
+                </a>
             @endforeach
         </div>
     </div>
