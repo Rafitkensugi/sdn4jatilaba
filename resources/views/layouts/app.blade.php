@@ -7,10 +7,9 @@
     @vite('resources/css/app.css')
 </head>
 <body class="font-sans antialiased">
-    <nav class="bg-blue-600 text-white p-4 text-center font-semibold">
-        <a href="{{ route('beranda') }}" class="hover:underline">Beranda</a> |
-        <a href="{{ route('fasilitas.index') }}" class="hover:underline">Fasilitas</a>
-    </nav>
+    <x-navbar>
+        
+    </x-navbar>
     <main>
         @yield('content')
     </main>
