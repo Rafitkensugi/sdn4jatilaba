@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FasilitasController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('beranda', function () {
     return view('pengunjung.beranda');
 })->name('beranda');
@@ -12,6 +13,10 @@ Route::get('beranda', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/kontak', function () {
+    return view('pengunjung.kontak');
+})->name('kontak');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
