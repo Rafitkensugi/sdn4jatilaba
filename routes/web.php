@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
-Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('fasilitas.show');
+Route::get('/fasilitas/{id}', [FasilitasController::class, 'show'])->name('fasilitas.show');
+
 
 require __DIR__.'/auth.php';

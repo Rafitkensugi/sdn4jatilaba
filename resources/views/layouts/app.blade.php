@@ -6,12 +6,11 @@
     <title>Fasilitas Sekolah</title>
     @vite('resources/css/app.css')
 </head>
-<body class="font-sans antialiased">
-    <x-navbar>
-        
-    </x-navbar>
+<body class="font-sans antialiased bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+    <x-navbar />
     <main>
         @yield('content')
     </main>
+    <x-footer />
 </body>
 </html>
