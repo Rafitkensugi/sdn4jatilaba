@@ -7,6 +7,7 @@ use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\PPDBController;
+use App\Http\Controllers\FasilitasController;
 use Illuminate\Support\Facades\Route;
 
 // Home
@@ -14,6 +15,9 @@ Route::get('/', [BerandaController::class, 'index'])->name('home');
 
 // Profil
 Route::get('/profil', [ProfileController::class, 'index'])->name('profil');
+
+//fasilitas
+Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
 
 // Berita
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
