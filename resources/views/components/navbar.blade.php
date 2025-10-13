@@ -154,7 +154,7 @@
                     <i class="fas fa-school school-icon text-2xl"></i>
                 </div>
                 <div>
-                    <h1 class="school-title text-2xl font-bold">Sekolah Harapan Bangsa</h1>
+                    <h1 class="school-title text-2xl font-bold">SDN 04 Jatilaba</h1>
                     <p class="school-tagline">Membangun Generasi Unggul</p>
                 </div>
             </div>
@@ -166,14 +166,14 @@
                 <!-- Dropdown Tentang dengan #anchor -->
                 <div class="dropdown">
                     <a href="#about" class="nav-link dropdown-toggle flex items-center">
-                        Tentang
+                        Profil
                         <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
                     </a>
                     <div class="dropdown-menu">
                         <a href="#profil">Profil Sekolah</a>
                         <a href="#visi-misi">Visi & Misi</a>
                         <a href="#sejarah">Sejarah</a>
-                        <a href="#kepala-sekolah">Kepala Sekolah</a>
+                        <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                     </div>
                 </div>
 
@@ -198,11 +198,13 @@
         <!-- Mobile Navigation -->
         <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
             <a href="{{ route('beranda') }}" class="py-2">Beranda</a>
-            <a href="#about" class="py-2">Tentang</a>
+            <a href="#about" class="py-2">Profil</a>
             <a href="#programs" class="py-2">Program</a>
             <a href="{{ route('fasilitas.index') }}" class="py-2">Fasilitas</a>
             <a href="{{ route('kontak.index') }}" class="py-2">Kontak</a>
-            <button class="btn-register-mobile px-6 py-2 rounded-lg font-medium mt-2">
+            <button 
+                onclick="window.location.href='{{ route('ppdb') }}'" 
+                class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
                 PPDB
             </button>
         </nav>
