@@ -1,8 +1,13 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SPMB Online - PPDB</title>
 
-@section('title', 'PPDB Online')
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
-@section('content')
     <style>
         :root {
             --primary: #2563eb;
@@ -20,8 +25,10 @@
             --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --danger: #ef4444;
+            --success: #10b981;
         }
-        
+
         [data-theme="dark"] {
             --primary: #60a5fa;
             --primary-dark: #3b82f6;
@@ -38,719 +45,209 @@
             --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
         body {
             background: var(--bg);
             color: var(--text);
-            transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            transition: background 0.3s, color 0.3s;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        /* Theme Toggle Button - Bottom Right */
-        .theme-toggle {
+
+        /* Navbar */
+        .navbar {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 9999;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 40px var(--shadow), 0 0 0 0 rgba(102, 126, 234, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        .theme-toggle:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 20px 60px var(--shadow);
-        }
-        
-        .theme-toggle i {
-            font-size: 24px;
-            color: white;
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        
-        .theme-toggle:hover i {
-            transform: rotate(180deg);
-        }
-        
-        @keyframes pulse-ring {
-            0% {
-                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
-            }
-            50% {
-                box-shadow: 0 0 0 20px rgba(102, 126, 234, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
-            }
-        }
-        
-        /* Floating Background Circles */
-        .floating-circles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            opacity: 0.05;
-            animation: float 20s infinite ease-in-out;
-        }
-        
-        .circle:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        
-        .circle:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            right: 20%;
-            animation-delay: 2s;
-        }
-        
-        .circle:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            bottom: 10%;
-            left: 50%;
-            animation-delay: 4s;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0) scale(1);
-            }
-            33% {
-                transform: translateY(-30px) translateX(20px) scale(1.1);
-            }
-            66% {
-                transform: translateY(20px) translateX(-20px) scale(0.9);
-            }
-        }
-        
-        /* Hero Section */
-        .hero {
-            position: relative;
-            padding: 200px 0 120px;
-            background: var(--gradient-primary);
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="1.5" fill="white" opacity="0.1"/></svg>');
-            animation: shimmer 30s linear infinite;
-        }
-        
-        @keyframes shimmer {
-            0% {
-                transform: translateX(0) translateY(0);
-            }
-            100% {
-                transform: translateX(-60px) translateY(-60px);
-            }
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 20px;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            letter-spacing: -1px;
-        }
-        
-        .hero p {
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.95);
-            font-weight: 300;
-        }
-        
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Section */
-        section {
-            position: relative;
-            padding: 100px 0;
-        }
-        
-        /* Cards with Premium Effects */
-        .card {
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
             background: var(--card-bg);
-            border-radius: 24px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid var(--border);
             box-shadow: 0 4px 20px var(--shadow);
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 3px;
-            background: var(--gradient-primary);
-            transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            opacity: 0;
-            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: -1;
-        }
-        
-        .card:hover {
-            transform: translateY(-20px) scale(1.02);
-            box-shadow: 0 30px 60px var(--shadow);
-            border-color: var(--primary);
-        }
-        
-        .card:hover::before {
-            left: 0;
-        }
-        
-        /* Info Box */
-        .info-box {
-            background: var(--card-bg);
-            padding: 35px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px var(--shadow);
-        }
-        
-        .info-box::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: var(--gradient-primary);
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .info-box:hover {
-            transform: translateX(10px);
-            box-shadow: 0 20px 40px var(--shadow);
-        }
-        
-        .info-box:hover::before {
-            width: 100%;
-            opacity: 0.05;
-        }
-        
-        /* Schedule Items */
-        .schedule-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid transparent;
-        }
-        
-        .schedule-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 0;
-            background: var(--gradient-primary);
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0.1;
-        }
-        
-        .schedule-item:hover {
-            background: var(--border);
-            border-color: var(--primary);
-            padding-left: 30px;
-        }
-        
-        .schedule-item:hover::before {
-            width: 100%;
-        }
-        
-        /* Icon Box with Advanced Animation */
-        .icon-box {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            position: relative;
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 10px 30px var(--shadow);
-            animation: icon-pulse 3s ease-in-out infinite;
-        }
-        
-        .icon-box::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 2px dashed var(--primary);
-            border-radius: 50%;
-            opacity: 0;
-            animation: rotate-dashed 10s linear infinite;
-        }
-        
-        .card:hover .icon-box {
-            transform: rotate(360deg) scale(1.2);
-            background: var(--gradient-2);
-        }
-        
-        .card:hover .icon-box::before {
-            opacity: 0.5;
-        }
-        
-        .icon-box i {
-            font-size: 2rem;
-            color: white;
-            z-index: 2;
-        }
-        
-        @keyframes icon-pulse {
-            0%, 100% {
-                box-shadow: 0 10px 30px var(--shadow);
-            }
-            50% {
-                box-shadow: 0 10px 40px var(--shadow), 0 0 0 15px rgba(102, 126, 234, 0.1);
-            }
-        }
-        
-        @keyframes rotate-dashed {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        
-        /* Form Elements */
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-label {
-            display: block;
-            color: var(--text);
-            margin-bottom: 10px;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .form-input, .form-select, .form-textarea {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 15px;
-            background: var(--bg);
-            color: var(--text);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: var(--card-bg);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px var(--shadow), 0 0 0 4px rgba(102, 126, 234, 0.1);
-        }
-        
-        .form-input:hover, .form-select:hover, .form-textarea:hover {
-            border-color: var(--primary-light);
-        }
-        
-        /* Radio Buttons */
-        .radio-group {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .radio-label {
-            flex: 1;
-            padding: 15px 20px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--bg);
-        }
-        
-        .radio-label:hover {
-            border-color: var(--primary);
-            background: var(--card-bg);
-            transform: translateY(-2px);
-        }
-        
-        .radio-label input[type="radio"] {
-            width: 20px;
-            height: 20px;
-            accent-color: var(--primary);
-        }
-        
-        .radio-label input[type="radio"]:checked ~ span {
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        /* Button with Ripple Effect */
-        .btn {
-            width: 100%;
-            padding: 18px 40px;
-            border: none;
-            border-radius: 12px;
-            background: var(--gradient-primary);
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px var(--shadow);
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .btn:hover::before {
-            width: 400px;
-            height: 400px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px var(--shadow);
-        }
-        
-        .btn:active {
-            transform: translateY(-2px);
-        }
-        
-        .btn span {
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Success Message */
-        .success-message {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: 500;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
-            animation: slideInDown 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Grid System */
-        .grid {
-            display: grid;
-            gap: 40px;
-        }
-        
-        .grid-2 {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        
-        .grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-        
-        /* Section Title */
-        .section-title {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-        
-        .section-title h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--text);
-            margin-bottom: 15px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .section-title p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-        }
-        
-        /* Staggered Animation */
-        .stagger-item {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .stagger-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .stagger-item:nth-child(1) { transition-delay: 0.1s; }
-        .stagger-item:nth-child(2) { transition-delay: 0.2s; }
-        .stagger-item:nth-child(3) { transition-delay: 0.3s; }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .grid-2, .grid-3 {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .theme-toggle {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-        }
-        
-        /* Headings */
-        h2, h3, h4 {
-            color: var(--text);
-        }
-        
-        h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        
-        h4 {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        /* Text */
-        p, span, li {
-            color: var(--text-muted);
-        }
-        
-        ul {
-            list-style: none;
             padding: 0;
         }
-        
-        ul li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
+        .navbar-container {
+            max-width: 1200px; margin: 0 auto;
+            padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            height: 80px;
         }
-        
-        ul li:hover {
-            padding-left: 10px;
-            color: var(--primary);
+        .navbar-brand { font-size: 1.6rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .navbar-nav { display:flex; gap: 20px; align-items: center; }
+        .navbar-nav a { text-decoration: none; color: var(--text); font-weight: 600; padding: 10px; position: relative; }
+        .navbar-nav a:hover { color: var(--primary); }
+        .navbar-toggle { display: none; background: none; border: none; font-size: 1.3rem; color: var(--text); cursor: pointer; }
+
+        /* Theme Toggle Button - Bottom Right */
+        .theme-toggle {
+            position: fixed; bottom: 30px; right: 30px; z-index: 9999;
+            width: 60px; height: 60px; border-radius: 50%;
+            background: var(--gradient-primary); border: none; cursor: pointer;
+            box-shadow: 0 10px 40px var(--shadow);
+            display:flex; align-items:center; justify-content:center;
+            animation: pulse-ring 2s cubic-bezier(0.4,0,0.6,1) infinite;
         }
-        
-        ul li:last-child {
-            border-bottom: none;
+        .theme-toggle i { font-size: 24px; color: white; transition: transform 0.5s; }
+        .theme-toggle:hover { transform: translateY(-5px) scale(1.05); }
+
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(102,126,234,0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(102,126,234,0); }
+            100% { box-shadow: 0 0 0 0 rgba(102,126,234,0); }
         }
+
+        /* Floating Circles (background) */
+        .floating-circles { position:absolute; width:100%; height:100%; overflow:hidden; pointer-events:none; top:0; left:0; }
+        .circle { position:absolute; border-radius:50%; background: linear-gradient(135deg, var(--primary), var(--accent)); opacity:0.05; animation: float 20s infinite ease-in-out; }
+        .circle.c1 { width:300px; height:300px; top:8%; left:6%; }
+        .circle.c2 { width:200px; height:200px; top:65%; right:18%; }
+        .circle.c3 { width:150px; height:150px; bottom:8%; left:50%; }
+
+        @keyframes float {
+            0%,100% { transform: translateY(0) translateX(0) scale(1); }
+            33% { transform: translateY(-30px) translateX(20px) scale(1.1); }
+            66% { transform: translateY(20px) translateX(-20px) scale(0.9); }
+        }
+
+        /* Hero */
+        .hero { position: relative; padding: 160px 0 80px; background: var(--gradient-primary); overflow:hidden; }
+        .hero::before { content:''; position:absolute; inset:0; background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1') center/cover no-repeat; opacity:0.12; }
+        .hero::after { content:''; position:absolute; inset:0; background: var(--gradient-primary); opacity:0.8; }
+        .hero-content { position:relative; z-index:2; text-align:center; color: white; }
+        .hero h1 { font-size:3.2rem; font-weight:800; margin-bottom:8px; text-shadow:0 8px 20px rgba(0,0,0,0.2); }
+        .hero p { font-size:1.1rem; font-weight:300; opacity:0.95; }
+
+        /* Container & Sections */
+        .container { max-width:1200px; margin:0 auto; padding: 0 20px; }
+        section { position: relative; padding: 80px 0; }
+
+        /* Cards and Info */
+        .card { background: var(--card-bg); border-radius: 18px; padding: 30px; position: relative; overflow: hidden; border:1px solid var(--border); transition: all .3s; box-shadow: 0 8px 30px var(--shadow); }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px var(--shadow); }
+
+        .info-box { background: var(--card-bg); padding: 25px; border-radius: 14px; border:1px solid var(--border); box-shadow: 0 8px 30px var(--shadow); }
+
+        /* Form Elements */
+        .form-group { margin-bottom: 18px; }
+        .form-label { display:block; color: var(--text); margin-bottom:8px; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; }
+        .form-input, .form-select, .form-textarea {
+            width:100%; padding:12px 14px; border:2px solid var(--border); border-radius:10px; font-size:14px; background: var(--bg); color:var(--text);
+            transition: all .2s;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { outline:none; border-color:var(--primary); box-shadow:0 10px 30px var(--shadow); transform: translateY(-2px); background: var(--card-bg); }
+
+        .radio-group { display:flex; gap:12px; }
+        .radio-label { padding:12px 14px; border:2px solid var(--border); border-radius:10px; display:flex; align-items:center; gap:10px; cursor:pointer; background:var(--bg); }
+        .radio-label input[type="radio"] { width:18px; height:18px; accent-color:var(--primary); }
+
+        /* Button */
+        .btn { display:inline-flex; align-items:center; gap:10px; padding:14px 22px; border:none; border-radius:12px; background:var(--gradient-primary); color:white; font-weight:700; cursor:pointer; box-shadow:0 10px 30px var(--shadow); }
+        .btn:active { transform: translateY(1px); }
+
+        /* Grid */
+        .grid { display:grid; gap:28px; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+        /* Titles */
+        .section-title { text-align:center; margin-bottom:40px; }
+        .section-title h2 { font-size:2.4rem; font-weight:800; margin-bottom:10px; background: var(--gradient-primary); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .section-title p { color: var(--text-muted); }
+
+        /* schedule item */
+        .schedule-item { display:flex; justify-content:space-between; align-items:center; padding:14px; border-radius:10px; margin-bottom:10px; border:1px solid transparent; transition: all .2s; }
+        .schedule-item:hover { padding-left:20px; border-color:var(--primary); background: rgba(0,0,0,0.02); }
+
+        /* icon box */
+        .icon-box { width:72px; height:72px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin: 0 auto 16px; background:var(--gradient-primary); box-shadow:0 10px 30px var(--shadow); }
+        .icon-box i { color:white; font-size:22px; }
+
+        /* messages */
+        .success-message { background: linear-gradient(135deg, var(--success), #059669); color:white; padding:14px; border-radius:10px; margin-bottom:18px; box-shadow: 0 10px 30px rgba(16,185,129,0.18); }
+        .error-message { background: rgba(239,68,68,0.06); color: var(--danger); padding:10px; border-radius:8px; border:1px solid rgba(239,68,68,0.12); margin-top:8px; font-size:13px; }
+
+        /* form small hint */
+        .form-hint { font-size:13px; color:var(--text-muted); margin-top:6px; }
+
+        /* footer */
+        footer { background: var(--card-bg); border-top: 1px solid var(--border); padding: 40px 0; margin-top: 40px; }
+        .footer-grid { display:flex; gap:40px; align-items: flex-start; justify-content: space-between; flex-wrap:wrap; max-width:1200px; margin:0 auto; padding:0 20px; }
+        .footer-col { min-width:200px; max-width:360px; }
+        .footer-col h4 { margin-bottom:12px; font-size:16px; color:var(--text); }
+        .social a { text-decoration:none; margin-right:10px; color:var(--text-muted); font-size:18px; }
+
+        /* validation small */
+        .invalid { border-color: var(--danger) !important; }
+
+        /* responsive */
+        @media (max-width: 900px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .navbar-nav { display:none; position:absolute; top:100%; left:0; right:0; background: var(--card-bg); flex-direction:column; padding:16px; box-shadow:0 12px 40px var(--shadow); border-top:1px solid var(--border); }
+            .navbar-nav.active { display:flex; }
+            .navbar-toggle { display:block; }
+            .hero h1 { font-size:2rem; }
+        }
+
+        /* small tweaks for blade error text */
+        .field-error { color: var(--danger); font-size:13px; margin-top:6px; }
     </style>
-    
+</head>
+<body>
+    <x-navbar></x-navbar>
+
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
         <i class="fas fa-moon" id="theme-icon"></i>
     </button>
-    
-    <script>
-        // Theme Toggle
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            const icon = document.getElementById('theme-icon');
-            
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-        
-        // Load saved theme
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            const icon = document.getElementById('theme-icon');
-            
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            
-            // Intersection Observer for Staggered Animation
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            document.querySelectorAll('.stagger-item').forEach(item => {
-                observer.observe(item);
-            });
-        });
-    </script>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="floating-circles">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
+    <section class="hero" aria-hidden="false">
+        <div class="floating-circles" aria-hidden="true">
+            <div class="circle c1"></div>
+            <div class="circle c2"></div>
+            <div class="circle c3"></div>
         </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1>PPDB Online</h1>
-                <p>Penerimaan Peserta Didik Baru SD Negeri 4 Jatilaba</p>
-            </div>
+
+        <div class="container hero-content">
+            <h1>SPMB Online</h1>
+            <p>Seleksi Penerimaan Mahasiswa Baru SD Negeri 4 Jatilaba — Pendaftaran Online</p>
         </div>
     </section>
 
-    <!-- PPDB Section -->
-    <section style="position: relative;">
-        <div class="floating-circles">
-            <div class="circle"></div>
-            <div class="circle"></div>
-        </div>
+    <!-- SPMB Section -->
+    <section id="pendaftaran" style="position: relative; margin-top: 20px;">
         <div class="container">
+            <div class="center-title section-title" id="informasi">
+                <h2>Informasi SPMB</h2>
+                <p>Informasi penting dan formulir pendaftaran online</p>
+            </div>
+
             <div class="grid grid-2">
                 <div>
-                    <h2 style="font-size: 2.5rem; margin-bottom: 40px; font-weight: 800;">Informasi PPDB</h2>
-                    
-                    <div class="info-box" style="margin-bottom: 30px;">
-                        <h3 style="margin-bottom: 25px;">📅 Jadwal PPDB 2024</h3>
-                        <div>
+                    <div class="info-box" style="margin-bottom: 22px;">
+                        <h3 style="margin-bottom: 16px;">📅 Jadwal SPMB 2024</h3>
+                        <div id="jadwal">
                             <div class="schedule-item">
                                 <span>Pendaftaran Gelombang 1</span>
-                                <span style="color: var(--primary); font-weight: 600;">1 - 15 Juni 2024</span>
+                                <span style="color: var(--primary); font-weight: 700;">1 - 15 Juni 2024</span>
                             </div>
                             <div class="schedule-item">
                                 <span>Pengumuman Gelombang 1</span>
-                                <span style="color: var(--primary); font-weight: 600;">20 Juni 2024</span>
+                                <span style="color: var(--primary); font-weight: 700;">20 Juni 2024</span>
                             </div>
                             <div class="schedule-item">
                                 <span>Pendaftaran Gelombang 2</span>
-                                <span style="color: var(--primary); font-weight: 600;">25 - 30 Juni 2024</span>
+                                <span style="color: var(--primary); font-weight: 700;">25 - 30 Juni 2024</span>
                             </div>
                             <div class="schedule-item">
                                 <span>Pengumuman Gelombang 2</span>
-                                <span style="color: var(--primary); font-weight: 600;">5 Juli 2024</span>
+                                <span style="color: var(--primary); font-weight: 700;">5 Juli 2024</span>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="info-box">
-                        <h3 style="margin-bottom: 25px;">📋 Persyaratan</h3>
+                        <h3 style="margin-bottom: 16px;">📋 Persyaratan</h3>
                         <ul>
                             <li>✓ Usia minimal 6 tahun per 1 Juli 2024</li>
                             <li>✓ Fotokopi akta kelahiran</li>
@@ -758,112 +255,163 @@
                             <li>✓ Pas foto 3x4 (2 lembar)</li>
                             <li>✓ Surat keterangan sehat dari dokter</li>
                         </ul>
+                        <p class="form-hint" style="margin-top:12px;">Pastikan semua berkas discan dan diunggah pada saat registrasi (format JPG/PNG/PDF - maksimal 2MB per file).</p>
                     </div>
                 </div>
-                
+
                 <div>
-                    <div class="card">
-                        <h2 style="text-align: center; margin-bottom: 35px; font-size: 2rem;">📝 Formulir Pendaftaran</h2>
-                        
+                    <div class="card" aria-live="polite">
+                        <h2 style="text-align: center; margin-bottom: 20px; font-size: 1.6rem;">📝 Formulir Pendaftaran</h2>
+
+                        {{-- Success message (Laravel session) --}}
                         @if(session('success'))
-                        <div class="success-message">
-                            ✓ {{ session('success') }}
-                        </div>
+                            <div class="success-message">
+                                ✓ {{ session('success') }}
+                                @if(session('registered_id')) <div style="margin-top:8px; font-weight:600;">ID Pendaftaran: {{ session('registered_id') }}</div> @endif
+                            </div>
                         @endif
-                        
-                        <form action="/ppdb" method="POST">
+
+                        {{-- Show validation summary if exists --}}
+                        @if ($errors->any())
+                            <div class="error-message" role="alert">
+                                Terdapat beberapa kesalahan pada form. Silakan periksa kembali isian yang bertanda merah.
+                            </div>
+                        @endif
+
+                        <form action="{{ url('/spmb') }}" method="POST" enctype="multipart/form-data" novalidate>
                             @csrf
-                            
-                            <h4 style="margin-bottom: 25px; color: var(--primary);">👤 Data Calon Siswa</h4>
-                            
+
+                            <h4 style="margin-bottom: 12px; color: var(--primary);">👤 Data Calon Siswa</h4>
+
                             <div class="form-group">
-                                <label class="form-label">Nama Lengkap</label>
-                                <input type="text" name="nama_lengkap" class="form-input" required placeholder="Masukkan nama lengkap">
+                                <label class="form-label" for="nama_lengkap">Nama Lengkap</label>
+                                <input id="nama_lengkap" type="text" name="nama_lengkap" class="form-input @error('nama_lengkap') invalid @enderror" required value="{{ old('nama_lengkap') }}" placeholder="Masukkan nama lengkap">
+                                @error('nama_lengkap') <div class="field-error">{{ $message }}</div> @enderror
                             </div>
-                            
+
                             <div class="form-group">
-                                <label class="form-label">Nama Panggilan</label>
-                                <input type="text" name="nama_panggilan" class="form-input" required placeholder="Masukkan nama panggilan">
+                                <label class="form-label" for="nama_panggilan">Nama Panggilan</label>
+                                <input id="nama_panggilan" type="text" name="nama_panggilan" class="form-input @error('nama_panggilan') invalid @enderror" required value="{{ old('nama_panggilan') }}" placeholder="Masukkan nama panggilan">
+                                @error('nama_panggilan') <div class="field-error">{{ $message }}</div> @enderror
                             </div>
-                            
-                            <div class="grid grid-2">
+
+                            <div class="grid grid-2" style="gap:12px;">
                                 <div class="form-group">
-                                    <label class="form-label">Tempat Lahir</label>
-                                    <input type="text" name="tempat_lahir" class="form-input" required placeholder="Kota kelahiran">
+                                    <label class="form-label" for="tempat_lahir">Tempat Lahir</label>
+                                    <input id="tempat_lahir" type="text" name="tempat_lahir" class="form-input @error('tempat_lahir') invalid @enderror" value="{{ old('tempat_lahir') }}" required placeholder="Kota kelahiran">
+                                    @error('tempat_lahir') <div class="field-error">{{ $message }}</div> @enderror
                                 </div>
-                                
+
                                 <div class="form-group">
-                                    <label class="form-label">Tanggal Lahir</label>
-                                    <input type="date" name="tanggal_lahir" class="form-input" required>
+                                    <label class="form-label" for="tanggal_lahir">Tanggal Lahir</label>
+                                    <input id="tanggal_lahir" type="date" name="tanggal_lahir" class="form-input @error('tanggal_lahir') invalid @enderror" value="{{ old('tanggal_lahir') }}" required>
+                                    @error('tanggal_lahir') <div class="field-error">{{ $message }}</div> @enderror
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label class="form-label">Jenis Kelamin</label>
                                 <div class="radio-group">
                                     <label class="radio-label">
-                                        <input type="radio" name="jenis_kelamin" value="L" required>
+                                        <input type="radio" name="jenis_kelamin" value="L" {{ old('jenis_kelamin') == 'L' ? 'checked' : '' }} required>
                                         <span>Laki-laki</span>
                                     </label>
                                     <label class="radio-label">
-                                        <input type="radio" name="jenis_kelamin" value="P">
+                                        <input type="radio" name="jenis_kelamin" value="P" {{ old('jenis_kelamin') == 'P' ? 'checked' : '' }}>
                                         <span>Perempuan</span>
                                     </label>
                                 </div>
+                                @error('jenis_kelamin') <div class="field-error">{{ $message }}</div> @enderror
                             </div>
-                            
+
                             <div class="form-group">
-                                <label class="form-label">Agama</label>
-                                <select name="agama" class="form-select" required>
+                                <label class="form-label" for="agama">Agama</label>
+                                <select id="agama" name="agama" class="form-select @error('agama') invalid @enderror" required>
                                     <option value="">Pilih Agama</option>
-                                    <option value="Islam">Islam</option>
-                                    <option value="Kristen">Kristen</option>
-                                    <option value="Katolik">Katolik</option>
-                                    <option value="Hindu">Hindu</option>
-                                    <option value="Buddha">Buddha</option>
-                                    <option value="Konghucu">Konghucu</option>
+                                    <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                    <option value="Kristen" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                                    <option value="Katolik" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                                    <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                    <option value="Buddha" {{ old('agama') == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+                                    <option value="Konghucu" {{ old('agama') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
                                 </select>
+                                @error('agama') <div class="field-error">{{ $message }}</div> @enderror
                             </div>
-                            
+
                             <div class="form-group">
-                                <label class="form-label">Alamat</label>
-                                <textarea name="alamat" rows="3" class="form-textarea" required placeholder="Masukkan alamat lengkap"></textarea>
+                                <label class="form-label" for="alamat">Alamat</label>
+                                <textarea id="alamat" name="alamat" rows="3" class="form-textarea @error('alamat') invalid @enderror" required placeholder="Masukkan alamat lengkap">{{ old('alamat') }}</textarea>
+                                @error('alamat') <div class="field-error">{{ $message }}</div> @enderror
                             </div>
-                            
-                            <h4 style="margin: 35px 0 25px; color: var(--primary);">👨‍👩‍👧 Data Orang Tua</h4>
-                            
-                            <div class="grid grid-2">
+
+                            <h4 style="margin: 18px 0 10px; color: var(--primary);">👨‍👩‍👧 Data Orang Tua / Wali</h4>
+
+                            <div class="grid grid-2" style="gap:12px;">
                                 <div class="form-group">
-                                    <label class="form-label">Nama Ayah</label>
-                                    <input type="text" name="nama_ayah" class="form-input" required placeholder="Nama ayah">
+                                    <label class="form-label" for="nama_ayah">Nama Ayah</label>
+                                    <input id="nama_ayah" type="text" name="nama_ayah" class="form-input @error('nama_ayah') invalid @enderror" value="{{ old('nama_ayah') }}" required placeholder="Nama ayah">
+                                    @error('nama_ayah') <div class="field-error">{{ $message }}</div> @enderror
                                 </div>
-                                
                                 <div class="form-group">
-                                    <label class="form-label">Nama Ibu</label>
-                                    <input type="text" name="nama_ibu" class="form-input" required placeholder="Nama ibu">
-                                </div>
-                            </div>
-                            
-                            <div class="grid grid-2">
-                                <div class="form-group">
-                                    <label class="form-label">Pekerjaan Ayah</label>
-                                    <input type="text" name="pekerjaan_ayah" class="form-input" required placeholder="Pekerjaan ayah">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="form-label">Pekerjaan Ibu</label>
-                                    <input type="text" name="pekerjaan_ibu" class="form-input" required placeholder="Pekerjaan ibu">
+                                    <label class="form-label" for="nama_ibu">Nama Ibu</label>
+                                    <input id="nama_ibu" type="text" name="nama_ibu" class="form-input @error('nama_ibu') invalid @enderror" value="{{ old('nama_ibu') }}" required placeholder="Nama ibu">
+                                    @error('nama_ibu') <div class="field-error">{{ $message }}</div> @enderror
                                 </div>
                             </div>
-                            
+
+                            <div class="grid grid-2" style="gap:12px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="pekerjaan_ayah">Pekerjaan Ayah</label>
+                                    <input id="pekerjaan_ayah" type="text" name="pekerjaan_ayah" class="form-input @error('pekerjaan_ayah') invalid @enderror" value="{{ old('pekerjaan_ayah') }}" placeholder="Pekerjaan ayah">
+                                    @error('pekerjaan_ayah') <div class="field-error">{{ $message }}</div> @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="pekerjaan_ibu">Pekerjaan Ibu</label>
+                                    <input id="pekerjaan_ibu" type="text" name="pekerjaan_ibu" class="form-input @error('pekerjaan_ibu') invalid @enderror" value="{{ old('pekerjaan_ibu') }}" placeholder="Pekerjaan ibu">
+                                    @error('pekerjaan_ibu') <div class="field-error">{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+
                             <div class="form-group">
-                                <label class="form-label">No. Telepon/HP</label>
-                                <input type="tel" name="no_telepon" class="form-input" required placeholder="08xx xxxx xxxx">
+                                <label class="form-label" for="no_telepon">No. Telepon/HP</label>
+                                <input id="no_telepon" type="tel" name="no_telepon" class="form-input @error('no_telepon') invalid @enderror" value="{{ old('no_telepon') }}" required placeholder="08xx xxxx xxxx">
+                                @error('no_telepon') <div class="field-error">{{ $message }}</div> @enderror
                             </div>
-                            
-                            <button type="submit" class="btn">
-                                <span><i class="fas fa-paper-plane"></i> Daftar Sekarang</span>
-                            </button>
+
+                            <div class="form-group">
+                                <label class="form-label" for="no_darurat">Kontak Darurat</label>
+                                <input id="no_darurat" type="tel" name="no_darurat" class="form-input @error('no_darurat') invalid @enderror" value="{{ old('no_darurat') }}" placeholder="Nomor telepon jika darurat">
+                                <div class="form-hint">Opsional — nomor keluarga atau saudara yang bisa dihubungi saat darurat.</div>
+                                @error('no_darurat') <div class="field-error">{{ $message }}</div> @enderror
+                            </div>
+
+                            <h4 style="margin: 18px 0 10px; color: var(--primary);">📎 Upload Berkas (opsional)</h4>
+
+                            <div class="form-group">
+                                <label class="form-label" for="akta">Akta Kelahiran (JPG/PDF max 2MB)</label>
+                                <input id="akta" type="file" name="akta" accept=".jpg,.jpeg,.png,.pdf" class="form-input @error('akta') invalid @enderror">
+                                @error('akta') <div class="field-error">{{ $message }}</div> @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="kk">Kartu Keluarga (JPG/PDF max 2MB)</label>
+                                <input id="kk" type="file" name="kk" accept=".jpg,.jpeg,.png,.pdf" class="form-input @error('kk') invalid @enderror">
+                                @error('kk') <div class="field-error">{{ $message }}</div> @enderror
+                            </div>
+
+                            <div style="margin-top:16px; display:flex; gap:12px; align-items:center;">
+                                <button type="submit" class="btn" aria-label="Kirim Pendaftaran">
+                                    <i class="fas fa-paper-plane"></i> <span>Daftar Sekarang</span>
+                                </button>
+
+                                <a href="{{ url('/') }}" style="text-decoration:none;">
+                                    <button type="button" class="btn" style="background:transparent; color:var(--primary); border:1px solid var(--border); box-shadow:none;">
+                                        Batal
+                                    </button>
+                                </a>
+                            </div>
+
+                            <p class="form-hint" style="margin-top:12px;">Dengan menekan <strong>Daftar Sekarang</strong> Anda menyetujui bahwa data yang dimasukkan adalah benar.</p>
                         </form>
                     </div>
                 </div>
@@ -871,44 +419,124 @@
         </div>
     </section>
 
-    <!-- Informasi Tambahan -->
-    <section style="background: var(--bg); position: relative;">
-        <div class="floating-circles">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-        </div>
+    <!-- Additional Info Section -->
+    <section style="background: var(--bg);">
         <div class="container">
             <div class="section-title">
                 <h2>Informasi Tambahan</h2>
                 <p>Hal-hal yang perlu diketahui calon orang tua siswa</p>
             </div>
-            
+
             <div class="grid grid-3">
-                <div class="card stagger-item" style="text-align: center;">
-                    <div class="icon-box">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h4 style="margin-bottom: 20px; font-size: 1.4rem;">Kurikulum</h4>
-                    <p style="line-height: 1.8;">Menggunakan Kurikulum Merdeka yang berfokus pada pengembangan karakter dan kompetensi siswa</p>
+                <div class="card" style="text-align:center;">
+                    <div class="icon-box"><i class="fas fa-graduation-cap"></i></div>
+                    <h4 style="margin-bottom:10px;">Kurikulum</h4>
+                    <p style="line-height:1.6;">Menggunakan Kurikulum Merdeka yang berfokus pada pengembangan karakter dan kompetensi siswa.</p>
                 </div>
-                
-                <div class="card stagger-item" style="text-align: center;">
-                    <div class="icon-box">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h4 style="margin-bottom: 20px; font-size: 1.4rem;">Ekstrakurikuler</h4>
-                    <p style="line-height: 1.8;">Berbagai pilihan ekstrakurikuler untuk mengembangkan bakat dan minat siswa</p>
+
+                <div class="card" style="text-align:center;">
+                    <div class="icon-box"><i class="fas fa-book"></i></div>
+                    <h4 style="margin-bottom:10px;">Ekstrakurikuler</h4>
+                    <p style="line-height:1.6;">Berbagai pilihan ekstrakurikuler untuk mengembangkan bakat dan minat siswa.</p>
                 </div>
-                
-                <div class="card stagger-item" style="text-align: center;">
-                    <div class="icon-box">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h4 style="margin-bottom: 20px; font-size: 1.4rem;">Lingkungan</h4>
-                    <p style="line-height: 1.8;">Lingkungan sekolah yang aman, nyaman, dan mendukung proses belajar mengajar</p>
+
+                <div class="card" style="text-align:center;">
+                    <div class="icon-box"><i class="fas fa-heart"></i></div>
+                    <h4 style="margin-bottom:10px;">Lingkungan</h4>
+                    <p style="line-height:1.6;">Lingkungan sekolah yang aman, nyaman, dan mendukung proses belajar mengajar.</p>
                 </div>
             </div>
         </div>
     </section>
-@endsection
+
+    <!-- Footer -->
+    <footer id="kontak">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>SPMB Online - SD Negeri 4 Jatilaba</h4>
+                <p style="color:var(--text-muted); line-height:1.6;">Alamat: Jl. Mawar No.4, Jatilaba. Telepon: (021) 555-1234</p>
+                <div class="social" style="margin-top:12px;">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Jam Kerja</h4>
+                <p style="color:var(--text-muted);">Senin - Jumat: 07:30 - 15:00<br>Sabtu: 08:00 - 12:00</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Butuh Bantuan?</h4>
+                <p style="color:var(--text-muted);">Email: admin@sd4jatilaba.sch.id<br>Telp: 08xx-xxxx-xxxx</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle (persist in localStorage)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const icon = document.getElementById('theme-icon');
+
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            icon.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+            const icon = document.getElementById('theme-icon');
+            if (icon) icon.className = saved === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+            // Intersection Observer for staggered items
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.stagger-item').forEach(item => observer.observe(item));
+
+            // Navbar toggle
+            const navToggle = document.getElementById('navbarToggle');
+            navToggle && navToggle.addEventListener('click', function() {
+                const nav = document.getElementById('navbarNav');
+                nav.classList.toggle('active');
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', (!expanded).toString());
+            });
+        });
+
+        // Basic client-side highlight for required fields when submit attempted
+        (function() {
+            const form = document.querySelector('form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                // Remove previous highlights
+                document.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+                // Basic required check (enhancement - server-side validation仍 harus ada)
+                const requiredFields = form.querySelectorAll('[required]');
+                let hadError = false;
+                requiredFields.forEach(field => {
+                    if (!field.value || field.value.trim() === '') {
+                        field.classList.add('invalid');
+                        hadError = true;
+                    }
+                });
+                if (hadError) {
+                    // let server handle error messages; prevent double submit UX if you'd like:
+                    // e.preventDefault(); // uncomment if you want client-only blocking
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
