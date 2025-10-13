@@ -49,4 +49,6 @@ Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
 
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 
+Route::get('/', function () {return redirect()->route('beranda');});
+
 require __DIR__.'/auth.php';

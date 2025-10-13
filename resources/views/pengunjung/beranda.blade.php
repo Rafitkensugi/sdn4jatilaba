@@ -82,7 +82,7 @@
             </div>
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2">
-                    <img src="https://placehold.co/600x400/1e40af/ffffff?text=Sekolah+Harapan+Banga" alt="Sekolah Harapan Bangsa" class="rounded-xl shadow-lg w-full">
+                    <img src="https://placehold.co/600x400/1e40af/ffffff?text=Sekolah+Harapan+Bangsa" alt="Sekolah Harapan Bangsa" class="rounded-xl shadow-lg w-full">
                 </div>
                 <div class="lg:w-1/2 space-y-6">
                     <h4 class="text-2xl font-bold text-gray-800">Visi & Misi</h4>
