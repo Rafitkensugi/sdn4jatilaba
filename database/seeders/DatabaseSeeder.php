@@ -4,11 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 306f0dd6457bfe98ec843d142cb40ffc37e5328c
 class DatabaseSeeder extends Seeder
 {
     /**
