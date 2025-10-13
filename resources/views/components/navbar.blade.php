@@ -154,7 +154,7 @@
                     <i class="fas fa-school school-icon text-2xl"></i>
                 </div>
                 <div>
-                    <h1 class="school-title text-2xl font-bold">Sekolah Harapan Bangsa</h1>
+                    <h1 class="school-title text-2xl font-bold">SDN 04 Jatilaba</h1>
                     <p class="school-tagline">Membangun Generasi Unggul</p>
                 </div>
             </div>
