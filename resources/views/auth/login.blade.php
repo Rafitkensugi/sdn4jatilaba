@@ -12,7 +12,7 @@
         <!-- Logo dan judul -->
         <div class="text-center mb-8">
             <div class="flex justify-center mb-3">
-                <img src="{{ asset('logo.png') }}" alt="Logo SDN 4 Jatilaba" class="w-16 h-16 rounded-full border-2 border-green-400 shadow-md">
+                <img src="{{ asset('images/logosekolah.jpg') }}" alt="Logo SDN 4 Jatilaba" class="w-16 h-16 rounded-full border-2 border-green-400 shadow-md">
             </div>
             <h1 class="text-2xl font-bold text-green-700">SD Negeri Jatilaba 4</h1>
             <p class="text-sm text-yellow-700 mt-1 font-medium">Selamat Datang</p>

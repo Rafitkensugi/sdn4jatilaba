@@ -9,6 +9,9 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\GaleriController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SambutanController;
+
+Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 
 Route::get('beranda', function () {
     return view('pengunjung.beranda');
