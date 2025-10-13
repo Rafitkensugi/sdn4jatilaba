@@ -56,8 +56,8 @@ Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 
 // Kontak
-Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
-Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
+// Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
+// Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
 
 // PPDB
 Route::get('/ppdb', [PPDBController::class, 'index'])->name('ppdb');
