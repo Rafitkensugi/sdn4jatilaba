@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontak Kami - SD Harapan Bangsa</title>
+    @vite('resources/css/app.css')
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <x-navbar></x-navbar>
@@ -51,45 +55,71 @@
         </div>
     </section>
 
-        <!-- Formulir Kontak & Google Maps -->
+    <!-- Formulir Kontak & Google Maps -->
     <section class="py-16 px-4 md:px-16 lg:px-24 bg-gradient-to-br from-blue-50 to-indigo-100">
         <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            
+
             <!-- Formulir Kontak -->
             <div class="bg-white rounded-3xl shadow-lg p-8 md:p-10">
                 <h2 class="text-3xl font-bold mb-6 text-gray-800">Kirim Pesan</h2>
-                <form class="grid grid-cols-1 gap-5">
+
+                <form action="{{ route('kontak.store') }}" method="POST" class="grid grid-cols-1 gap-5">
+                    @csrf
+
                     <div>
                         <label class="block text-sm font-medium mb-2">Nama Lengkap</label>
-                        <input type="text" placeholder="Masukkan nama anda" class="w-full border rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                        <input type="text" name="nama" placeholder="Masukkan nama anda"
+                            class="w-full border rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none" required>
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-2">Email</label>
-                        <input type="email" placeholder="Masukkan email anda" class="w-full border rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                        <input type="email" name="email" placeholder="Masukkan email anda"
+                            class="w-full border rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none" required>
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-2">Pesan</label>
-                        <textarea rows="5" placeholder="Tuliskan pesan anda..." class="w-full border rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"></textarea>
+                        <textarea name="pesan" rows="5" placeholder="Tuliskan pesan anda..."
+                            class="w-full border rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none" required></textarea>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition duration-300 shadow-md w-full md:w-auto">Kirim Pesan</button>
+                        <button type="submit"
+                            class="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition duration-300 shadow-md w-full md:w-auto">
+                            Kirim Pesan
+                        </button>
                     </div>
                 </form>
             </div>
 
             <!-- Google Maps -->
-            <div class="overflow-hidden rounded-3xl shadow-lg">
+            <div class="overflow-hidden rounded-3xl shadow-lg h-[450px]">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15838.537053846903!2d109.01881482219848!3d-7.052190775310599!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f97c32a12678d%3A0xdd07f411804ab8ef!2sSDN%20Jatilaba%2004!5e0!3m2!1sid!2sid!4v1760078471195!5m2!1sid!2sid"
-                    width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen loading="lazy">
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
 
         </div>
     </section>
 
-
-    <!-- Footer -->
     <x-footer></x-footer>
+
+    <!-- SweetAlert2 -->
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            background: '#fff',
+            color: '#333',
+            confirmButtonText: 'Oke Siap!',
+            confirmButtonColor: '#3B82F6',
+            showClass: { popup: 'animate__animated animate__fadeInDown' },
+            hideClass: { popup: 'animate__animated animate__fadeOutUp' }
+        });
+    </script>
+    @endif
+
 </body>
 </html>
