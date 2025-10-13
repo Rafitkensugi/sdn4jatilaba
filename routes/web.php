@@ -39,6 +39,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
 Route::get('/fasilitas/{id}', [FasilitasController::class, 'show'])->name('fasilitas.show');
 
+
+// Berita
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
+Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.detail');
+
+// Prestasi
 // Berita
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
 Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.detail');
@@ -56,3 +62,5 @@ Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store')
 // PPDB
 Route::get('/ppdb', [PPDBController::class, 'index'])->name('ppdb');
 Route::post('/ppdb', [PPDBController::class, 'store'])->name('ppdb.store');
+
+require __DIR__.'/auth.php';

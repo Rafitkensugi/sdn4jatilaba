@@ -21,7 +21,7 @@
     </script>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-   <x-navbar />
+   <x-navbar></x-navbar>
 
    <!-- Hero Section -->
 <section id="home" 
