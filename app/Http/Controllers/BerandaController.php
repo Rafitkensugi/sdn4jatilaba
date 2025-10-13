@@ -8,6 +8,6 @@ class BerandaController extends Controller
 {
     public function index()
     {
-        return view('beranda'); // arahkan ke resources/views/landing.blade.php
+        return view('pengunjung.beranda'); // arahkan ke resources/views/landing.blade.php
     }
 }
