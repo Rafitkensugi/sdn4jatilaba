@@ -4,8 +4,14 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\KontakController;
+use App\Http\Controllers\PPDBController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\GaleriController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SambutanController;
 
+Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 
 Route::get('beranda', function () {
     return view('pengunjung.beranda');
@@ -32,5 +38,15 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
 Route::get('/fasilitas/{id}', [FasilitasController::class, 'show'])->name('fasilitas.show');
+
+Route::get('/ppdb', [PPDBController::class, 'index'])->name('ppdb');
+Route::post('/ppdb', [PPDBController::class, 'store'])->name('ppdb.store');
+
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
+Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.detail');
+
+Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
+
+Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 
 require __DIR__.'/auth.php';
