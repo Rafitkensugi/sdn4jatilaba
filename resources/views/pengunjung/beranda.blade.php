@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sekolah Harapan Bangsa - Beranda</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -49,7 +50,7 @@
 
 
     <!-- Stats Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-white" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="space-y-2">
@@ -73,7 +74,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50">
+    <section id="about" class="py-20 bg-gray-50" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Tentang Kami</h3>
@@ -108,7 +109,7 @@
     </section>
 
     <!-- Programs Section -->
-    <section id="programs" class="py-20 bg-white">
+    <section id="programs" class="py-20 bg-white" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Program Pendidikan</h3>
@@ -144,7 +145,7 @@
     </section>
 
     <!-- Facilities Section -->
-    <section id="facilities" class="py-20 bg-gray-50">
+    <section id="facilities" class="py-20 bg-gray-50" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Fasilitas Unggulan</h3>
@@ -176,7 +177,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-white" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Testimoni Orang Tua</h3>
