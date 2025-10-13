@@ -8,7 +8,6 @@ use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\PPDBController;
 use App\Http\Controllers\FasilitasController;
-use App\Http\Controllers\KontakController;
 use Illuminate\Support\Facades\Route;
 
 // Home
