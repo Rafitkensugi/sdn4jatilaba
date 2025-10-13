@@ -14,7 +14,7 @@
   <x-navbar></x-navbar>
 
   <!-- Elegant Header -->
-  <header class="relative bg-gradient-to-br from-[#002147] to-blue-800 text-black py-20 overflow-hidden">
+  <header class="relative bg-gradient-to-br from-[#002147] to-blue-800 text-white py-20 overflow-hidden">
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')] opacity-10"></div>
     <div class="relative max-w-5xl mx-auto px-6 text-center">
       <h1 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">
