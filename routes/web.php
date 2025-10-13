@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ProfileController;
@@ -10,7 +11,6 @@ use App\Http\Controllers\PPDBController;
 use App\Http\Controllers\FasilitasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SambutanController;
-
 
 Route::get('beranda', function () {
     return view('pengunjung.beranda');
@@ -35,7 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//fasilitas
 Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
 Route::get('/fasilitas/{id}', [FasilitasController::class, 'show'])->name('fasilitas.show');
 
@@ -49,10 +48,8 @@ Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
 // Galeri
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 
-// Kontak
-Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
-Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
-
 // PPDB
 Route::get('/ppdb', [PPDBController::class, 'index'])->name('ppdb');
 Route::post('/ppdb', [PPDBController::class, 'store'])->name('ppdb.store');
+
+require __DIR__.'/auth.php';
