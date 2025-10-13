@@ -17,7 +17,7 @@
                     <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Tentang</a>
                     <a href="#programs" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Program</a>
                     <a href="{{ route('fasilitas.index') }}" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Fasilitas</a>
-                    <a href="{{ route('kontak') }}" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Kontak</a>
+                    <a href="{{ route('kontak.index') }}" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Kontak</a>
                 </nav>
                 <button class="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
                     Daftar Sekarang
