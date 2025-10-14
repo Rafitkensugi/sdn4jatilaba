@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\KontakController;
@@ -53,6 +54,15 @@ Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 
 Route::get('/program', [ProgramController::class, 'index'])->name('program');
- 
 
+Route::get('/artikel', function() 
+{
+    return view('pengunjung.artikel');
+})->name('artikel');
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
+
+Route::get('/visi-misi', function()
+{
+    return view('pengunjung.visi-misi');
+})->name('visi-misi');
 require __DIR__.'/auth.php';

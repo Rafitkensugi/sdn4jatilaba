@@ -10,7 +10,7 @@
 
   <x-navbar></x-navbar>
 
-  <header class="bg-[#002147] text-white py-12 shadow-md">
+  <header class="bg-[#002147] text-black py-12 shadow-md">
     <div class="max-w-5xl mx-auto text-center px-6">
       <h1 class="text-4xl font-bold mb-2">Artikel Sekolah</h1>
       <p class="text-blue-200">Informasi dan kegiatan terbaru SDN 4 Jatilaba</p>
