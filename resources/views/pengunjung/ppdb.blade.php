@@ -7,21 +7,21 @@
     <section class="hero" style="padding: 150px 0 80px;">
         <div class="container">
             <div class="hero-content">
-                <h1>PPDB Online</h1>
-                <p>Penerimaan Peserta Didik Baru SD Negeri 4 Jatilaba</p>
+                <h1>SPMB Online</h1>
+                <p>Sistem Penerimaan Murid Baru SD Negeri 4 Jatilaba</p>
             </div>
         </div>
     </section>
 
-    <!-- PPDB Section -->
+    <!-- SPMB Section -->
     <section>
         <div class="container">
             <div class="grid grid-2" style="gap: 50px;">
                 <div style="animation: fadeInLeft 0.8s ease;">
-                    <h2 style="color: var(--primary); margin-bottom: 20px; font-size: 2.2rem;">Informasi PPDB</h2>
+                    <h2 style="color: var(--primary); margin-bottom: 20px; font-size: 2.2rem;">Informasi SPMB</h2>
                     
                     <div style="background: var(--white); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <h3 style="color: var(--primary); margin-bottom: 15px;">Jadwal PPDB 2024</h3>
+                        <h3 style="color: var(--primary); margin-bottom: 15px;">Jadwal SPMB 2026</h3>
                         <div style="display: grid; gap: 15px;">
                             <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--gray-light);">
                                 <span style="color: var(--gray-dark);">Pendaftaran Gelombang 1</span>
