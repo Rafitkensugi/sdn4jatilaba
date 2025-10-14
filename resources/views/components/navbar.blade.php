@@ -165,7 +165,7 @@
 
                 <!-- Dropdown Tentang dengan #anchor -->
                 <div class="dropdown">
-                    <a href="#about" class="nav-link dropdown-toggle flex items-center">
+                    <a href="#" class="nav-link flex items-center">
                         Profil
                         <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
                     </a>
@@ -198,7 +198,7 @@
         <!-- Mobile Navigation -->
         <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
             <a href="{{ route('beranda') }}" class="py-2">Beranda</a>
-            <a href="#about" class="py-2">Profil</a>
+            <a href="#" class="py-2">Profil</a>
             <a href="#programs" class="py-2">Program</a>
             <a href="{{ route('fasilitas.index') }}" class="py-2">Fasilitas</a>
             <a href="{{ route('kontak.index') }}" class="py-2">Kontak</a>
