@@ -19,13 +19,16 @@
         >
         <div class="absolute inset-0 bg-black/60"></div>
         
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
-                Visi, Misi & Tujuan Sekolah
-            </h1>
-            <p class="text-base sm:text-lg text-gray-200">
-                Mewujudkan generasi unggul, berkarakter, dan berakhlak mulia
-            </p>
+        <!-- Photo -->
+        <div class="flex-shrink-0">
+          <div class="relative">
+            <img src="https://www.wowkeren.com/images/photo/cristiano_ronaldo.jpg" 
+                 alt="Kepala Sekolah SDN 4 Jatilaba" 
+                 class="w-56 h-56 object-cover rounded-xl shadow-md ring-4 ring-blue-100 transition-transform duration-300 hover:scale-105">
+            <div class="absolute -bottom-3 -right-3 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow-lg">
+              Sri Nurhayati, S.Pd.SD
+            </div>
+          </div>
         </div>
     </section>
 
