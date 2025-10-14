@@ -270,7 +270,7 @@
             <div class="text-center mb-8">
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Guru & Staff</h3>
                 <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Tenaga pendidik profesional yang berdedikasi untuk masa depan siswa.</p>
-                <a href="{{ route('allguru') }}" class="inline-block mt-4 text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 flex items-center justify-center group">
+                <a href="#" class="inline-block mt-4 text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 flex items-center justify-center group">
     Lihat Semua Guru <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
 </a>
             </div>
