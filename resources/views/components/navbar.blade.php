@@ -171,7 +171,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a href="#profil">Profil Sekolah</a>
-                        <a href="#visi-misi">Visi & Misi</a>
+                        <a href="{{ route('visi-misi') }}">Visi & Misi</a>
                         <a href="#sejarah">Sejarah</a>
                         <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                     </div>
