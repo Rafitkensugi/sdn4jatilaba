@@ -171,7 +171,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a href="#profil">Profil Sekolah</a>
-                        <a href="#visi-misi">Visi & Misi</a>
+                        <a href="{{ route('visi-misi') }}">Visi & Misi</a>
                         <a href="#sejarah">Sejarah</a>
                         <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                     </div>
@@ -185,7 +185,7 @@
             <button 
                 onclick="window.location.href='{{ route('ppdb') }}'" 
                 class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
-                PPDB
+                SPMB
             </button>
 
 
@@ -205,7 +205,7 @@
             <button 
                 onclick="window.location.href='{{ route('ppdb') }}'" 
                 class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
-                PPDB
+                SPMB
             </button>
         </nav>
     </div>
