@@ -185,7 +185,7 @@
             <button 
                 onclick="window.location.href='{{ route('ppdb') }}'" 
                 class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
-                PPDB
+                SPMB
             </button>
 
 
@@ -205,7 +205,7 @@
             <button 
                 onclick="window.location.href='{{ route('ppdb') }}'" 
                 class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
-                PPDB
+                SPMB
             </button>
         </nav>
     </div>

@@ -173,7 +173,7 @@
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2 fade-in">
                     <div class="relative">
-                        <img src="https://placehold.co/600x400/1e40af/ffffff?text=Sekolah+Harapan+Banga" alt="Sekolah Harapan Bangsa" class="rounded-xl shadow-lg w-full hover-lift">
+                        <img src="https://placehold.co/600x400/1e40af/ffffff?text=Sekolah+Harapan+Bangsa" alt="Sekolah Harapan Bangsa" class="rounded-xl shadow-lg w-full hover-lift">
                         <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 dark:bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl icon-glow animate-float">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
