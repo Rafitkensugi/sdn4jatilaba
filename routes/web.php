@@ -6,19 +6,12 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\SambutanController;
-use App\Http\Controllers\ArtikelController;
-
-Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
-Route::get('/artikel/{artikel}', [ArtikelController::class, 'show'])->name('artikel.show');
-
-// Route admin untuk CRUD artikel
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
-    Route::post('/admin/artikel', [ArtikelController::class, 'store'])->name('artikel.store');
-});
-
+use App\Http\Controllers\VisiMisiController;
+use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 
@@ -62,6 +55,9 @@ Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
 
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 
+Route::get('/program', [ProgramController::class, 'index'])->name('program');
+
 Route::get('/visi-misi', [VisiMisiController::class, 'index'])->name('visi-misi');
+ 
 
 require __DIR__.'/auth.php';
