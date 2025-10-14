@@ -1,25 +1,28 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtikelController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\FasilitasController;
-use App\Http\Controllers\KontakController;
 use App\Http\Controllers\PPDBController;
 use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\KontakController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\SambutanController;
-
-
+use App\Http\Controllers\VisiMisiController;
+use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 
 Route::get('beranda', function () {
     return view('pengunjung.beranda');
 })->name('beranda');
+
+Route::get('/', function () {
+    return view('pengunjung.beranda');
+})->name('');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
