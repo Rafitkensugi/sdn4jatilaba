@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\PPDBController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\GaleriController;
@@ -58,6 +59,5 @@ Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 Route::get('/program', [ProgramController::class, 'index'])->name('program');
 
 Route::get('/visi-misi', [VisiMisiController::class, 'index'])->name('visi-misi');
- 
 
 require __DIR__.'/auth.php';

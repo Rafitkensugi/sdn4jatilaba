@@ -127,7 +127,7 @@
         <div class="container mx-auto px-4 relative z-10 text-center text-white">
             <div class="max-w-4xl mx-auto">
                 <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight fade-in">
-                    Mendidik untuk Masa Depan yang Cemerlang
+                    SELAMAT DATANG!
                 </h2>
                 <p class="text-xl mb-8 max-w-2xl mx-auto text-gray-100 fade-in" style="transition-delay: 0.2s;">
                     Sekolah Harapan Bangsa menawarkan pendidikan berkualitas dengan kurikulum modern dan fasilitas lengkap untuk mendukung perkembangan akademik dan karakter siswa.
