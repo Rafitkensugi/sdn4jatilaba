@@ -71,23 +71,23 @@
                                 
                                 <div>
                                     <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Nama Lengkap</label>
-                                    <input type="text" name="nama_lengkap" required style="width: 100%; padding: 12px 15px; border: 2px solid var(--gray-light); border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
+                                    <input type="text" name="nama_lengkap" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
                                 </div>
                                 
                                 <div>
                                     <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Nama Panggilan</label>
-                                    <input type="text" name="nama_panggilan" required style="width: 100%; padding: 12px 15px; border: 2px solid var(--gray-light); border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
+                                    <input type="text" name="nama_panggilan" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
                                 </div>
-                                
+                        
                                 <div class="grid grid-2" style="gap: 15px;">
                                     <div>
                                         <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Tempat Lahir</label>
-                                        <input type="text" name="tempat_lahir" required style="width: 100%; padding: 12px 15px; border: 2px solid var(--gray-light); border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
+                                        <input type="text" name="tempat_lahir" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
                                     </div>
                                     
                                     <div>
                                         <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Tanggal Lahir</label>
-                                        <input type="date" name="tanggal_lahir" required style="width: 100%; padding: 12px 15px; border: 2px solid var(--gray-light); border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
+                                        <input type="date" name="tanggal_lahir" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
                                     </div>
                                 </div>
                                 
@@ -107,7 +107,7 @@
                                 
                                 <div>
                                     <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Agama</label>
-                                    <select name="agama" required style="width: 100%; padding: 12px 15px; border: 2px solid var(--gray-light); border-radius: 10px; font-family: inherit;">
+                                    <select name="agama" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; border-radius: 10px; font-family: inherit;">
                                         <option value="">Pilih Agama</option>
                                         <option value="Islam">Islam</option>
                                         <option value="Kristen">Kristen</option>
@@ -120,7 +120,7 @@
                                 
                                 <div>
                                     <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Alamat</label>
-                                    <textarea name="alamat" rows="3" required style="width: 100%; padding: 12px 15px; border: 2px solid var(--gray-light); border-radius: 10px; font-family: inherit; resize: vertical;"></textarea>
+                                    <textarea name="alamat" rows="3" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px;  border-radius: 10px; font-family: inherit; resize: vertical;"></textarea>
                                 </div>
                                 
                                 <h4 style="color: var(--primary); margin-bottom: 10px; margin-top: 20px;">Data Orang Tua</h4>
@@ -128,33 +128,33 @@
                                 <div class="grid grid-2" style="gap: 15px;">
                                     <div>
                                         <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Nama Ayah</label>
-                                        <input type="text" name="nama_ayah" required style="width: 100%; padding: 12px 15px; border: 2px solid var(--gray-light); border-radius: 10px; font-family: inherit;">
+                                        <input type="text" name="nama_ayah" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px;  border-radius: 10px; font-family: inherit;">
                                     </div>
                                     
                                     <div>
                                         <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Nama Ibu</label>
-                                        <input type="text" name="nama_ibu" required style="width: 100%; padding: 12px 15px; border: 2px solid var(--gray-light); border-radius: 10px; font-family: inherit;">
+                                        <input type="text" name="nama_ibu" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px;  border-radius: 10px; font-family: inherit;">
                                     </div>
                                 </div>
                                 
                                 <div class="grid grid-2" style="gap: 15px;">
                                     <div>
                                         <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Pekerjaan Ayah</label>
-                                        <input type="text" name="pekerjaan_ayah" required style="width: 100%; padding: 12px 15px; border: 2px solid var(--gray-light); border-radius: 10px; font-family: inherit;">
+                                        <input type="text" name="pekerjaan_ayah" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; class="border border-indigo-500"  border-radius: 10px; font-family: inherit;">
                                     </div>
                                     
                                     <div>
                                         <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Pekerjaan Ibu</label>
-                                        <input type="text" name="pekerjaan_ibu" required style="width: 100%; padding: 12px 15px; border: 2px solid var(--gray-light); border-radius: 10px; font-family: inherit;">
+                                        <input type="text" name="pekerjaan_ibu" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px;  border-radius: 10px; font-family: inherit;">
                                     </div>
                                 </div>
                                 
                                 <div>
                                     <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">No. Telepon/HP</label>
-                                    <input type="tel" name="no_telepon" required style="width: 100%; padding: 12px 15px; border: 2px solid var(--gray-light); border-radius: 10px; font-family: inherit;">
+                                    <input type="tel" name="no_telepon" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px;  border-radius: 10px; font-family: inherit;">
                                 </div>
                                 
-                                <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">
+                                <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl w-full mt-5">
                                     <i class="fas fa-paper-plane"></i> Daftar Sekarang
                                 </button>
                             </div>

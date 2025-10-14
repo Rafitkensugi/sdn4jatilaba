@@ -100,6 +100,19 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Custom styles for teacher cards */
+        .teacher-card {
+            min-width: 280px;
+        }
+
+        .teachers-container {
+            scroll-behavior: smooth;
+        }
+
+        .teachers-container::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 
@@ -173,7 +186,7 @@
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2 fade-in">
                     <div class="relative">
-                        <img src="https://placehold.co/600x400/1e40af/ffffff?text=Sekolah+Harapan+Banga" alt="Sekolah Harapan Bangsa" class="rounded-xl shadow-lg w-full hover-lift">
+                        <img src="https://placehold.co/600x400/1e40af/ffffff?text=Sekolah+Harapan+Bangsa" alt="Sekolah Harapan Bangsa" class="rounded-xl shadow-lg w-full hover-lift">
                         <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 dark:bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl icon-glow animate-float">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
@@ -251,36 +264,207 @@
         </div>
     </section>
 
-    <!-- Facilities Section -->
-    <section id="facilities" class="py-20 bg-gray-50 dark:bg-transparent border-gradient" data-aos="fade-up">
+    <!-- Teachers Section -->
+    <section id="teachers" class="py-20 bg-gray-50 dark:bg-transparent border-gradient" data-aos="fade-up">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Fasilitas Unggulan</h3>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Dukungan fasilitas lengkap untuk pengalaman belajar yang optimal.</p>
+            <div class="text-center mb-8">
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Guru & Staff</h3>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Tenaga pendidik profesional yang berdedikasi untuk masa depan siswa.</p>
+                <a href="{{ route('allguru') }}" class="inline-block mt-4 text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 flex items-center justify-center group">
+    Lihat Semua Guru <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+</a>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-lg shadow-md text-center hover-lift fade-in">
-                    <div class="relative inline-block mb-3">
-                        <i class="fas fa-laptop text-blue-600 dark:text-blue-400 text-3xl icon-glow"></i>
-                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            
+            <div class="relative">
+                <!-- Navigation Buttons -->
+                <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300">
+                    <i class="fas fa-chevron-left text-blue-600 dark:text-blue-400"></i>
+                </button>
+                <button id="nextBtn" class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300">
+                    <i class="fas fa-chevron-right text-blue-600 dark:text-blue-400"></i>
+                </button>
+                
+                <!-- Teachers Container -->
+                <div id="teachersContainer" class="teachers-container flex overflow-x-auto gap-6 pb-4 px-2 scroll-smooth" style="scrollbar-width: none;">
+                    <!-- Teacher Card 1 -->
+                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in">
+                        <div class="p-4">
+                            <div class="text-center mb-4">
+                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru Kelas</span>
+                            </div>
+                            <div class="flex justify-center mb-4">
+                                <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Ahmad Fauzi, S.Pd</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 5A</p>
+                            <div class="hidden teacher-details">
+                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <p><span class="font-semibold">NIP:</span> -</p>
+                                    <p><span class="font-semibold">NUPTK:</span> -</p>
+                                    <p><span class="font-semibold">Aktif:</span> 2018</p>
+                                    <p><span class="font-semibold">Jabatan:</span> Guru Kelas</p>
+                                    <p><span class="font-semibold">Status:</span> PNS</p>
+                                    <p><span class="font-semibold">T.T.L:</span> Tegal, 11 Januari 1994</p>
+                                    <p><span class="font-semibold">Agama:</span> Islam</p>
+                                    <p><span class="font-semibold">HP:</span> -</p>
+                                    <p><span class="font-semibold">Alamat:</span> Tegal</p>
+                                </div>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
+                                Detail
+                            </button>
+                        </div>
                     </div>
-                    <h5 class="font-semibold text-gray-800 dark:text-white mb-2">Laboratorium Komputer</h5>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Dilengkapi perangkat modern dan software terkini.</p>
-                </div>
-                <div class="glass-card p-6 rounded-lg shadow-md text-center hover-lift fade-in" style="transition-delay: 0.1s;">
-                    <i class="fas fa-flask text-blue-600 dark:text-blue-400 text-3xl mb-3 icon-glow"></i>
-                    <h5 class="font-semibold text-gray-800 dark:text-white mb-2">Lab Sains</h5>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Fasilitas lengkap untuk eksperimen IPA dan kimia.</p>
-                </div>
-                <div class="glass-card p-6 rounded-lg shadow-md text-center hover-lift fade-in" style="transition-delay: 0.2s;">
-                    <i class="fas fa-dumbbell text-blue-600 dark:text-blue-400 text-3xl mb-3 icon-glow"></i>
-                    <h5 class="font-semibold text-gray-800 dark:text-white mb-2">Lapangan Olahraga</h5>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Area luas untuk berbagai kegiatan olahraga.</p>
-                </div>
-                <div class="glass-card p-6 rounded-lg shadow-md text-center hover-lift fade-in" style="transition-delay: 0.3s;">
-                    <i class="fas fa-book text-blue-600 dark:text-blue-400 text-3xl mb-3 icon-glow"></i>
-                    <h5 class="font-semibold text-gray-800 dark:text-white mb-2">Perpustakaan</h5>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Koleksi buku lengkap dan ruang baca nyaman.</p>
+                    
+                    <!-- Teacher Card 2 -->
+                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.1s;">
+                        <div class="p-4">
+                            <div class="text-center mb-4">
+                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
+                            </div>
+                            <div class="flex justify-center mb-4">
+                                <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Siti Aminah, S.Pd</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Wali Kelas 4B</p>
+                            <div class="hidden teacher-details">
+                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <p><span class="font-semibold">NIP:</span> -</p>
+                                    <p><span class="font-semibold">NUPTK:</span> -</p>
+                                    <p><span class="font-semibold">Aktif:</span> 2019</p>
+                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
+                                    <p><span class="font-semibold">Status:</span> PNS</p>
+                                    <p><span class="font-semibold">T.T.L:</span> Tegal, 15 Maret 1990</p>
+                                    <p><span class="font-semibold">Agama:</span> Islam</p>
+                                    <p><span class="font-semibold">HP:</span> -</p>
+                                    <p><span class="font-semibold">Alamat:</span> Tegal</p>
+                                </div>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
+                                Detail
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Teacher Card 3 -->
+                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.2s;">
+                        <div class="p-4">
+                            <div class="text-center mb-4">
+                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru/Staff</span>
+                            </div>
+                            <div class="flex justify-center mb-4">
+                                <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Budi Santoso, S.Pd</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Matematika</p>
+                            <div class="hidden teacher-details">
+                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <p><span class="font-semibold">NIP:</span> -</p>
+                                    <p><span class="font-semibold">NUPTK:</span> -</p>
+                                    <p><span class="font-semibold">Aktif:</span> 2017</p>
+                                    <p><span class="font-semibold">Jabatan:</span> Guru Matematika</p>
+                                    <p><span class="font-semibold">Status:</span> PNS</p>
+                                    <p><span class="font-semibold">T.T.L:</span> Tegal, 20 Juli 1988</p>
+                                    <p><span class="font-semibold">Agama:</span> Islam</p>
+                                    <p><span class="font-semibold">HP:</span> -</p>
+                                    <p><span class="font-semibold">Alamat:</span> Tegal</p>
+                                </div>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
+                                Detail
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Teacher Card 4 -->
+                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.3s;">
+                        <div class="p-4">
+                            <div class="text-center mb-4">
+                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Pustakawan</span>
+                            </div>
+                            <div class="flex justify-center mb-4">
+                                <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Dewi Lestari, S.Pd</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Pustakawan</p>
+                            <div class="hidden teacher-details">
+                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <p><span class="font-semibold">NIP:</span> -</p>
+                                    <p><span class="font-semibold">NUPTK:</span> -</p>
+                                    <p><span class="font-semibold">Aktif:</span> 2018</p>
+                                    <p><span class="font-semibold">Jabatan:</span> Pustakawan</p>
+                                    <p><span class="font-semibold">Status:</span> GTT / PTT</p>
+                                    <p><span class="font-semibold">T.T.L:</span> Tegal, 11 Januari 1994</p>
+                                    <p><span class="font-semibold">Agama:</span> Islam</p>
+                                    <p><span class="font-semibold">HP:</span> -</p>
+                                    <p><span class="font-semibold">Alamat:</span> Tegal</p>
+                                </div>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
+                                Detail
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Teacher Cards -->
+                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.4s;">
+                        <div class="p-4">
+                            <div class="text-center mb-4">
+                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru Olahraga</span>
+                            </div>
+                            <div class="flex justify-center mb-4">
+                                <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Rudi Hartono, S.Pd</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Olahraga</p>
+                            <div class="hidden teacher-details">
+                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <p><span class="font-semibold">NIP:</span> -</p>
+                                    <p><span class="font-semibold">NUPTK:</span> -</p>
+                                    <p><span class="font-semibold">Aktif:</span> 2016</p>
+                                    <p><span class="font-semibold">Jabatan:</span> Guru Olahraga</p>
+                                    <p><span class="font-semibold">Status:</span> PNS</p>
+                                    <p><span class="font-semibold">T.T.L:</span> Tegal, 5 Oktober 1985</p>
+                                    <p><span class="font-semibold">Agama:</span> Islam</p>
+                                    <p><span class="font-semibold">HP:</span> -</p>
+                                    <p><span class="font-semibold">Alamat:</span> Tegal</p>
+                                </div>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
+                                Detail
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Teacher Card 6 -->
+                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.5s;">
+                        <div class="p-4">
+                            <div class="text-center mb-4">
+                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru Seni</span>
+                            </div>
+                            <div class="flex justify-center mb-4">
+                                <img src="https://city-png.b-cdn.net/preview/preview_public/uploads/preview/hd-cristiano-ronaldo-al-nassr-with-golden-shoe-png-701751712070442muv4hgrbfi.png" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Maya Sari, S.Pd</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Seni Budaya</p>
+                            <div class="hidden teacher-details">
+                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <p><span class="font-semibold">NIP:</span> -</p>
+                                    <p><span class="font-semibold">NUPTK:</span> -</p>
+                                    <p><span class="font-semibold">Aktif:</span> 2020</p>
+                                    <p><span class="font-semibold">Jabatan:</span> Guru Seni Budaya</p>
+                                    <p><span class="font-semibold">Status:</span> PNS</p>
+                                    <p><span class="font-semibold">T.T.L:</span> Tegal, 12 April 1992</p>
+                                    <p><span class="font-semibold">Agama:</span> Islam</p>
+                                    <p><span class="font-semibold">HP:</span> -</p>
+                                    <p><span class="font-semibold">Alamat:</span> Tegal</p>
+                                </div>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
+                                Detail
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -421,6 +605,48 @@
         window.addEventListener('scroll', fadeInOnScroll);
         // Initial check
         fadeInOnScroll();
+
+        // Teacher cards navigation
+        const teachersContainer = document.getElementById('teachersContainer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        if (teachersContainer && prevBtn && nextBtn) {
+            const teacherCard = document.querySelector('.teacher-card');
+            const cardWidth = teacherCard.offsetWidth + 24; // width + gap
+            
+            prevBtn.addEventListener('click', () => {
+                teachersContainer.scrollBy({
+                    left: -cardWidth * 3,
+                    behavior: 'smooth'
+                });
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                teachersContainer.scrollBy({
+                    left: cardWidth * 3,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Detail button functionality
+        const detailButtons = document.querySelectorAll('.detail-btn');
+        
+        detailButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const details = this.previousElementSibling;
+                const isHidden = details.classList.contains('hidden');
+                
+                if (isHidden) {
+                    details.classList.remove('hidden');
+                    this.textContent = 'Sembunyikan';
+                } else {
+                    details.classList.add('hidden');
+                    this.textContent = 'Detail';
+                }
+            });
+        });
     </script>
 </body>
 </html>

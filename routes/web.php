@@ -12,6 +12,8 @@ use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SambutanController;
 
+
+
 Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 
 Route::get('beranda', function () {
