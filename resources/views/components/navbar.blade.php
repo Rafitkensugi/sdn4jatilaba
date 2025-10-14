@@ -154,8 +154,8 @@
                     <i class="fas fa-school school-icon text-2xl"></i>
                 </div>
                 <div>
-                    <h1 class="school-title text-2xl font-bold">SDN 04 Jatilaba</h1>
-                    <p class="school-tagline">Membangun Generasi Unggul</p>
+                    <h1 class="school-title text-2xl font-bold">SD Negeri 4 Jatilaba</h1>
+                    <p class="school-tagline">Jalan Keplik, Desa Jatilaba, Kec. Margasari, Kab. Tegal</p>
                 </div>
             </div>
 
