@@ -17,6 +17,10 @@ Route::get('beranda', function () {
     return view('pengunjung.beranda');
 })->name('beranda');
 
+Route::get('/', function () {
+    return view('pengunjung.beranda');
+})->name('');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
