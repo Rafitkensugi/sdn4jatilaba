@@ -248,7 +248,7 @@
           <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
             Siswa dan guru bersama-sama menggelar upacara dan lomba kreatif untuk memperingati Hardiknas dengan semangat kebersamaan.
           </p>
-          <a href="#" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
+          <a href="{{ route('artikel') }}" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
             Baca Selengkapnya
             <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
           </a>

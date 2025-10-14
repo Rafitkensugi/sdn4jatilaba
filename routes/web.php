@@ -14,8 +14,8 @@ use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
-Route::get('/artikel/{artikel}', [ArtikelController::class, 'show'])->name('artikel.show');
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
+Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
 
 Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 
