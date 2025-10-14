@@ -9,17 +9,9 @@
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .school-icon-bg {
-        background-color: var(--maize-yellow) !important;
-    }
-
-    .school-icon {
-        color: var(--oxford-blue) !important;
-    }
-
     .school-title {
         color: white !important;
-        font-family: 'Georgia', serif;
+        font-family: 'Helvetica', serif;
         letter-spacing: -0.5px;
     }
 
@@ -142,6 +134,9 @@
         font-weight: 600;
         width: 100%;
         border: none;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
     }
 </style>
 
@@ -150,12 +145,17 @@
     <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="school-icon-bg p-2 rounded-lg">
-                    <i class="fas fa-school school-icon text-2xl"></i>
+                <!-- Logo tanpa latar kuning -->
+                <div class="flex items-center justify-center">
+                    <img 
+                        src="https://files.catbox.moe/tfztat.png" 
+                        alt="Logo SDN 04 Jatilaba" 
+                        class="h-10 w-auto object-contain"
+                    >
                 </div>
                 <div>
-                    <h1 class="school-title text-2xl font-bold">SDN 04 Jatilaba</h1>
-                    <p class="school-tagline">Membangun Generasi Unggul</p>
+                    <h1 class="school-title text-2xl font-bold">SD NEGERI 4 JATILABA</h1>
+                    <p class="school-tagline">Jalan Keplik, Desa Jatilaba, Kec. Margasari, Kab. Tegal</p>
                 </div>
             </div>
 
@@ -163,7 +163,7 @@
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="{{ route('beranda') }}" class="nav-link">Beranda</a>
 
-                <!-- Dropdown Tentang dengan #anchor -->
+                <!-- Dropdown Tentang -->
                 <div class="dropdown">
                     <a href="#" class="nav-link flex items-center">
                         Profil
@@ -188,7 +188,6 @@
                 SPMB
             </button>
 
-
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg">
                 <i class="fas fa-bars text-xl"></i>
@@ -204,7 +203,7 @@
             <a href="{{ route('kontak.index') }}" class="py-2">Kontak</a>
             <button 
                 onclick="window.location.href='{{ route('ppdb') }}'" 
-                class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
+                class="btn-register-mobile">
                 SPMB
             </button>
         </nav>
