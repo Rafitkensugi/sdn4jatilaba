@@ -11,6 +11,17 @@ use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SambutanController;
+use App\Http\Controllers\ArtikelController;
+
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
+Route::get('/artikel/{artikel}', [ArtikelController::class, 'show'])->name('artikel.show');
+
+// Route admin untuk CRUD artikel
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
+    Route::post('/admin/artikel', [ArtikelController::class, 'store'])->name('artikel.store');
+});
+
 
 Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 

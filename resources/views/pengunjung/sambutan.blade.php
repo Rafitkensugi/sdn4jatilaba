@@ -37,7 +37,7 @@
                  alt="Kepala Sekolah SDN 4 Jatilaba" 
                  class="w-56 h-56 object-cover rounded-xl shadow-md ring-4 ring-blue-100 transition-transform duration-300 hover:scale-105">
             <div class="absolute -bottom-3 -right-3 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow-lg">
-              bambang supriadi, S.Pd
+              Sri Nurhayati, S.Pd.SD
             </div>
           </div>
         </div>
