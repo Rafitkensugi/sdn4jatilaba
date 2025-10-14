@@ -8,6 +8,7 @@ use App\Http\Controllers\PPDBController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SambutanController;
 
@@ -48,5 +49,8 @@ Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.de
 Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
 
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
+
+Route::get('/program', [ProgramController::class, 'index'])->name('program');
+ 
 
 require __DIR__.'/auth.php';
