@@ -58,14 +58,6 @@ Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 
 Route::get('/program', [ProgramController::class, 'index'])->name('program');
 
-Route::get('/artikel', function() 
-{
-    return view('pengunjung.artikel');
-})->name('artikel');
-Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
+Route::get('/visi-misi', [VisiMisiController::class, 'index'])->name('visi-misi');
 
-Route::get('/visi-misi', function()
-{
-    return view('pengunjung.visi-misi');
-})->name('visi-misi');
 require __DIR__.'/auth.php';
