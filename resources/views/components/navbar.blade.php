@@ -11,7 +11,7 @@
 
     .school-title {
         color: white !important;
-        font-family: 'Georgia', serif;
+        font-family: 'Helvetica', serif;
         letter-spacing: -0.5px;
     }
 
@@ -154,7 +154,7 @@
                     >
                 </div>
                 <div>
-                    <h1 class="school-title text-2xl font-bold">SD Negeri 4 Jatilaba</h1>
+                    <h1 class="school-title text-2xl font-bold">SD NEGERI 4 JATILABA</h1>
                     <p class="school-tagline">Jalan Keplik, Desa Jatilaba, Kec. Margasari, Kab. Tegal</p>
                 </div>
             </div>
