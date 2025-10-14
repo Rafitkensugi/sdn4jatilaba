@@ -171,13 +171,13 @@
                     </a>
                     <div class="dropdown-menu">
                         <a href="#profil">Profil Sekolah</a>
-                        <a href="#visi-misi">Visi & Misi</a>
+                        <a href="{{ route('visi-misi') }}">Visi & Misi</a>
                         <a href="#sejarah">Sejarah</a>
                         <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                     </div>
                 </div>
 
-                <a href="#programs" class="nav-link">Program</a>
+                <a href="{{ route('program') }}" class="nav-link">Program</a>
                 <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
                 <a href="{{ route('kontak.index') }}" class="nav-link">Kontak</a>
             </nav>
@@ -199,7 +199,7 @@
         <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
             <a href="{{ route('beranda') }}" class="py-2">Beranda</a>
             <a href="#" class="py-2">Profil</a>
-            <a href="#programs" class="py-2">Program</a>
+            <a href="{{ route('program') }}" class="py-2">Program</a>
             <a href="{{ route('fasilitas.index') }}" class="py-2">Fasilitas</a>
             <a href="{{ route('kontak.index') }}" class="py-2">Kontak</a>
             <button 
