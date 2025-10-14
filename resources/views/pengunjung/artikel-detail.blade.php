@@ -41,7 +41,7 @@
 
     <!-- Tombol Kembali -->
     <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="300">
-      <a href="{{ route('artikel.index') }}" 
+      <a href="{{ route('artikel') }}" 
          class="inline-block bg-[#002147] text-white px-6 py-3 rounded-lg hover:bg-[#013068] transition">
         ← Kembali ke Daftar Artikel
       </a>
