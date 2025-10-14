@@ -297,7 +297,7 @@
           </h3>
           <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
             <i class="far fa-calendar mr-1"></i> 8 Oktober 2025
-          </p>
+          </p>` 
           <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
             Ujian Akhir Semester akan dilaksanakan pada 20–25 November 2025. Orang tua dimohon untuk mendukung persiapan belajar siswa.
           </p>
