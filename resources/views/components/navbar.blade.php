@@ -113,20 +113,18 @@
         transform: scale(1.05);
     }
 
-    /* Mobile Menu */
+    /* Mobile Menu - Using display instead of max-height for more reliable behavior */
     #mobile-menu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease;
+        display: none;
     }
 
-    #mobile-menu.active {
-        max-height: 600px;
+    #mobile-menu.show {
+        display: block;
     }
 
     #mobile-menu a {
         color: white !important;
-        padding: 12px 12px;
+        padding: 12px;
         border-left: 3px solid transparent;
         transition: all 0.2s;
         text-decoration: none;
@@ -145,8 +143,8 @@
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
-        color: white;
-        padding: 12px 12px;
+        color: white !important;
+        padding: 12px;
         border-left: 3px solid transparent;
         transition: all 0.2s;
     }
@@ -157,17 +155,19 @@
         background-color: rgba(255, 255, 255, 0.05);
     }
 
+    .mobile-dropdown-toggle.active {
+        border-left-color: var(--maize-yellow) !important;
+    }
+
     .mobile-dropdown-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
+        display: none;
         background-color: rgba(0, 0, 0, 0.2);
         margin-left: 12px;
         border-left: 2px solid rgba(255, 255, 255, 0.2);
     }
 
-    .mobile-dropdown-content.active {
-        max-height: 300px;
+    .mobile-dropdown-content.show {
+        display: block;
     }
 
     .mobile-dropdown-content a {
@@ -253,21 +253,21 @@
 
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg">
-                <i class="fas fa-bar text-xl"></i>
+                <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
 
         <!-- Mobile Navigation -->
-        <nav id="mobile-menu" class="md:hidden mt-4">
+        <nav id="mobile-menu" class="md:hidden mt-4 pb-4 space-y-2">
             <a href="{{ route('beranda') }}">Beranda</a>
             
             <!-- Mobile Dropdown Profil -->
             <div class="mobile-dropdown">
-                <div class="mobile-dropdown-toggle">
+                <div class="mobile-dropdown-toggle" id="mobile-dropdown-toggle">
                     <span>Profil</span>
-                    <i class="fas fa-chevron-down text-sm chevron-icon"></i>
+                    <i class="fas fa-chevron-down text-sm chevron-icon" id="chevron-icon"></i>
                 </div>
-                <div class="mobile-dropdown-content">
+                <div class="mobile-dropdown-content" id="mobile-dropdown-content">
                     <a href="#profil">Profil Sekolah</a>
                     <a href="{{ route('visi-misi') }}">Visi & Misi</a>
                     <a href="#sejarah">Sejarah</a>
@@ -290,71 +290,104 @@
 
 <!-- Mobile Menu Toggle Script -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileDropdownToggle = document.querySelector('.mobile-dropdown-toggle');
-        const mobileDropdownContent = document.querySelector('.mobile-dropdown-content');
-        const chevronIcon = document.querySelector('.chevron-icon');
-
-        // Toggle Mobile Menu
-        mobileMenuButton.addEventListener('click', function () {
-            mobileMenu.classList.toggle('active');
+    (function() {
+        'use strict';
+        
+        // Wait for DOM to be fully loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initNavbar);
+        } else {
+            initNavbar();
+        }
+        
+        function initNavbar() {
+            // Get elements
+            var mobileMenuButton = document.getElementById('mobile-menu-button');
+            var mobileMenu = document.getElementById('mobile-menu');
+            var mobileDropdownToggle = document.getElementById('mobile-dropdown-toggle');
+            var mobileDropdownContent = document.getElementById('mobile-dropdown-content');
+            var chevronIcon = document.getElementById('chevron-icon');
             
-            // Change icon between hamburger and X
-            const icon = this.querySelector('i');
-            if (mobileMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+            // Check if elements exist
+            if (!mobileMenuButton || !mobileMenu) {
+                console.error('Mobile menu elements not found');
+                return;
             }
-        });
-
-        // Toggle Mobile Dropdown
-        if (mobileDropdownToggle) {
-            mobileDropdownToggle.addEventListener('click', function (e) {
+            
+            // Toggle Mobile Menu
+            mobileMenuButton.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                mobileDropdownContent.classList.toggle('active');
-                chevronIcon.classList.toggle('rotate');
+                mobileMenu.classList.toggle('show');
                 
-                // Add highlight effect when dropdown is active
-                if (mobileDropdownContent.classList.contains('active')) {
-                    this.style.borderLeftColor = '#F2C94C';
-                } else {
-                    this.style.borderLeftColor = 'transparent';
+                // Change icon
+                var icon = this.querySelector('i');
+                if (icon) {
+                    if (mobileMenu.classList.contains('show')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        
+                        // Close dropdown when menu closes
+                        if (mobileDropdownContent && mobileDropdownContent.classList.contains('show')) {
+                            mobileDropdownContent.classList.remove('show');
+                            if (chevronIcon) chevronIcon.classList.remove('rotate');
+                            if (mobileDropdownToggle) mobileDropdownToggle.classList.remove('active');
+                        }
+                    }
                 }
             });
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideMenu = mobileMenu.contains(event.target);
-            const isClickOnButton = mobileMenuButton.contains(event.target);
             
-            if (!isClickInsideMenu && !isClickOnButton && mobileMenu.classList.contains('active')) {
-                mobileMenu.classList.remove('active');
-                const icon = mobileMenuButton.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-                
-                // Reset dropdown state
-                if (mobileDropdownContent && mobileDropdownContent.classList.contains('active')) {
-                    mobileDropdownContent.classList.remove('active');
-                    chevronIcon.classList.remove('rotate');
-                    mobileDropdownToggle.style.borderLeftColor = 'transparent';
-                }
+            // Toggle Mobile Dropdown
+            if (mobileDropdownToggle) {
+                mobileDropdownToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    if (mobileDropdownContent) {
+                        mobileDropdownContent.classList.toggle('show');
+                    }
+                    
+                    if (chevronIcon) {
+                        chevronIcon.classList.toggle('rotate');
+                    }
+                    
+                    this.classList.toggle('active');
+                });
             }
-        });
-
-        // Prevent menu from closing when clicking inside dropdown content
-        if (mobileDropdownContent) {
-            mobileDropdownContent.addEventListener('click', function(e) {
-                e.stopPropagation();
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.contains(event.target) && 
+                    !mobileMenuButton.contains(event.target) && 
+                    mobileMenu.classList.contains('show')) {
+                    
+                    mobileMenu.classList.remove('show');
+                    
+                    var icon = mobileMenuButton.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                    
+                    // Reset dropdown
+                    if (mobileDropdownContent && mobileDropdownContent.classList.contains('show')) {
+                        mobileDropdownContent.classList.remove('show');
+                        if (chevronIcon) chevronIcon.classList.remove('rotate');
+                        if (mobileDropdownToggle) mobileDropdownToggle.classList.remove('active');
+                    }
+                }
             });
+            
+            // Prevent menu from closing when clicking inside
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
         }
-    });
+    })();
 </script>
