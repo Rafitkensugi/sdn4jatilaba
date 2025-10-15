@@ -248,7 +248,7 @@
           <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
             Siswa dan guru bersama-sama menggelar upacara dan lomba kreatif untuk memperingati Hardiknas dengan semangat kebersamaan.
           </p>
-          <a href="#" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
+          <a href="{{ route('artikel') }}" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
             Baca Selengkapnya
             <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
           </a>
@@ -298,7 +298,7 @@
           </h3>
           <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
             <i class="far fa-calendar mr-1"></i> 8 Oktober 2025
-          </p>
+          </p>` 
           <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
             Ujian Akhir Semester akan dilaksanakan pada 20–25 November 2025. Orang tua dimohon untuk mendukung persiapan belajar siswa.
           </p>
