@@ -1,6 +1,6 @@
 <style>
     :root {
-        --oxford-blue: #67308B;
+        --oxford-blue: #67308b;
         --maize-yellow: #F2C94C;
     }
 
@@ -176,14 +176,14 @@
                         <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                     </div>
                 </div>
-                <a href="{{ route('artikel') }}" class="nav-link">Artikel</a>
+
                 <a href="{{ route('program') }}" class="nav-link">Program</a>
                 <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
                 <a href="{{ route('kontak.index') }}" class="nav-link">Kontak</a>
             </nav>
 
             <button 
-                onclick="window.location.href='{{ route('ppdb') }}'" 
+                onclick="window.location.href='{{ route('spmb') }}'" 
                 class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
                 SPMB
             </button>
@@ -202,7 +202,7 @@
             <a href="{{ route('fasilitas.index') }}" class="py-2">Fasilitas</a>
             <a href="{{ route('kontak.index') }}" class="py-2">Kontak</a>
             <button 
-                onclick="window.location.href='{{ route('ppdb') }}'" 
+                onclick="window.location.href='{{ route('spmb') }}'" 
                 class="btn-register-mobile">
                 SPMB
             </button>
