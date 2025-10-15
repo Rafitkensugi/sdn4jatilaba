@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artikel;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
 {
     public function index()
     {
-        return view('pengunjung.beranda'); // arahkan ke resources/views/landing.blade.php
+        // Ambil 3 artikel terbaru
+        $artikels = Artikel::orderBy('created_at', 'desc')->take(3)->get();
+
+        // Kirim ke view
+        return view('pengunjung.beranda', compact('artikels'));
     }
 }
