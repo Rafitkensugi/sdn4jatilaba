@@ -146,42 +146,42 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="py-16 bg-white dark:bg-transparent border-gradient" data-aos="fade-up">
+    <section class="py-16 bg-grey dark:bg-transparent border-gradient" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="space-y-2 fade-in">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        25+ <i class="fas fa-history ml-2 text-lg icon-glow"></i>
+                        40+ <i class="fas fa-history ml-2 text-lg icon-glow"></i>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300">Tahun Pengalaman</p>
+                    <p class="text-gray-600 dark:text-gray-300">Tahun Berdiri</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.1s;">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        1,200+ <i class="fas fa-user-graduate ml-2 text-lg icon-glow"></i>
+                        300+ <i class="fas fa-user-graduate ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Siswa Aktif</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.2s;">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        85+ <i class="fas fa-chalkboard-teacher ml-2 text-lg icon-glow"></i>
+                        16 <i class="fas fa-chalkboard-teacher ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Guru Profesional</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.3s;">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        98% <i class="fas fa-trophy ml-2 text-lg icon-glow"></i>
+                        A <i class="fas fa-trophy ml-2 text-lg icon-glow"></i>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300">Kelulusan</p>
+                    <p class="text-gray-600 dark:text-gray-300">Akreditasi Sekolah</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50 dark:bg-transparent border-gradient" data-aos="fade-up">
+    <section id="about" class="py-20 bg-white dark:bg-transparent border-gradient" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Tentang Kami</h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Sejarah Singkat</h3>
                 <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Misi kami adalah memberikan pendidikan terbaik yang mengembangkan potensi setiap siswa secara holistik.</p>
             </div>
             <div class="flex flex-col lg:flex-row items-center gap-12">
@@ -217,100 +217,132 @@
         </div>
     </section>
 
-    <!-- News Cards with Images -->
-<section class="py-16 bg-white dark:bg-gray-900" data-aos="fade-up">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Berita Terbaru</h2>
-      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-        Informasi terkini seputar kegiatan, prestasi, dan pengumuman dari sekolah kami.
-      </p>
+<section class="py-20 bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50 relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-blue-100/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-100/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16 animate-fade-in">
+            <span class="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
+                Blog & Artikel
+            </span>
+            <h2 class="text-4xl md:text-5xl font-bold text-[#002147] mb-4 bg-clip-text">
+                Artikel Terbaru
+            </h2>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                Temukan insight dan informasi terkini dari artikel-artikel pilihan kami
+            </p>
+        </div>
+
+        @if($artikels->count() > 0)
+        <!-- Articles Grid -->
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            @foreach($artikels as $artikel)
+            <article class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-blue-200 flex flex-col">
+                <!-- Image Container with Overlay -->
+                <div class="relative overflow-hidden h-56">
+                    <img src="{{ $artikel->gambar ?? asset('images/no-image.jpg') }}" 
+                         alt="{{ $artikel->judul }}" 
+                         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <!-- Floating badge -->
+                    <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
+                        <span class="text-xs font-semibold text-blue-600">New</span>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-[#002147] mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300 leading-snug">
+                        {{ $artikel->judul }}
+                    </h3>
+                    
+                    <!-- Meta Information -->
+                    <div class="flex items-center gap-4 text-sm text-gray-500 mb-4 pb-4 border-b border-gray-100">
+                        <span class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            {{ $artikel->created_at->format('d M Y') }}
+                        </span>
+                        <span class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                            {{ $artikel->views }}x dibaca
+                        </span>
+                    </div>
+
+                    <!-- Read More Link -->
+                    <a href="{{ route('artikel.show', $artikel->id) }}" 
+                       class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-3 transition-all duration-300 mt-auto group/link">
+                        <span>Baca Selengkapnya</span>
+                        <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+            @endforeach
+        </div>
+
+        <!-- View All Button -->
+        <div class="text-center mt-12">
+            <a href="{{ route('artikel') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-[#002147] text-white rounded-full font-semibold hover:bg-blue-900 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                <span>Lihat Semua Artikel</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+            </a>
+        </div>
+
+        @else
+        <!-- Empty State -->
+        <div class="text-center py-20">
+            <div class="inline-flex items-center justify-center w-24 h-24 bg-gray-100 rounded-full mb-6">
+                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Belum Ada Artikel</h3>
+            <p class="text-gray-500 text-lg mb-8">Artikel akan segera hadir. Nantikan update terbaru dari kami!</p>
+            <button class="px-6 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-colors duration-300">
+                Beritahu Saya
+            </button>
+        </div>
+        @endif
     </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Card 1 -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col">
-        <div class="h-48 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
-               alt="Perayaan Hardiknas" 
-               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-        </div>
-        <div class="p-6 flex-grow flex flex-col">
-          <span class="inline-block text-xs font-semibold px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full mb-3">
-            Kegiatan Sekolah
-          </span>
-          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-2">
-            Perayaan Hari Pendidikan Nasional 2025
-          </h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
-            <i class="far fa-calendar mr-1"></i> 14 Oktober 2025
-          </p>
-          <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
-            Siswa dan guru bersama-sama menggelar upacara dan lomba kreatif untuk memperingati Hardiknas dengan semangat kebersamaan.
-          </p>
-          <a href="{{ route('artikel') }}" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
-            Baca Selengkapnya
-            <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col">
-        <div class="h-48 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
-               alt="Olimpiade Sains" 
-               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-        </div>
-        <div class="p-6 flex-grow flex flex-col">
-          <span class="inline-block text-xs font-semibold px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full mb-3">
-            Prestasi
-          </span>
-          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-2">
-            Siswa Raih Juara 1 Olimpiade Sains Tingkat Provinsi
-          </h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
-            <i class="far fa-calendar mr-1"></i> 10 Oktober 2025
-          </p>
-          <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
-            Ananda Putri dari kelas 8 berhasil meraih medali emas dalam ajang Olimpiade Sains Provinsi Jawa Barat 2025.
-          </p>
-          <a href="#" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
-            Baca Selengkapnya
-            <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col">
-        <div class="h-48 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
-               alt="Ujian Sekolah" 
-               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-        </div>
-        <div class="p-6 flex-grow flex flex-col">
-          <span class="inline-block text-xs font-semibold px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full mb-3">
-            Pengumuman
-          </span>
-          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-2">
-            Jadwal Ujian Akhir Semester Ganjil
-          </h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
-            <i class="far fa-calendar mr-1"></i> 8 Oktober 2025
-          </p>` 
-          <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
-            Ujian Akhir Semester akan dilaksanakan pada 20–25 November 2025. Orang tua dimohon untuk mendukung persiapan belajar siswa.
-          </p>
-          <a href="#" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
-            Baca Selengkapnya
-            <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
+
+<style>
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.6s ease-out;
+}
+
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+</style>
+
+
 
     <!-- Teachers Section -->
     <section id="teachers" class="py-20 bg-gray-50 dark:bg-transparent border-gradient" data-aos="fade-up">
@@ -335,28 +367,25 @@
                     <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in">
                         <div class="p-4">
                             <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru Kelas</span>
+                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Kepala Sekolah</span>
                             </div>
                             <div class="flex justify-center mb-4">
-                                <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                                <img src="{{ asset('images/SRI NURHAYATI, S.Pd.SD..jpg') }}" alt="Kepala Sekolah" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
                             </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Ahmad Fauzi, S.Pd</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 5A</p>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Sri Nurhayati, S.Pd.SD.</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Kepala Sekolah</p>
                             <div class="hidden teacher-details">
                                 <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> -</p>
-                                    <p><span class="font-semibold">NUPTK:</span> -</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2018</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Guru Kelas</p>
+                                    <p><span class="font-semibold">NIP:</span> 197008121999032007</p>
+                                    <p><span class="font-semibold">Aktif:</span> 2022</p>
+                                    <p><span class="font-semibold">Jabatan:</span> Kepala Sekolah</p>
                                     <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">T.T.L:</span> Tegal, 11 Januari 1994</p>
-                                    <p><span class="font-semibold">Agama:</span> Islam</p>
-                                    <p><span class="font-semibold">HP:</span> -</p>
-                                    <p><span class="font-semibold">Alamat:</span> Tegal</p>
+                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
                                 </div>
                             </div>
                             <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
                                 Detail
+
                             </button>
                         </div>
                     </div>
@@ -368,21 +397,17 @@
                                 <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
                             </div>
                             <div class="flex justify-center mb-4">
-                                <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                                <img src="{{ asset('images/...') }}" alt="..." class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
                             </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Siti Aminah, S.Pd</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Wali Kelas 4B</p>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Parwiti, S.Pd.</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 5A</p>
                             <div class="hidden teacher-details">
                                 <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> -</p>
-                                    <p><span class="font-semibold">NUPTK:</span> -</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2019</p>
+                                    <p><span class="font-semibold">NIP:</span> 196904261993032007</p>
+                                    <p><span class="font-semibold">Aktif:</span> 2013</p>
                                     <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
                                     <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">T.T.L:</span> Tegal, 15 Maret 1990</p>
-                                    <p><span class="font-semibold">Agama:</span> Islam</p>
-                                    <p><span class="font-semibold">HP:</span> -</p>
-                                    <p><span class="font-semibold">Alamat:</span> Tegal</p>
+                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
                                 </div>
                             </div>
                             <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
@@ -395,24 +420,20 @@
                     <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.2s;">
                         <div class="p-4">
                             <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru/Staff</span>
+                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
                             </div>
                             <div class="flex justify-center mb-4">
-                                <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                                <img src="{{ asset('images/ANI LATIFAH, S.Pd..jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
                             </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Budi Santoso, S.Pd</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Matematika</p>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Ani Latifah, S.Pd.</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 5B</p>
                             <div class="hidden teacher-details">
                                 <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> -</p>
-                                    <p><span class="font-semibold">NUPTK:</span> -</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2017</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Guru Matematika</p>
+                                    <p><span class="font-semibold">NIP:</span> 198312212008012001</p>
+                                    <p><span class="font-semibold">Aktif:</span> 2020</p>
+                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
                                     <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">T.T.L:</span> Tegal, 20 Juli 1988</p>
-                                    <p><span class="font-semibold">Agama:</span> Islam</p>
-                                    <p><span class="font-semibold">HP:</span> -</p>
-                                    <p><span class="font-semibold">Alamat:</span> Tegal</p>
+                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
                                 </div>
                             </div>
                             <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
@@ -425,24 +446,20 @@
                     <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.3s;">
                         <div class="p-4">
                             <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Pustakawan</span>
+                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
                             </div>
                             <div class="flex justify-center mb-4">
-                                <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                                <img src="{{ asset('images/RAIHAN AJI ZAEFANI, S.Pd.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
                             </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Dewi Lestari, S.Pd</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Pustakawan</p>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Raihan Aji Zaefani, S.Pd.</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 3</p>
                             <div class="hidden teacher-details">
                                 <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> -</p>
-                                    <p><span class="font-semibold">NUPTK:</span> -</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2018</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Pustakawan</p>
-                                    <p><span class="font-semibold">Status:</span> GTT / PTT</p>
-                                    <p><span class="font-semibold">T.T.L:</span> Tegal, 11 Januari 1994</p>
-                                    <p><span class="font-semibold">Agama:</span> Islam</p>
-                                    <p><span class="font-semibold">HP:</span> -</p>
-                                    <p><span class="font-semibold">Alamat:</span> Tegal</p>
+                                    <p><span class="font-semibold">NIP:</span> 199112222019031002</p>
+                                    <p><span class="font-semibold">Aktif:</span> 2019</p>
+                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
+                                    <p><span class="font-semibold">Status:</span> PNS</p>
+                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
                                 </div>
                             </div>
                             <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
@@ -455,23 +472,19 @@
                     <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.4s;">
                         <div class="p-4">
                             <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru Olahraga</span>
+                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru PJOK</span>
                             </div>
                             <div class="flex justify-center mb-4">
-                                <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                                <img src="{{ asset('images/SITI DAHLIYA, S.Pd..jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
                             </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Rudi Hartono, S.Pd</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Olahraga</p>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Siti Dahlia, S.Pd.</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru PJOK</p>
                             <div class="hidden teacher-details">
                                 <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> -</p>
-                                    <p><span class="font-semibold">NUPTK:</span> -</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2016</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Guru Olahraga</p>
+                                    <p><span class="font-semibold">NIP:</span> 198604252020122004</p>
+                                    <p><span class="font-semibold">Aktif:</span> 2020</p>
+                                    <p><span class="font-semibold">Jabatan:</span> Guru PJOK</p>
                                     <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">T.T.L:</span> Tegal, 5 Oktober 1985</p>
-                                    <p><span class="font-semibold">Agama:</span> Islam</p>
-                                    <p><span class="font-semibold">HP:</span> -</p>
                                     <p><span class="font-semibold">Alamat:</span> Tegal</p>
                                 </div>
                             </div>

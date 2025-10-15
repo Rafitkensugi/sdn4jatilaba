@@ -201,35 +201,28 @@
     </button>
 
     <!-- Hero Section -->
-    <section class="hero" aria-hidden="false">
-        <div class="floating-circles" aria-hidden="true">
-            <div class="circle c1"></div>
-            <div class="circle c2"></div>
-            <div class="circle c3"></div>
-        </div>
-
-        <div class="container hero-content">
-            <h1>SPMB Online</h1>
-            <p>Seleksi Penerimaan Mahasiswa Baru SD Negeri 4 Jatilaba — Pendaftaran Online</p>
+    <section class="hero" style="padding: 150px 0 80px;">
+        <div class="container">
+            <div class="hero-content">
+                <h1>SPMB Online</h1>
+                <p>Sistem Penerimaan Murid Baru SD Negeri 4 Jatilaba</p>
+            </div>
         </div>
     </section>
 
     <!-- SPMB Section -->
-    <section id="pendaftaran" style="position: relative; margin-top: 20px;">
+    <section>
         <div class="container">
-            <div class="center-title section-title" id="informasi">
-                <h2>Informasi SPMB</h2>
-                <p>Informasi penting dan formulir pendaftaran online</p>
-            </div>
-
-            <div class="grid grid-2">
-                <div>
-                    <div class="info-box" style="margin-bottom: 22px;">
-                        <h3 style="margin-bottom: 16px;">📅 Jadwal SPMB 2024</h3>
-                        <div id="jadwal">
-                            <div class="schedule-item">
-                                <span>Pendaftaran Gelombang 1</span>
-                                <span style="color: var(--primary); font-weight: 700;">1 - 15 Juni 2024</span>
+            <div class="grid grid-2" style="gap: 50px;">
+                <div style="animation: fadeInLeft 0.8s ease;">
+                    <h2 style="color: var(--primary); margin-bottom: 20px; font-size: 2.2rem;">Informasi SPMB</h2>
+                    
+                    <div style="background: var(--white); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <h3 style="color: var(--primary); margin-bottom: 15px;">Jadwal SPMB 2026</h3>
+                        <div style="display: grid; gap: 15px;">
+                            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--gray-light);">
+                                <span style="color: var(--gray-dark);">Pendaftaran Gelombang 1</span>
+                                <span style="color: var(--primary); font-weight: 500;">1 - 15 Juni 2024</span>
                             </div>
                             <div class="schedule-item">
                                 <span>Pengumuman Gelombang 1</span>
@@ -265,11 +258,106 @@
 
                         {{-- Success message (Laravel session) --}}
                         @if(session('success'))
-                            <div class="success-message">
-                                ✓ {{ session('success') }}
-                                @if(session('registered_id')) <div style="margin-top:8px; font-weight:600;">ID Pendaftaran: {{ session('registered_id') }}</div> @endif
-                            </div>
+                        <div style="background: var(--primary-light); color: var(--white); padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;">
+                            {{ session('success') }}
+                        </div>
                         @endif
+                        
+                        <form action="/ppdb" method="POST">
+                            @csrf
+                            <div style="display: grid; gap: 20px;">
+                                <h4 style="color: var(--primary); margin-bottom: 10px;">Data Calon Siswa</h4>
+                                
+                                <div>
+                                    <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Nama Lengkap</label>
+                                    <input type="text" name="nama_lengkap" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
+                                </div>
+                                
+                                <div>
+                                    <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Nama Panggilan</label>
+                                    <input type="text" name="nama_panggilan" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
+                                </div>
+                        
+                                <div class="grid grid-2" style="gap: 15px;">
+                                    <div>
+                                        <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Tempat Lahir</label>
+                                        <input type="text" name="tempat_lahir" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
+                                    </div>
+                                    
+                                    <div>
+                                        <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Tanggal Lahir</label>
+                                        <input type="date" name="tanggal_lahir" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; border-radius: 10px; font-family: inherit; transition: all 0.3s ease;">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Jenis Kelamin</label>
+                                    <div style="display: flex; gap: 20px;">
+                                        <label style="display: flex; align-items: center; gap: 8px;">
+                                            <input type="radio" name="jenis_kelamin" value="L" required>
+                                            <span>Laki-laki</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 8px;">
+                                            <input type="radio" name="jenis_kelamin" value="P">
+                                            <span>Perempuan</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Agama</label>
+                                    <select name="agama" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; border-radius: 10px; font-family: inherit;">
+                                        <option value="">Pilih Agama</option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katolik">Katolik</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Buddha">Buddha</option>
+                                        <option value="Konghucu">Konghucu</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Alamat</label>
+                                    <textarea name="alamat" rows="3" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px;  border-radius: 10px; font-family: inherit; resize: vertical;"></textarea>
+                                </div>
+                                
+                                <h4 style="color: var(--primary); margin-bottom: 10px; margin-top: 20px;">Data Orang Tua</h4>
+                                
+                                <div class="grid grid-2" style="gap: 15px;">
+                                    <div>
+                                        <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Nama Ayah</label>
+                                        <input type="text" name="nama_ayah" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px;  border-radius: 10px; font-family: inherit;">
+                                    </div>
+                                    
+                                    <div>
+                                        <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Nama Ibu</label>
+                                        <input type="text" name="nama_ibu" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px;  border-radius: 10px; font-family: inherit;">
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-2" style="gap: 15px;">
+                                    <div>
+                                        <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Pekerjaan Ayah</label>
+                                        <input type="text" name="pekerjaan_ayah" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px; class="border border-indigo-500"  border-radius: 10px; font-family: inherit;">
+                                    </div>
+                                    
+                                    <div>
+                                        <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">Pekerjaan Ibu</label>
+                                        <input type="text" name="pekerjaan_ibu" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px;  border-radius: 10px; font-family: inherit;">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label style="display: block; color: var(--primary); margin-bottom: 8px; font-weight: 500;">No. Telepon/HP</label>
+                                    <input type="tel" name="no_telepon" required class="border border-indigo-500" style="width: 100%; padding: 12px 15px;  border-radius: 10px; font-family: inherit;">
+                                </div>
+                                
+                                <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl w-full mt-5">
+                                    <i class="fas fa-paper-plane"></i> Daftar Sekarang
+                                </button>
+                            </div>
+                            
 
                         {{-- Show validation summary if exists --}}
                         @if ($errors->any())
