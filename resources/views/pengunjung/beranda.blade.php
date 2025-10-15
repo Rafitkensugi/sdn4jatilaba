@@ -126,11 +126,12 @@
         <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50 dark:from-black/80 dark:to-purple-900/30"></div>
         <div class="container mx-auto px-4 relative z-10 text-center text-white">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight fade-in">
-                    SELAMAT DATANG!
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-slideonce">
+                SELAMAT DATANG
                 </h2>
+
                 <p class="text-xl mb-8 max-w-2xl mx-auto text-gray-100 fade-in" style="transition-delay: 0.2s;">
-                    Sekolah Harapan Bangsa menawarkan pendidikan berkualitas dengan kurikulum modern dan fasilitas lengkap untuk mendukung perkembangan akademik dan karakter siswa.
+                    “Setiap anak adalah bintang, tugas kita adalah membuatnya bersinar.”
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="transition-delay: 0.4s;">
                     <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 flex items-center justify-center dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 hover:shadow-lg hover:-translate-y-1">
@@ -145,42 +146,42 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="py-16 bg-white dark:bg-transparent border-gradient" data-aos="fade-up">
+    <section class="py-16 bg-grey dark:bg-transparent border-gradient" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="space-y-2 fade-in">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        25+ <i class="fas fa-history ml-2 text-lg icon-glow"></i>
+                        40+ <i class="fas fa-history ml-2 text-lg icon-glow"></i>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300">Tahun Pengalaman</p>
+                    <p class="text-gray-600 dark:text-gray-300">Tahun Berdiri</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.1s;">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        1,200+ <i class="fas fa-user-graduate ml-2 text-lg icon-glow"></i>
+                        300+ <i class="fas fa-user-graduate ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Siswa Aktif</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.2s;">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        85+ <i class="fas fa-chalkboard-teacher ml-2 text-lg icon-glow"></i>
+                        16 <i class="fas fa-chalkboard-teacher ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Guru Profesional</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.3s;">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        98% <i class="fas fa-trophy ml-2 text-lg icon-glow"></i>
+                        A <i class="fas fa-trophy ml-2 text-lg icon-glow"></i>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300">Kelulusan</p>
+                    <p class="text-gray-600 dark:text-gray-300">Akreditasi Sekolah</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50 dark:bg-transparent border-gradient" data-aos="fade-up">
+    <section id="about" class="py-20 bg-white dark:bg-transparent border-gradient" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Tentang Kami</h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Sejarah Singkat</h3>
                 <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Misi kami adalah memberikan pendidikan terbaik yang mengembangkan potensi setiap siswa secara holistik.</p>
             </div>
             <div class="flex flex-col lg:flex-row items-center gap-12">
@@ -216,53 +217,100 @@
         </div>
     </section>
 
-    <!-- Programs Section -->
-    <section id="programs" class="py-20 bg-white dark:bg-transparent border-gradient" data-aos="fade-up">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Program Pendidikan</h3>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Kami menawarkan berbagai jenjang pendidikan dengan kurikulum terpadu dan modern.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-xl shadow-md hover-lift fade-in">
-                    <div class="text-blue-600 dark:text-blue-400 mb-4 flex justify-between items-center">
-                        <i class="fas fa-child text-3xl icon-glow"></i>
-                        <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Usia 4-6</span>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Taman Kanak-Kanak</h4>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">Mengembangkan fondasi belajar melalui bermain dan eksplorasi yang menyenangkan.</p>
-                    <a href="#" class="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 flex items-center group">
-                        Pelajari Lebih Lanjut 
-                        <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-                <div class="glass-card p-8 rounded-xl shadow-md hover-lift fade-in" style="transition-delay: 0.1s;">
-                    <div class="text-blue-600 dark:text-blue-400 mb-4 flex justify-between items-center">
-                        <i class="fas fa-book-open text-3xl icon-glow"></i>
-                        <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Kelas 1-6</span>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Sekolah Dasar</h4>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">Membangun dasar akademik yang kuat dengan pendekatan pembelajaran aktif.</p>
-                    <a href="#" class="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 flex items-center group">
-                        Pelajari Lebih Lanjut 
-                        <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-                <div class="glass-card p-8 rounded-xl shadow-md hover-lift fade-in" style="transition-delay: 0.2s;">
-                    <div class="text-blue-600 dark:text-blue-400 mb-4 flex justify-between items-center">
-                        <i class="fas fa-graduation-cap text-3xl icon-glow"></i>
-                        <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Kelas 7-9</span>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Sekolah Menengah</h4>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">Mempersiapkan siswa untuk pendidikan tinggi dan karir masa depan.</p>
-                    <a href="#" class="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 flex items-center group">
-                        Pelajari Lebih Lanjut 
-                        <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
+    <!-- News Cards with Images -->
+<section class="py-16 bg-white dark:bg-gray-900" data-aos="fade-up">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Berita Terbaru</h2>
+      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Informasi terkini seputar kegiatan, prestasi, dan pengumuman dari sekolah kami.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Card 1 -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col">
+        <div class="h-48 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
+               alt="Perayaan Hardiknas" 
+               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
         </div>
-    </section>
+        <div class="p-6 flex-grow flex flex-col">
+          <span class="inline-block text-xs font-semibold px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full mb-3">
+            Kegiatan Sekolah
+          </span>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-2">
+            Perayaan Hari Pendidikan Nasional 2025
+          </h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
+            <i class="far fa-calendar mr-1"></i> 14 Oktober 2025
+          </p>
+          <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
+            Siswa dan guru bersama-sama menggelar upacara dan lomba kreatif untuk memperingati Hardiknas dengan semangat kebersamaan.
+          </p>
+          <a href="#" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
+            Baca Selengkapnya
+            <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col">
+        <div class="h-48 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
+               alt="Olimpiade Sains" 
+               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+        </div>
+        <div class="p-6 flex-grow flex flex-col">
+          <span class="inline-block text-xs font-semibold px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full mb-3">
+            Prestasi
+          </span>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-2">
+            Siswa Raih Juara 1 Olimpiade Sains Tingkat Provinsi
+          </h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
+            <i class="far fa-calendar mr-1"></i> 10 Oktober 2025
+          </p>
+          <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
+            Ananda Putri dari kelas 8 berhasil meraih medali emas dalam ajang Olimpiade Sains Provinsi Jawa Barat 2025.
+          </p>
+          <a href="#" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
+            Baca Selengkapnya
+            <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col">
+        <div class="h-48 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
+               alt="Ujian Sekolah" 
+               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+        </div>
+        <div class="p-6 flex-grow flex flex-col">
+          <span class="inline-block text-xs font-semibold px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full mb-3">
+            Pengumuman
+          </span>
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-2">
+            Jadwal Ujian Akhir Semester Ganjil
+          </h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
+            <i class="far fa-calendar mr-1"></i> 8 Oktober 2025
+          </p>
+          <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
+            Ujian Akhir Semester akan dilaksanakan pada 20–25 November 2025. Orang tua dimohon untuk mendukung persiapan belajar siswa.
+          </p>
+          <a href="#" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
+            Baca Selengkapnya
+            <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Teachers Section -->
     <section id="teachers" class="py-20 bg-gray-50 dark:bg-transparent border-gradient" data-aos="fade-up">
@@ -270,9 +318,6 @@
             <div class="text-center mb-8">
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Guru & Staff</h3>
                 <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Tenaga pendidik profesional yang berdedikasi untuk masa depan siswa.</p>
-                <a href="#" class="inline-block mt-4 text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 flex items-center justify-center group">
-    Lihat Semua Guru <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-</a>
             </div>
             
             <div class="relative">
