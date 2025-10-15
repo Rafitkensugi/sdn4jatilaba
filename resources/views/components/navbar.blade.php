@@ -1,6 +1,6 @@
 <style>
     :root {
-        --oxford-blue: #67308B;
+        --oxford-blue: #67308b;
         --maize-yellow: #F2C94C;
     }
 
@@ -44,7 +44,7 @@
         transition: width 0.3s ease;
     }
 
-    /* Dropdown */
+    /* Desktop Dropdown */
     .dropdown {
         position: relative;
     }
@@ -114,11 +114,21 @@
     }
 
     /* Mobile Menu */
+    #mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+    }
+
+    #mobile-menu.active {
+        max-height: 600px;
+    }
+
     #mobile-menu a {
         color: white !important;
-        padding-left: 12px;
+        padding: 12px 12px;
         border-left: 3px solid transparent;
-        transition: border-color 0.2s;
+        transition: all 0.2s;
         text-decoration: none;
         display: block;
     }
@@ -126,17 +136,70 @@
     #mobile-menu a:hover {
         color: var(--maize-yellow) !important;
         border-left-color: var(--maize-yellow);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Mobile Dropdown */
+    .mobile-dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        color: white;
+        padding: 12px 12px;
+        border-left: 3px solid transparent;
+        transition: all 0.2s;
+    }
+
+    .mobile-dropdown-toggle:hover {
+        color: var(--maize-yellow) !important;
+        border-left-color: var(--maize-yellow);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .mobile-dropdown-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        background-color: rgba(0, 0, 0, 0.2);
+        margin-left: 12px;
+        border-left: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .mobile-dropdown-content.active {
+        max-height: 300px;
+    }
+
+    .mobile-dropdown-content a {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    .chevron-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .chevron-icon.rotate {
+        transform: rotate(180deg);
     }
 
     #mobile-menu .btn-register-mobile {
         background-color: var(--maize-yellow) !important;
         color: var(--oxford-blue) !important;
         font-weight: 600;
-        width: 100%;
+        width: calc(100% - 24px);
         border: none;
         padding: 0.75rem;
         border-radius: 0.5rem;
-        margin-top: 0.5rem;
+        margin: 0.75rem 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: block;
+    }
+
+    #mobile-menu .btn-register-mobile:hover {
+        background-color: #e0b83a !important;
+        transform: translateY(-2px);
     }
 </style>
 
@@ -145,7 +208,7 @@
     <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <!-- Logo tanpa latar kuning -->
+                <!-- Logo -->
                 <div class="flex items-center justify-center">
                     <img 
                         src="https://files.catbox.moe/tfztat.png" 
@@ -163,9 +226,9 @@
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="{{ route('beranda') }}" class="nav-link">Beranda</a>
 
-                <!-- Dropdown Tentang -->
+                <!-- Dropdown Profil -->
                 <div class="dropdown">
-                    <a href="#" class="nav-link flex items-center">
+                    <a href="#" class="nav-link dropdown-toggle flex items-center">
                         Profil
                         <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
                     </a>
@@ -176,33 +239,48 @@
                         <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                     </div>
                 </div>
-                <a href="{{ route('artikel') }}" class="nav-link">Artikel</a>
+
                 <a href="{{ route('program') }}" class="nav-link">Program</a>
                 <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
                 <a href="{{ route('kontak.index') }}" class="nav-link">Kontak</a>
             </nav>
 
             <button 
-                onclick="window.location.href='{{ route('ppdb') }}'" 
+                onclick="window.location.href='{{ route('spmb') }}'" 
                 class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
                 SPMB
             </button>
 
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg">
-                <i class="fas fa-bars text-xl"></i>
+                <i class="fas fa-bar text-xl"></i>
             </button>
         </div>
 
         <!-- Mobile Navigation -->
-        <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
-            <a href="{{ route('beranda') }}" class="py-2">Beranda</a>
-            <a href="#" class="py-2">Profil</a>
-            <a href="{{ route('program') }}" class="py-2">Program</a>
-            <a href="{{ route('fasilitas.index') }}" class="py-2">Fasilitas</a>
-            <a href="{{ route('kontak.index') }}" class="py-2">Kontak</a>
+        <nav id="mobile-menu" class="md:hidden mt-4">
+            <a href="{{ route('beranda') }}">Beranda</a>
+            
+            <!-- Mobile Dropdown Profil -->
+            <div class="mobile-dropdown">
+                <div class="mobile-dropdown-toggle">
+                    <span>Profil</span>
+                    <i class="fas fa-chevron-down text-sm chevron-icon"></i>
+                </div>
+                <div class="mobile-dropdown-content">
+                    <a href="#profil">Profil Sekolah</a>
+                    <a href="{{ route('visi-misi') }}">Visi & Misi</a>
+                    <a href="#sejarah">Sejarah</a>
+                    <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
+                </div>
+            </div>
+
+            <a href="{{ route('program') }}">Program</a>
+            <a href="{{ route('fasilitas.index') }}">Fasilitas</a>
+            <a href="{{ route('kontak.index') }}">Kontak</a>
+            
             <button 
-                onclick="window.location.href='{{ route('ppdb') }}'" 
+                onclick="window.location.href='{{ route('spmb') }}'" 
                 class="btn-register-mobile">
                 SPMB
             </button>
@@ -215,9 +293,68 @@
     document.addEventListener('DOMContentLoaded', function () {
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileDropdownToggle = document.querySelector('.mobile-dropdown-toggle');
+        const mobileDropdownContent = document.querySelector('.mobile-dropdown-content');
+        const chevronIcon = document.querySelector('.chevron-icon');
 
+        // Toggle Mobile Menu
         mobileMenuButton.addEventListener('click', function () {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('active');
+            
+            // Change icon between hamburger and X
+            const icon = this.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
+
+        // Toggle Mobile Dropdown
+        if (mobileDropdownToggle) {
+            mobileDropdownToggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                mobileDropdownContent.classList.toggle('active');
+                chevronIcon.classList.toggle('rotate');
+                
+                // Add highlight effect when dropdown is active
+                if (mobileDropdownContent.classList.contains('active')) {
+                    this.style.borderLeftColor = '#F2C94C';
+                } else {
+                    this.style.borderLeftColor = 'transparent';
+                }
+            });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = mobileMenu.contains(event.target);
+            const isClickOnButton = mobileMenuButton.contains(event.target);
+            
+            if (!isClickInsideMenu && !isClickOnButton && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                const icon = mobileMenuButton.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                
+                // Reset dropdown state
+                if (mobileDropdownContent && mobileDropdownContent.classList.contains('active')) {
+                    mobileDropdownContent.classList.remove('active');
+                    chevronIcon.classList.remove('rotate');
+                    mobileDropdownToggle.style.borderLeftColor = 'transparent';
+                }
+            }
+        });
+
+        // Prevent menu from closing when clicking inside dropdown content
+        if (mobileDropdownContent) {
+            mobileDropdownContent.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
     });
 </script>
