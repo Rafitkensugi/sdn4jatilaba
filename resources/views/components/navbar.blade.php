@@ -183,7 +183,7 @@
             </nav>
 
             <button 
-                onclick="window.location.href='{{ route('ppdb') }}'" 
+                onclick="window.location.href='{{ route('spmb') }}'" 
                 class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
                 SPMB
             </button>
@@ -202,7 +202,7 @@
             <a href="{{ route('fasilitas.index') }}" class="py-2">Fasilitas</a>
             <a href="{{ route('kontak.index') }}" class="py-2">Kontak</a>
             <button 
-                onclick="window.location.href='{{ route('ppdb') }}'" 
+                onclick="window.location.href='{{ route('spmb') }}'" 
                 class="btn-register-mobile">
                 SPMB
             </button>
