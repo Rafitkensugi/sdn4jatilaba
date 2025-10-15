@@ -134,16 +134,39 @@
         .teachers-scroll:hover {
             animation-play-state: paused;
         }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
     </style>
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-500">
-   <x-navbar></x-navbar>
+   <!-- Navbar placeholder -->
+   <div id="navbar-placeholder"></div>
 
    <!-- Hero Section -->
    <section id="home" 
         class="relative py-20 md:py-32 bg-center bg-cover bg-no-repeat" 
-        style="background-image: url('{{ asset('images/hero.jpeg') }}');">
+        style="background-image: url('https://placehold.co/1200x800/1e40af/ffffff?text=Sekolah+Dasar+Negeri+04+Jatilaba');">
         <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50 dark:from-black/80 dark:to-purple-900/30"></div>
         <div class="container mx-auto px-4 relative z-10 text-center text-white">
             <div class="max-w-4xl mx-auto">
@@ -238,100 +261,187 @@
         </div>
     </section>
 
-    <!-- News Cards with Images -->
-<section class="py-16 bg-white dark:bg-gray-900" data-aos="fade-up">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Berita Terbaru</h2>
-      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-        Informasi terkini seputar kegiatan, prestasi, dan pengumuman dari sekolah kami.
-      </p>
-    </div>
+    <!-- Blog Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50 relative overflow-hidden">
+        <!-- Decorative background elements -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-100/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-100/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16 animate-fade-in">
+                <span class="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">
+                    Blog & Artikel
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-[#002147] mb-4 bg-clip-text">
+                    Artikel Terbaru
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Temukan insight dan informasi terkini dari artikel-artikel pilihan kami
+                </p>
+            </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Card 1 -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col">
-        <div class="h-48 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
-               alt="Perayaan Hardiknas" 
-               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-        </div>
-        <div class="p-6 flex-grow flex flex-col">
-          <span class="inline-block text-xs font-semibold px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full mb-3">
-            Kegiatan Sekolah
-          </span>
-          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-2">
-            Perayaan Hari Pendidikan Nasional 2025
-          </h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
-            <i class="far fa-calendar mr-1"></i> 14 Oktober 2025
-          </p>
-          <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
-            Siswa dan guru bersama-sama menggelar upacara dan lomba kreatif untuk memperingati Hardiknas dengan semangat kebersamaan.
-          </p>
-          <a href="{{ route('artikel') }}" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
-            Baca Selengkapnya
-            <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
-          </a>
-        </div>
-      </div>
+            <!-- Articles Grid -->
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Card 1 -->
+                <article class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-blue-200 flex flex-col">
+                    <!-- Image Container with Overlay -->
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
+                             alt="Perayaan Hardiknas" 
+                             class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <!-- Floating badge -->
+                        <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
+                            <span class="text-xs font-semibold text-blue-600">New</span>
+                        </div>
+                    </div>
 
-      <!-- Card 2 -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col">
-        <div class="h-48 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
-               alt="Olimpiade Sains" 
-               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-        </div>
-        <div class="p-6 flex-grow flex flex-col">
-          <span class="inline-block text-xs font-semibold px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full mb-3">
-            Prestasi
-          </span>
-          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-2">
-            Siswa Raih Juara 1 Olimpiade Sains Tingkat Provinsi
-          </h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
-            <i class="far fa-calendar mr-1"></i> 10 Oktober 2025
-          </p>
-          <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
-            Ananda Putri dari kelas 8 berhasil meraih medali emas dalam ajang Olimpiade Sains Provinsi Jawa Barat 2025.
-          </p>
-          <a href="#" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
-            Baca Selengkapnya
-            <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
-          </a>
-        </div>
-      </div>
+                    <!-- Content -->
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-[#002147] mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300 leading-snug">
+                            Perayaan Hari Pendidikan Nasional 2025
+                        </h3>
+                        
+                        <!-- Meta Information -->
+                        <div class="flex items-center gap-4 text-sm text-gray-500 mb-4 pb-4 border-b border-gray-100">
+                            <span class="flex items-center gap-1.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                14 Oktober 2025
+                            </span>
+                            <span class="flex items-center gap-1.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                150x dibaca
+                            </span>
+                        </div>
 
-      <!-- Card 3 -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700 flex flex-col">
-        <div class="h-48 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
-               alt="Ujian Sekolah" 
-               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        <!-- Read More Link -->
+                        <a href="#" 
+                           class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-3 transition-all duration-300 mt-auto group/link">
+                            <span>Baca Selengkapnya</span>
+                            <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-blue-200 flex flex-col">
+                    <!-- Image Container with Overlay -->
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
+                             alt="Olimpiade Sains" 
+                             class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <!-- Floating badge -->
+                        <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
+                            <span class="text-xs font-semibold text-blue-600">New</span>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-[#002147] mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300 leading-snug">
+                            Siswa Raih Juara 1 Olimpiade Sains Tingkat Provinsi
+                        </h3>
+                        
+                        <!-- Meta Information -->
+                        <div class="flex items-center gap-4 text-sm text-gray-500 mb-4 pb-4 border-b border-gray-100">
+                            <span class="flex items-center gap-1.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                10 Oktober 2025
+                            </span>
+                            <span class="flex items-center gap-1.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                120x dibaca
+                            </span>
+                        </div>
+
+                        <!-- Read More Link -->
+                        <a href="#" 
+                           class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-3 transition-all duration-300 mt-auto group/link">
+                            <span>Baca Selengkapnya</span>
+                            <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-blue-200 flex flex-col">
+                    <!-- Image Container with Overlay -->
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
+                             alt="Ujian Sekolah" 
+                             class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <!-- Floating badge -->
+                        <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
+                            <span class="text-xs font-semibold text-blue-600">New</span>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold text-[#002147] mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300 leading-snug">
+                            Jadwal Ujian Akhir Semester Ganjil
+                        </h3>
+                        
+                        <!-- Meta Information -->
+                        <div class="flex items-center gap-4 text-sm text-gray-500 mb-4 pb-4 border-b border-gray-100">
+                            <span class="flex items-center gap-1.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                8 Oktober 2025
+                            </span>
+                            <span class="flex items-center gap-1.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                200x dibaca
+                            </span>
+                        </div>
+
+                        <!-- Read More Link -->
+                        <a href="#" 
+                           class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-3 transition-all duration-300 mt-auto group/link">
+                            <span>Baca Selengkapnya</span>
+                            <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- View All Button -->
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center gap-2 px-8 py-4 bg-[#002147] text-white rounded-full font-semibold hover:bg-blue-900 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <span>Lihat Semua Artikel</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </a>
+            </div>
         </div>
-        <div class="p-6 flex-grow flex flex-col">
-          <span class="inline-block text-xs font-semibold px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full mb-3">
-            Pengumuman
-          </span>
-          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-2">
-            Jadwal Ujian Akhir Semester Ganjil
-          </h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
-            <i class="far fa-calendar mr-1"></i> 8 Oktober 2025
-          </p>
-          <p class="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3 flex-grow">
-            Ujian Akhir Semester akan dilaksanakan pada 20–25 November 2025. Orang tua dimohon untuk mendukung persiapan belajar siswa.
-          </p>
-          <a href="#" class="text-blue-600 dark:text-blue-400 font-medium flex items-center group hover:text-blue-800 dark:hover:text-blue-300 mt-auto">
-            Baca Selengkapnya
-            <i class="fas fa-arrow-right ml-2 text-sm transition-transform group-hover:translate-x-1"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- Teachers Section -->
     <section id="teachers" class="py-20 bg-gray-50 dark:bg-transparent border-gradient" data-aos="fade-up">
@@ -502,7 +612,7 @@
                                     <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru Seni</span>
                                 </div>
                                 <div class="flex justify-center mb-4">
-                                    <img src="https://city-png.b-cdn.net/preview/preview_public/uploads/preview/hd-cristiano-ronaldo-al-nassr-with-golden-shoe-png-701751712070442muv4hgrbfi.png" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                                    <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
                                 </div>
                                 <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Maya Sari, S.Pd</h4>
                                 <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Seni Budaya</p>
@@ -683,7 +793,7 @@
                                     <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru Seni</span>
                                 </div>
                                 <div class="flex justify-center mb-4">
-                                    <img src="https://city-png.b-cdn.net/preview/preview_public/uploads/preview/hd-cristiano-ronaldo-al-nassr-with-golden-shoe-png-701751712070442muv4hgrbfi.png" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                                    <img src="https://placehold.co/150x150/3b82f6/ffffff?text=Guru" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
                                 </div>
                                 <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Maya Sari, S.Pd</h4>
                                 <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Seni Budaya</p>
@@ -780,7 +890,8 @@
         </div>
     </section>
 
-    <x-footer></x-footer>
+    <!-- Footer placeholder -->
+    <div id="footer-placeholder"></div>
 
     <!-- Dark Mode Script -->
     <script>
