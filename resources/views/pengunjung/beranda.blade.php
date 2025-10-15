@@ -146,42 +146,42 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="py-16 bg-white dark:bg-transparent border-gradient" data-aos="fade-up">
+    <section class="py-16 bg-grey dark:bg-transparent border-gradient" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="space-y-2 fade-in">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        25+ <i class="fas fa-history ml-2 text-lg icon-glow"></i>
+                        40+ <i class="fas fa-history ml-2 text-lg icon-glow"></i>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300">Tahun Pengalaman</p>
+                    <p class="text-gray-600 dark:text-gray-300">Tahun Berdiri</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.1s;">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        1,200+ <i class="fas fa-user-graduate ml-2 text-lg icon-glow"></i>
+                        300+ <i class="fas fa-user-graduate ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Siswa Aktif</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.2s;">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        85+ <i class="fas fa-chalkboard-teacher ml-2 text-lg icon-glow"></i>
+                        16 <i class="fas fa-chalkboard-teacher ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Guru Profesional</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.3s;">
                     <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                        98% <i class="fas fa-trophy ml-2 text-lg icon-glow"></i>
+                        A <i class="fas fa-trophy ml-2 text-lg icon-glow"></i>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300">Kelulusan</p>
+                    <p class="text-gray-600 dark:text-gray-300">Akreditasi Sekolah</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50 dark:bg-transparent border-gradient" data-aos="fade-up">
+    <section id="about" class="py-20 bg-white dark:bg-transparent border-gradient" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Tentang Kami</h3>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Sejarah Singkat</h3>
                 <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Misi kami adalah memberikan pendidikan terbaik yang mengembangkan potensi setiap siswa secara holistik.</p>
             </div>
             <div class="flex flex-col lg:flex-row items-center gap-12">
