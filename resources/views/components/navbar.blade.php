@@ -1,6 +1,6 @@
 <style>
     :root {
-        --oxford-blue: #67308b;
+        --oxford-blue: #67308B;
         --maize-yellow: #F2C94C;
     }
 
@@ -176,28 +176,38 @@
                         <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                     </div>
                 </div>
+                <a href="{{ route('artikel') }}" class="nav-link">Artikel</a>
+                <a href="{{ route('program') }}" class="nav-link">Program</a>
+                <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
+                <a href="{{ route('kontak.index') }}" class="nav-link">Kontak</a>
+            </nav>
 
-        <a href="{{ route('program') }}" class="nav-link">
-          <i class="fas fa-tasks"></i> Program
-        </a>
-        <a href="{{ route('fasilitas.index') }}" class="nav-link">
-          <i class="fas fa-school"></i> Fasilitas
-        </a>
-        <a href="{{ route('kontak.index') }}" class="nav-link">
-          <i class="fas fa-address-book"></i> Kontak
-        </a>
+            <button 
+                onclick="window.location.href='{{ route('ppdb') }}'" 
+                class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
+                SPMB
+            </button>
 
-        <a href="{{ route('ppdb') }}" class="btn-register">
-          <i class="fas fa-user-plus"></i> SPMB
-        </a>
-      </nav>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
 
-      <!-- Mobile Menu Button -->
-      <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Toggle menu">
-        <i class="fas fa-bars"></i>
-      </button>
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
+            <a href="{{ route('beranda') }}" class="py-2">Beranda</a>
+            <a href="#" class="py-2">Profil</a>
+            <a href="{{ route('program') }}" class="py-2">Program</a>
+            <a href="{{ route('fasilitas.index') }}" class="py-2">Fasilitas</a>
+            <a href="{{ route('kontak.index') }}" class="py-2">Kontak</a>
+            <button 
+                onclick="window.location.href='{{ route('ppdb') }}'" 
+                class="btn-register-mobile">
+                SPMB
+            </button>
+        </nav>
     </div>
-  </div>
 </header>
 
 <!-- Mobile Menu Toggle Script -->
