@@ -1,6 +1,6 @@
 <style>
     :root {
-        --oxford-blue: #002147;
+        --oxford-blue: #67308B;
         --maize-yellow: #F2C94C;
     }
 
@@ -176,7 +176,7 @@
                         <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                     </div>
                 </div>
-
+                <a href="{{ route('artikel') }}" class="nav-link">Artikel</a>
                 <a href="{{ route('program') }}" class="nav-link">Program</a>
                 <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
                 <a href="{{ route('kontak.index') }}" class="nav-link">Kontak</a>

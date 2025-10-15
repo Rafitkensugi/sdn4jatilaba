@@ -14,15 +14,15 @@ class ArtikelController extends Controller
 }
 
 
-    public function show($id)
-{
-    $artikel = \App\Models\Artikel::findOrFail($id);
+        public function show($id)
+    {
+        $artikel = \App\Models\Artikel::findOrFail($id);
 
-    // Tambah 1 ke view count
-    $artikel->increment('views');
+        // Tambah 1 ke view count
+        $artikel->increment('views');
 
-    return view('pengunjung.artikel-detail', compact('artikel'));
-}
+        return view('pengunjung.artikel-detail', compact('artikel'));
+    }
 
 
     // ---------- CRUD (untuk admin) ----------
