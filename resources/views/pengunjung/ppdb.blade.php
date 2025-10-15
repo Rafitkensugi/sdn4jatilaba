@@ -357,7 +357,7 @@
                                     <i class="fas fa-paper-plane"></i> Daftar Sekarang
                                 </button>
                             </div>
-                        @endif
+                            
 
                         {{-- Show validation summary if exists --}}
                         @if ($errors->any())
