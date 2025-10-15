@@ -28,10 +28,13 @@
                             </svg>
                         </a>
                     </div>
-                    <hr>
-                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 dark:border-gray-300 dark:hover:bg-gray-300 hover:shadow-lg hover:-translate-y-1">
-                    Login
-                    </button>
+                    <br>
+                   <a href="{{ route('login') }}">
+                        <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 dark:border-gray-300 dark:hover:bg-gray-300 hover:shadow-lg hover:-translate-y-1">
+                        Login
+                        </button>
+                    </a>
+
                 </div>
 
                 <!-- google map -->
