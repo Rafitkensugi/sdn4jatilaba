@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
 Route::get('/fasilitas/{id}', [FasilitasController::class, 'show'])->name('fasilitas.show');
 
-Route::get('/spmb', [PPDBController::class, 'index'])->name('spmb');
+Route::get('/ppdb', [PPDBController::class, 'index'])->name('ppdb');
 Route::post('/ppdb', [PPDBController::class, 'store'])->name('ppdb.store');
 
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
