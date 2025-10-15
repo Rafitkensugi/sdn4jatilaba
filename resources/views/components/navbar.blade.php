@@ -1,6 +1,6 @@
 <style>
     :root {
-        --oxford-blue: #002147;
+        --oxford-blue: #67308B;
         --maize-yellow: #F2C94C;
     }
 
@@ -9,17 +9,9 @@
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .school-icon-bg {
-        background-color: var(--maize-yellow) !important;
-    }
-
-    .school-icon {
-        color: var(--oxford-blue) !important;
-    }
-
     .school-title {
         color: white !important;
-        font-family: 'Georgia', serif;
+        font-family: 'Helvetica', serif;
         letter-spacing: -0.5px;
     }
 
@@ -142,6 +134,9 @@
         font-weight: 600;
         width: 100%;
         border: none;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
     }
 </style>
 
@@ -150,12 +145,17 @@
     <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="school-icon-bg p-2 rounded-lg">
-                    <i class="fas fa-school school-icon text-2xl"></i>
+                <!-- Logo tanpa latar kuning -->
+                <div class="flex items-center justify-center">
+                    <img 
+                        src="https://files.catbox.moe/tfztat.png" 
+                        alt="Logo SDN 04 Jatilaba" 
+                        class="h-10 w-auto object-contain"
+                    >
                 </div>
                 <div>
-                    <h1 class="school-title text-2xl font-bold">Sekolah Harapan Bangsa</h1>
-                    <p class="school-tagline">Membangun Generasi Unggul</p>
+                    <h1 class="school-title text-2xl font-bold">SD NEGERI 4 JATILABA</h1>
+                    <p class="school-tagline">Jalan Keplik, Desa Jatilaba, Kec. Margasari, Kab. Tegal</p>
                 </div>
             </div>
 
@@ -163,21 +163,21 @@
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="{{ route('beranda') }}" class="nav-link">Beranda</a>
 
-                <!-- Dropdown Tentang dengan #anchor -->
+                <!-- Dropdown Tentang -->
                 <div class="dropdown">
-                    <a href="#about" class="nav-link dropdown-toggle flex items-center">
+                    <a href="#" class="nav-link flex items-center">
                         Profil
                         <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
                     </a>
                     <div class="dropdown-menu">
                         <a href="#profil">Profil Sekolah</a>
-                        <a href="#visi-misi">Visi & Misi</a>
+                        <a href="{{ route('visi-misi') }}">Visi & Misi</a>
                         <a href="#sejarah">Sejarah</a>
                         <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                     </div>
                 </div>
-
-                <a href="#programs" class="nav-link">Program</a>
+                <a href="{{ route('artikel') }}" class="nav-link">Artikel</a>
+                <a href="{{ route('program') }}" class="nav-link">Program</a>
                 <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
                 <a href="{{ route('kontak.index') }}" class="nav-link">Kontak</a>
             </nav>
@@ -185,9 +185,8 @@
             <button 
                 onclick="window.location.href='{{ route('ppdb') }}'" 
                 class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
-                PPDB
+                SPMB
             </button>
-
 
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg">
@@ -198,14 +197,14 @@
         <!-- Mobile Navigation -->
         <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
             <a href="{{ route('beranda') }}" class="py-2">Beranda</a>
-            <a href="#about" class="py-2">Profil</a>
-            <a href="#programs" class="py-2">Program</a>
+            <a href="#" class="py-2">Profil</a>
+            <a href="{{ route('program') }}" class="py-2">Program</a>
             <a href="{{ route('fasilitas.index') }}" class="py-2">Fasilitas</a>
             <a href="{{ route('kontak.index') }}" class="py-2">Kontak</a>
             <button 
                 onclick="window.location.href='{{ route('ppdb') }}'" 
-                class="hidden md:block btn-register px-6 py-2 rounded-lg font-medium">
-                PPDB
+                class="btn-register-mobile">
+                SPMB
             </button>
         </nav>
     </div>

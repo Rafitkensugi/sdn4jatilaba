@@ -9,7 +9,7 @@ class PPDBController extends Controller
 {
     public function index()
     {
-        return view('pengunjung.ppdb');
+        return view('pengunjung.spmb');
     }
 
     public function store(Request $request)
