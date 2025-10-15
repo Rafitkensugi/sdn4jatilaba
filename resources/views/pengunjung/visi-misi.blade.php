@@ -4,24 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visi & Misi - SDN Jatilaba</title>
-    @vite('resources/css/app.css')
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Animasi fade-in lembut */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .fade-in {
-            animation: fadeInUp 1s ease-out forwards;
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <x-navbar></x-navbar>
 <body class="font-sans text-gray-800 bg-gray-50">
@@ -30,7 +14,7 @@
     <section class="relative h-[70vh] flex items-center justify-center text-center text-white">
         <img src="{{ asset('images/hero.jpeg') }}" 
              class="absolute inset-0 w-full h-full object-cover brightness-50">
-        <div class="relative z-10 fade-in">
+        <div class="relative z-10" data-aos="fade-up">
             <h1 class="text-4xl md:text-6xl font-bold text-yellow-400 drop-shadow-lg">VISI & MISI SDN JATILABA</h1>
             <p class="mt-4 text-lg md:text-2xl font-medium">Membangun Generasi Berbudi Pekerti Luhur & Berprestasi</p>
         </div>
@@ -40,7 +24,7 @@
     <main class="max-w-6xl mx-auto py-16 px-6 space-y-16">
 
         <!-- Visi -->
-        <section class="fade-in">
+        <section data-aos="fade-up">
             <h2 class="text-3xl font-bold text-blue-900 border-l-8 border-yellow-400 pl-4 mb-6">VISI SEKOLAH</h2>
             <p class="italic text-lg mb-6">"Terbentuknya Warga Sekolah Berbudi Pekerti Luhur, Berprestasi dan Terampil dalam IPTEK. Dilandasi Iman dan Taqwa yang Mengedepankan Profil Pelajar Pancasila."</p>
             
@@ -56,7 +40,7 @@
         </section>
 
         <!-- Misi -->
-        <section class="fade-in">
+        <section data-aos="fade-up">
             <h2 class="text-3xl font-bold text-blue-900 border-l-8 border-yellow-400 pl-4 mb-6">MISI SEKOLAH</h2>
             <ul class="list-decimal ml-6 space-y-2 text-gray-700">
                 <li>Meningkatkan kualitas iman dan taqwa kepada Tuhan Yang Maha Esa;</li>
@@ -69,7 +53,7 @@
         </section>
 
         <!-- Tujuan -->
-        <section class="fade-in">
+        <section data-aos="fade-up">
             <h2 class="text-3xl font-bold text-blue-900 border-l-8 border-yellow-400 pl-4 mb-6">TUJUAN SATUAN PENDIDIKAN</h2>
             <p class="text-gray-700 mb-4">Berdasarkan visi dan misi sekolah, maka tujuan yang hendak dicapai tahun ajaran 2023/2024 adalah sebagai berikut:</p>
             <ul class="list-decimal ml-6 space-y-2 text-gray-700">
