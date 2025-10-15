@@ -114,12 +114,6 @@
         transform: scale(1.05);
     }
 
-<<<<<<< HEAD
-    /* Mobile Menu */
-    #mobile-menu a {
-        color: white !important;
-        padding-left: 12px;
-=======
     /* Mobile Menu - Using display instead of max-height for more reliable behavior */
     #mobile-menu {
         display: none;
@@ -132,7 +126,6 @@
     #mobile-menu a {
         color: white !important;
         padding: 12px;
->>>>>>> cd7a8e113020cab5c04d0add6d814e32aa2bbf45
         border-left: 3px solid transparent;
         transition: border-color 0.2s;
         text-decoration: none;
@@ -142,15 +135,11 @@
     #mobile-menu a:hover {
         color: var(--maize-yellow) !important;
         border-left-color: var(--maize-yellow);
-<<<<<<< HEAD
-=======
         background-color: rgba(255, 255, 255, 0.05);
     }
 
     /* Mobile Dropdown */
     .mobile-dropdown-toggle {
-        display: flex;
-        justify-content: space-between;
         align-items: center;
         cursor: pointer;
         color: white !important;
@@ -191,14 +180,12 @@
 
     .chevron-icon.rotate {
         transform: rotate(180deg);
->>>>>>> cd7a8e113020cab5c04d0add6d814e32aa2bbf45
     }
 
     #mobile-menu .btn-register-mobile {
         background-color: var(--maize-yellow) !important;
         color: var(--oxford-blue) !important;
         font-weight: 600;
-        width: 100%;
         border: none;
         padding: 0.75rem;
         border-radius: 0.5rem;
@@ -261,14 +248,6 @@
         </div>
 
         <!-- Mobile Navigation -->
-<<<<<<< HEAD
-        <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
-            <a href="{{ route('beranda') }}" class="py-2">Beranda</a>
-            <a href="#" class="py-2">Profil</a>
-            <a href="{{ route('program') }}" class="py-2">Program</a>
-            <a href="{{ route('fasilitas.index') }}" class="py-2">Fasilitas</a>
-            <a href="{{ route('kontak.index') }}" class="py-2">Kontak</a>
-=======
         <nav id="mobile-menu" class="md:hidden mt-4 pb-4 space-y-2">
             <a href="{{ route('beranda') }}">Beranda</a>
             
@@ -290,7 +269,6 @@
             <a href="{{ route('fasilitas.index') }}">Fasilitas</a>
             <a href="{{ route('kontak.index') }}">Kontak</a>
             
->>>>>>> cd7a8e113020cab5c04d0add6d814e32aa2bbf45
             <button 
                 onclick="window.location.href='{{ route('spmb') }}'" 
                 class="btn-register-mobile">
@@ -302,16 +280,6 @@
 
 <!-- Mobile Menu Toggle Script -->
 <script>
-<<<<<<< HEAD
-    document.addEventListener('DOMContentLoaded', function () {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', function () {
-            mobileMenu.classList.toggle('hidden');
-        });
-    });
-=======
     (function() {
         'use strict';
         
@@ -412,5 +380,4 @@
             }
         }
     })();
->>>>>>> cd7a8e113020cab5c04d0add6d814e32aa2bbf45
 </script>
