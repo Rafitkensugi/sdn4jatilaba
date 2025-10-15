@@ -258,11 +258,6 @@
 
                         {{-- Success message (Laravel session) --}}
                         @if(session('success'))
-<<<<<<< HEAD
-                            <div class="success-message">
-                                ✓ {{ session('success') }}
-                                @if(session('registered_id')) <div style="margin-top:8px; font-weight:600;">ID Pendaftaran: {{ session('registered_id') }}</div> @endif
-=======
                         <div style="background: var(--primary-light); color: var(--white); padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;">
                             {{ session('success') }}
                         </div>
@@ -361,7 +356,6 @@
                                 <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl w-full mt-5">
                                     <i class="fas fa-paper-plane"></i> Daftar Sekarang
                                 </button>
->>>>>>> 2264df5479b5260a7ed1d4a938549a292473beaf
                             </div>
                         @endif
 
