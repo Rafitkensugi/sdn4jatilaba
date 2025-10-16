@@ -31,7 +31,7 @@ Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 // Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'role:admin'])->name('dashboard');
 
 // Kontak
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
@@ -43,7 +43,7 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // Profile
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
 Route::get('/fasilitas/{id}', [FasilitasController::class, 'show'])->name('fasilitas.show');
 
+// PPDB / SPMB
 Route::get('/spmb', [PPDBController::class, 'index'])->name('spmb');
 Route::post('/spmb', [PPDBController::class, 'store'])->name('spmb.store');
 
@@ -72,4 +73,4 @@ Route::get('/program', [ProgramController::class, 'index'])->name('program');
 // Visi Misi
 Route::get('/visi-misi', [VisiMisiController::class, 'index'])->name('visi-misi');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
