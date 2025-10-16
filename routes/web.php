@@ -17,6 +17,14 @@ use App\Http\Controllers\{
     BerandaController
 };
 
+//admin route
+Route::get('/admin', function() 
+    {
+        return view('admin.dashboard');
+    })
+    ->middleware(['role:admin|super-admin'])
+    ->name('admin.dashboard');
+
 // ✅ Halaman utama beranda
 Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/', [BerandaController::class, 'index']);
@@ -31,7 +39,7 @@ Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 // Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'role:admin'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 // Kontak
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
