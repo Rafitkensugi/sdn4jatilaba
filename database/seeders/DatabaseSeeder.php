@@ -16,7 +16,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             ArtikelSeeder::class,
+
+            $this->call([
+        PrestasiSeeder::class,
+    ])
         ]);
+
 
         User::factory()->create([
             'name' => 'Test User',

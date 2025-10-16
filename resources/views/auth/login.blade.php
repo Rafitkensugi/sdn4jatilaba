@@ -51,14 +51,14 @@
         }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .dark .glass-card {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.95);
             border: 1px solid rgba(120, 119, 198, 0.3);
         }
         
@@ -114,7 +114,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center text-gray-800 dark:text-gray-200">
+<body class="min-h-screen flex items-center justify-center">
 
     <div class="glass-card shadow-2xl rounded-3xl p-8 w-full max-w-md animate-fadeIn relative overflow-hidden">
         <!-- Efek dekoratif -->
@@ -129,11 +129,11 @@
                     <img src="{{ asset('images/logosekolah.jpg') }}" alt="Logo SDN 4 Jatilaba" class="w-20 h-20 rounded-full border-4 border-primary-500 shadow-lg">
                 </div>
             </div>
-            <h1 class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent dark:from-primary-400 dark:to-primary-300">
+            <h1 class="text-2xl font-bold text-black dark:text-white">
                 SD Negeri Jatilaba 4
             </h1>
-            <p class="text-sm text-primary-600 mt-2 font-medium dark:text-primary-300">
-                Selamat Datang di Portal Login
+            <p class="text-sm text-black mt-2 font-medium dark:text-gray-200">
+                Silahkan Login
             </p>
         </div>
 
@@ -145,24 +145,24 @@
         <!-- Form Login -->
         <form method="POST" action="{{ route('login') }}" class="space-y-5">
             <div>
-                <label for="email" class="block text-sm font-semibold text-primary-700 mb-2 dark:text-primary-300">Email</label>
+                <label for="email" class="block text-sm font-semibold text-black mb-2 dark:text-gray-100">Email</label>
                 <input id="email" type="email" name="email" required autofocus
-                    class="w-full px-4 py-3 rounded-xl border border-primary-200 focus:border-primary-500 focus:ring-0 outline-none placeholder:text-primary-400 transition-all bg-white/80 dark:bg-gray-800/80 dark:border-primary-700/50 dark:placeholder:text-primary-500 input-glow"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary-500 focus:ring-0 outline-none placeholder:text-gray-400 transition-all bg-white dark:bg-gray-800 dark:border-gray-600 dark:placeholder:text-gray-400 dark:text-white text-gray-900 input-glow"
                     placeholder="Masukan email Anda">
             </div>
 
             <div>
-                <label for="password" class="block text-sm font-semibold text-primary-700 mb-2 dark:text-primary-300">Kata Sandi</label>
+                <label for="password" class="block text-sm font-semibold text-black mb-2 dark:text-gray-100">Kata Sandi</label>
                 <input id="password" type="password" name="password" required
-                    class="w-full px-4 py-3 rounded-xl border border-primary-200 focus:border-primary-500 focus:ring-0 outline-none placeholder:text-primary-400 transition-all bg-white/80 dark:bg-gray-800/80 dark:border-primary-700/50 dark:placeholder:text-primary-500 input-glow"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary-500 focus:ring-0 outline-none placeholder:text-gray-400 transition-all bg-white dark:bg-gray-800 dark:border-gray-600 dark:placeholder:text-gray-400 dark:text-white text-gray-900 input-glow"
                     placeholder="Masukan kata sandi">
             </div>
 
             <div class="flex items-center justify-between text-sm">
-                <label class="flex items-center space-x-3 text-primary-700 dark:text-primary-300">
+                <label class="flex items-center space-x-3 text-black dark:text-gray-100 cursor-pointer">
                     <div class="relative">
                         <input type="checkbox" name="remember" class="sr-only peer">
-                        <div class="w-5 h-5 flex items-center justify-center rounded border-2 border-primary-400 peer-checked:border-primary-600 peer-checked:bg-primary-600 transition-colors cursor-pointer">
+                        <div class="w-5 h-5 flex items-center justify-center rounded border-2 border-gray-400 peer-checked:border-primary-600 peer-checked:bg-primary-600 transition-colors cursor-pointer">
                             <svg class="w-3 h-3 text-white hidden peer-checked:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                             </svg>
@@ -170,7 +170,7 @@
                     </div>
                     <span>Ingat saya</span>
                 </label>
-                <a href="#" class="text-primary-600 hover:text-primary-800 font-medium transition hover:underline dark:text-primary-400 dark:hover:text-primary-300">
+                <a href="#" class="text-primary-700 hover:text-primary-900 font-medium transition hover:underline dark:text-primary-400 dark:hover:text-primary-300">
                     Lupa sandi?
                 </a>
             </div>
@@ -186,8 +186,17 @@
             </button>
         </form>
 
-        <p class="text-center text-xs text-gray-500 mt-6 dark:text-gray-400">
-            © 2025 <span class="text-primary-600 font-semibold dark:text-primary-400">SDN 4 Jatilaba</span>. Semua hak dilindungi.
+        <div class="text-center mt-6">
+            <a href="{{ route('beranda') }}" class="inline-flex items-center space-x-2 text-sm text-primary-700 hover:text-primary-900 font-medium transition hover:underline dark:text-primary-400 dark:hover:text-primary-300">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                <span>Kembali ke Beranda</span>
+            </a>
+        </div>
+
+        <p class="text-center text-xs text-gray-600 mt-6 dark:text-gray-300">
+            © 2025 <span class="text-primary-700 font-semibold dark:text-primary-400">SDN 4 Jatilaba</span>. Semua hak dilindungi.
         </p>
     </div>
 

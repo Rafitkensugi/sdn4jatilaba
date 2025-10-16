@@ -14,12 +14,21 @@ use App\Http\Controllers\{
     VisiMisiController,
     FasilitasController,
     Auth\AuthenticatedSessionController,
-    BerandaController
+    BerandaController,
+    AgendaController
 };
+
+Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
+Route::get('/prestasi/{id}', [PrestasiController::class, 'show'])->name('prestasi.show');
 
 // ✅ Halaman utama beranda
 Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/', [BerandaController::class, 'index']);
+
+// Agenda Sekolah
+Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
+// Opsional: detail agenda
+// Route::get('/agenda/{id}', [AgendaController::class, 'show'])->name('agenda.show');
 
 // Artikel
 Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
