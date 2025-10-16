@@ -236,6 +236,11 @@
                 <a href="{{ route('program') }}" class="nav-link">Program</a>
                 <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
                 <a href="{{ route('kontak.index') }}" class="nav-link">Kontak</a>
+                @can('access admin panel')
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                        Admin
+                    </a>
+                @endcan
             </nav>
 
             <button 
