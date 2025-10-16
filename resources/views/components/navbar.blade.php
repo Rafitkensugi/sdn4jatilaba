@@ -233,7 +233,16 @@
                     </div>
                 </div>
 
-                <a href="{{ route('program') }}" class="nav-link">Program</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-link flex items-center">
+                        Informasi
+                        <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="{{ route('visi-misi') }}">Pengumuman</a>
+                        <a href="{{ route('agenda') }}">Agenda</a>
+                    </div>
+                </div>
                 <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
                 <a href="{{ route('kontak.index') }}" class="nav-link">Kontak</a>
                 @can('access admin panel')
@@ -272,8 +281,16 @@
                     <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                 </div>
             </div>
-
-            <a href="{{ route('program') }}">Program</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-link flex items-center">
+                        Informasi
+                        <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="{{ route('visi-misi') }}">Pengumuman</a>
+                        <a href="{{ route('agenda') }}">Agenda</a>
+                    </div>
+                </div>
             <a href="{{ route('fasilitas.index') }}">Fasilitas</a>
             <a href="{{ route('kontak.index') }}">Kontak</a>
             

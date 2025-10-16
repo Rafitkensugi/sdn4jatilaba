@@ -17,7 +17,12 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             ArtikelSeeder::class,
+
+            $this->call([
+        PrestasiSeeder::class,
+    ])
         ]);
+
 
         User::factory()->create([
             'name' => 'Test User',
