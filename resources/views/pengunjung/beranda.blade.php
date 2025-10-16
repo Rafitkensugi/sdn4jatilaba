@@ -210,25 +210,25 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="space-y-2 fade-in">
-                    <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-blue-400 flex items-center justify-center">
                         40+ <i class="fas fa-history ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Tahun Berdiri</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.1s;">
-                    <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-blue-400 flex items-center justify-center">
                         300+ <i class="fas fa-user-graduate ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Siswa Aktif</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.2s;">
-                    <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-blue-400 flex items-center justify-center">
                         16 <i class="fas fa-chalkboard-teacher ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Guru Profesional</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.3s;">
-                    <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-blue-400 flex items-center justify-center">
                         A <i class="fas fa-trophy ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Akreditasi Sekolah</p>
@@ -241,9 +241,10 @@
     <section id="about" class="py-20 bg-white dark:bg-transparent border-gradient" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Sejarah Singkat</h3>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Misi kami adalah memberikan pendidikan terbaik yang mengembangkan potensi setiap siswa secara holistik.</p>
-            </div>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-8">Sejarah Singkat</h3>
+                <p class="text-gray-600 dark:text-gray-300 max-w-4x1 mx-auto mb-10" style="text-align:justify;">SD Negeri 4 Jatilaba berdiri pada tahun 1985 di Desa Jatilaba, Kecamatan Margasari, Kabupaten Tegal sebagai wujud pemerataan pendidikan dasar bagi masyarakat setempat. Pada awalnya, sekolah ini memiliki fasilitas sederhana dengan jumlah siswa dan guru yang terbatas. Seiring waktu, sekolah berkembang melalui berbagai renovasi dan peningkatan sarana, baik dari pemerintah maupun swadaya masyarakat.
+
+Kini SD Negeri 4 Jatilaba menjadi lembaga pendidikan yang aktif membentuk siswa berprestasi, berakhlak, dan berkarakter sesuai profil pelajar Pancasila. Dengan dukungan tenaga pendidik yang profesional serta partisipasi warga sekitar, sekolah ini terus berkomitmen mencerdaskan generasi muda di wilayah Margasari.
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2 fade-in">
                     <div class="relative">
