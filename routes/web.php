@@ -14,8 +14,11 @@ use App\Http\Controllers\{
     VisiMisiController,
     FasilitasController,
     Auth\AuthenticatedSessionController,
-    BerandaController
+    BerandaController,
 };
+
+Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
+Route::get('/prestasi/{id}', [PrestasiController::class, 'show'])->name('prestasi.show');
 
 // ✅ Halaman utama beranda
 Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
