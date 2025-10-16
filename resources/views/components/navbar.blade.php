@@ -240,7 +240,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a href="{{ route('visi-misi') }}">Pengumuman</a>
-                        <a href="{{ route('sambutan') }}">Agenda</a>
+                        <a href="{{ route('agenda') }}">Agenda</a>
                     </div>
                 </div>
                 <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
