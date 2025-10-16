@@ -22,14 +22,14 @@ class RoleSeeder extends Seeder
             Role::firstOrCreate(['name' => $role]);
         }
 
-        // $permissions =
-        // [
-        //     'access admin panel',
-        // ];
+        $permissions =
+        [
+            'access admin panel',
+        ];
 
-        // foreach ($permissions as $permission)
-        // {
-        //     Permission::firstOrCreate(['name' => $permission]);
-        // }
+        foreach ($permissions as $permission)
+        {
+            Permission::firstOrCreate(['name' => $permission]);
+        }
     }
 }
