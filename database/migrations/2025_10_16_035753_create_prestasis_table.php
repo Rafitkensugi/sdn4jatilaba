@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->string('tingkat');
             $table->date('tanggal');
             $table->string('juara');
+            $table->text('deskripsi')->nullable();
             $table->string('gambar')->nullable(); // simpan path gambar
             $table->timestamps();
         });
