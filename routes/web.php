@@ -15,9 +15,18 @@ use App\Http\Controllers\{
     FasilitasController,
     Auth\AuthenticatedSessionController,
     BerandaController,
-    AgendaController
+    AgendaController,
+    ProfilSekolahController,
+    SejarahController
 };
 
+//admin route
+Route::get('/admin', function() 
+    {
+        return view('admin.dashboard');
+    })
+    ->middleware(['role:admin|super-admin'])
+    ->name('admin.dashboard');
 Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
 Route::get('/prestasi/{id}', [PrestasiController::class, 'show'])->name('prestasi.show');
 
@@ -40,7 +49,7 @@ Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 // Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'role:admin'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 // Kontak
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
@@ -81,5 +90,11 @@ Route::get('/program', [ProgramController::class, 'index'])->name('program');
 
 // Visi Misi
 Route::get('/visi-misi', [VisiMisiController::class, 'index'])->name('visi-misi');
+
+// profil sekolah
+Route::get('/profil-sekolah', [ProfilSekolahController::class, 'index'])->name('profil-sekolah');
+
+// sejarah 
+Route::get('/sejarah', [SejarahController::class, 'index'])->name('sejarah');
 
 require __DIR__ . '/auth.php';
