@@ -57,28 +57,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            background: var(--card-bg);
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 4px 20px var(--shadow);
-            padding: 0;
-        }
-        .navbar-container {
-            max-width: 1200px; margin: 0 auto;
-            padding: 0 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            height: 80px;
-        }
-        .navbar-brand { font-size: 1.6rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .navbar-nav { display:flex; gap: 20px; align-items: center; }
-        .navbar-nav a { text-decoration: none; color: var(--text); font-weight: 600; padding: 10px; position: relative; }
-        .navbar-nav a:hover { color: var(--primary); }
-        .navbar-toggle { display: none; background: none; border: none; font-size: 1.3rem; color: var(--text); cursor: pointer; }
-
         /* Theme Toggle Button - Bottom Right */
         .theme-toggle {
             position: fixed; bottom: 30px; right: 30px; z-index: 9999;
