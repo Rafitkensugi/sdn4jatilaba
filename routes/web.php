@@ -15,7 +15,9 @@ use App\Http\Controllers\{
     FasilitasController,
     Auth\AuthenticatedSessionController,
     BerandaController,
-    AgendaController
+    AgendaController,
+    ProfilSekolahController,
+    SejarahController
 };
 
 //admin route
@@ -88,5 +90,11 @@ Route::get('/program', [ProgramController::class, 'index'])->name('program');
 
 // Visi Misi
 Route::get('/visi-misi', [VisiMisiController::class, 'index'])->name('visi-misi');
+
+// profil sekolah
+Route::get('/profil-sekolah', [ProfilSekolahController::class, 'index'])->name('profil-sekolah');
+
+// sejarah 
+Route::get('/sejarah', [SejarahController::class, 'index'])->name('sejarah');
 
 require __DIR__ . '/auth.php';

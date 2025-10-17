@@ -226,9 +226,9 @@
                         <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="#profil">Profil Sekolah</a>
+                        <a href="{{ route('profil-sekolah') }}">Profil Sekolah</a>
                         <a href="{{ route('visi-misi') }}">Visi & Misi</a>
-                        <a href="#sejarah">Sejarah</a>
+                        <a href="{{ route('sejarah') }}">Sejarah</a>
                         <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                     </div>
                 </div>
