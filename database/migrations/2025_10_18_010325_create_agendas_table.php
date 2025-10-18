@@ -7,21 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('prestasis', function (Blueprint $table) {
+        Schema::create('agendas', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('tempat');
-            $table->string('tingkat');
-            $table->date('tanggal');
-            $table->string('juara');
             $table->text('deskripsi')->nullable();
-            $table->string('gambar')->nullable(); // simpan path gambar
+            $table->date('tanggal');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('prestasis');
+        Schema::dropIfExists('agendas');
     }
 };

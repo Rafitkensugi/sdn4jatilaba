@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PPDB;
+use App\Models\SPMB;
 use Illuminate\Http\Request;
 
-class PPDBController extends Controller
+class SPMBController extends Controller
 {
     public function index()
     {
@@ -29,7 +29,7 @@ class PPDBController extends Controller
             'no_telepon' => 'required'
         ]);
 
-        PPDB::create($request->all());
+        SPMB::create($request->all());
 
         return redirect()->back()->with('success', 'Pendaftaran berhasil dikirim!');
     }

@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PPDB extends Model
+class SPMB extends Model
 {
     use HasFactory;
+
+    protected $table = 'spmb'; // <== tambahkan ini
 
     protected $fillable = [
         'nama_lengkap',
