@@ -130,21 +130,49 @@
                 <h2 class="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Kirim Pesan</h2>
                 <form action="{{ route('kontak.store') }}" method="POST" class="grid grid-cols-1 gap-5">
                     @csrf
+                    
+                    <!-- TAMBAHKAN FIELD SUBJEK -->
                     <div>
-                        <label class="block text-sm font-medium mb-2 dark:text-gray-300">Nama Lengkap</label>
-                        <input type="text" name="nama" placeholder="Masukkan nama Anda"
-                            class="w-full border dark:border-gray-600 rounded-xl px-4 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:outline-none transition" required>
+                        <label class="block text-sm font-medium mb-2 dark:text-gray-300">Subjek *</label>
+                        <input type="text" name="subjek" placeholder="Masukkan subjek pesan"
+                            class="w-full border dark:border-gray-600 rounded-xl px-4 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:outline-none transition" 
+                            value="{{ old('subjek') }}" required>
+                        @error('subjek')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2 dark:text-gray-300">Email</label>
-                        <input type="email" name="email" placeholder="Masukkan email Anda"
-                            class="w-full border dark:border-gray-600 rounded-xl px-4 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:outline-none transition" required>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-medium mb-2 dark:text-gray-300">Nama Lengkap *</label>
+                            <input type="text" name="nama" placeholder="Masukkan nama Anda"
+                                class="w-full border dark:border-gray-600 rounded-xl px-4 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:outline-none transition" 
+                                value="{{ old('nama') }}" required>
+                            @error('nama')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2 dark:text-gray-300">Email *</label>
+                            <input type="email" name="email" placeholder="Masukkan email Anda"
+                                class="w-full border dark:border-gray-600 rounded-xl px-4 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:outline-none transition"
+                                value="{{ old('email') }}" required>
+                            @error('email')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
                     </div>
+                    
                     <div>
-                        <label class="block text-sm font-medium mb-2 dark:text-gray-300">Pesan</label>
+                        <label class="block text-sm font-medium mb-2 dark:text-gray-300">Pesan *</label>
                         <textarea name="pesan" rows="5" placeholder="Tuliskan pesan Anda..."
-                            class="w-full border dark:border-gray-600 rounded-xl px-4 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:outline-none transition" required></textarea>
+                            class="w-full border dark:border-gray-600 rounded-xl px-4 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:outline-none transition"
+                            required>{{ old('pesan') }}</textarea>
+                        @error('pesan')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
+                    
                     <div class="text-center">
                         <button type="submit"
                             class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-xl transition duration-300 shadow-md w-full md:w-auto font-medium">
@@ -212,6 +240,23 @@
             confirmButtonText: 'Oke Siap!',
             confirmButtonColor: '#3B82F6',
             showClass: { popup: 'animate__animated animate__fadeInDown' },
+            hideClass: { popup: 'animate__animated animate__fadeOutUp' }
+        });
+    </script>
+    @endif
+
+    <!-- TAMBAHKAN ERROR HANDLING -->
+    @if ($errors->any())
+    <script>
+        Swal.fire({
+            title: 'Terjadi Kesalahan!',
+            html: `@foreach ($errors->all() as $error)• {{ $error }}<br>@endforeach`,
+            icon: 'error',
+            background: '#fff',
+            color: '#333',
+            confirmButtonText: 'Oke, Saya Perbaiki',
+            confirmButtonColor: '#EF4444',
+            showClass: { popup: 'animate__animated animate__headShake' },
             hideClass: { popup: 'animate__animated animate__fadeOutUp' }
         });
     </script>

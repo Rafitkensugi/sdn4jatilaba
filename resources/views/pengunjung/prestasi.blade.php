@@ -1,162 +1,267 @@
 <!DOCTYPE html>
-<html lang="id" class="dark">
+<html lang="id" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Prestasi</title>
+    <title>Prestasi - {{ config('app.name', 'Sekolah Kami') }}</title>
+    
+    <!-- DaisyUI via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Inisialisasi dark mode berdasarkan preferensi sistem
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
-    @vite('resources/css/app.css')
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .prestasi-card {
+            transition: all 0.3s ease;
         }
-        
-        .card-animate {
-            animation: fadeInUp 0.6s ease-out forwards;
+        .prestasi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-        }
-        
-        .gradient-overlay {
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 100%);
-        }
-        
-        .shine-effect {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .shine-effect::before {
-            content: '';
+        .badge-tingkat {
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-        
-        .shine-effect:hover::before {
-            left: 100%;
+            top: 12px;
+            right: 12px;
+            z-index: 10;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
-
-    <x-navbar></x-navbar>
+<body class="min-h-screen bg-base-100">
+    <!-- Navigation -->
+    <div class="navbar bg-primary text-primary-content">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                    </svg>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-primary rounded-box w-52">
+                    <li><a href="/">Beranda</a></li>
+                    <li><a href="/prestasi" class="active">Prestasi</a></li>
+                    <li><a href="/berita">Berita</a></li>
+                    <li><a href="/pengumuman">Pengumuman</a></li>
+                    <li><a href="/galeri">Galeri</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-ghost text-xl" href="/">{{ config('app.name', 'Sekolah Kami') }}</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="/">Beranda</a></li>
+                <li><a href="/prestasi" class="active">Prestasi</a></li>
+                <li><a href="/berita">Berita</a></li>
+                <li><a href="/pengumuman">Pengumuman</a></li>
+                <li><a href="/galeri">Galeri</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <a href="/login" class="btn btn-ghost">
+                <i class="fas fa-sign-in-alt mr-2"></i>
+                Login
+            </a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
-    <div class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-900 dark:via-indigo-900 dark:to-purple-900 text-white py-20 mb-12">
-        <div class="absolute inset-0 bg-black opacity-10 dark:opacity-20"></div>
-        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.05\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center">
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight">
-                    Galeri Prestasi
-                </h1>
-                <p class="text-xl md:text-2xl text-blue-100 dark:text-blue-200 max-w-2xl mx-auto">
-                    Koleksi pencapaian dan kebanggaan yang memotivasi masa depan
+    <div class="hero min-h-64 bg-gradient-to-r from-primary to-secondary text-primary-content">
+        <div class="hero-content text-center">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl font-bold mb-4">Prestasi Kami</h1>
+                <p class="text-xl opacity-90">
+                    Kumpulan prestasi gemilang yang telah diraih oleh siswa dan sekolah kami
                 </p>
             </div>
         </div>
     </div>
 
-    <div class="container mx-auto px-4 pb-16">
-        
-        <!-- Cards Grid -->
-        <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-            @foreach($prestasis as $index => $prestasi)
-            <div class="card-hover card-animate bg-white dark:bg-gray-800 rounded-3xl shadow-xl dark:shadow-gray-900/50 overflow-hidden group" 
-                 style="animation-delay: {{ $index * 0.1 }}s; opacity: 0;">
-                
-                <!-- Image Container -->
-                <div class="relative h-56 overflow-hidden shine-effect">
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Filter Section -->
+        <div class="flex flex-col lg:flex-row justify-between items-center mb-8 gap-4">
+            <div class="stats shadow">
+                <div class="stat">
+                    <div class="stat-title">Total Prestasi</div>
+                    <div class="stat-value text-primary">{{ $prestasis->total() }}</div>
+                    <div class="stat-desc">Yang telah diraih</div>
+                </div>
+            </div>
+            
+            <div class="join">
+                <button class="btn join-btn active">Semua</button>
+                <button class="btn join-btn">Nasional</button>
+                <button class="btn join-btn">Provinsi</button>
+                <button class="btn join-btn">Kabupaten</button>
+            </div>
+        </div>
+
+        <!-- Prestasi Grid -->
+        @if($prestasis->count() > 0)
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            @foreach($prestasis as $prestasi)
+            <div class="card prestasi-card bg-base-100 shadow-xl border border-base-300">
+                <figure class="relative">
+                    @if($prestasi->gambar)
                     <img src="{{ asset('storage/' . $prestasi->gambar) }}" 
                          alt="{{ $prestasi->judul }}" 
-                         class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
-                    
-                    <!-- Gradient Overlay -->
-                    <div class="absolute inset-0 gradient-overlay"></div>
-                    
-                    <!-- Badge -->
-                    <div class="absolute top-4 right-4">
-                        <span class="bg-gradient-to-r from-yellow-400 to-orange-500 dark:from-yellow-500 dark:to-orange-600 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm">
-                            {{ $prestasi->juara }}
-                        </span>
+                         class="w-full h-48 object-cover" />
+                    @else
+                    <div class="w-full h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                        <i class="fas fa-trophy text-6xl text-primary-content opacity-80"></i>
                     </div>
+                    @endif
                     
-                    <!-- Title Overlay -->
-                    <div class="absolute bottom-0 left-0 right-0 p-4">
-                        <h2 class="text-white text-xl font-bold leading-tight">
-                            {{ $prestasi->judul }}
-                        </h2>
-                    </div>
-                </div>
-
-                <!-- Content -->
-                <div class="p-6">
-                    <!-- Info Grid -->
-                    <div class="space-y-3 mb-6">
-                        <div class="flex items-center text-gray-600 dark:text-gray-300">
-                            <svg class="w-5 h-5 mr-3 text-blue-500 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
-                            <span class="text-sm"><strong>Tempat:</strong> {{ $prestasi->tempat }}</span>
-                        </div>
-                        
-                        <div class="flex items-center text-gray-600 dark:text-gray-300">
-                            <svg class="w-5 h-5 mr-3 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                            </svg>
-                            <span class="text-sm font-medium"><strong>Tingkat:</strong> {{ $prestasi->tingkat }}</span>
-                        </div>
-                        
-                        <div class="flex items-center text-gray-600 dark:text-gray-300">
-                            <svg class="w-5 h-5 mr-3 text-purple-500 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
-                            <span class="text-sm"><strong>Tanggal:</strong> {{ \Carbon\Carbon::parse($prestasi->tanggal)->format('d M Y') }}</span>
+                    <!-- Badge Tingkat -->
+                    <div class="badge-tingkat">
+                        <div class="badge 
+                            @if($prestasi->tingkat == 'Nasional') badge-primary
+                            @elseif($prestasi->tingkat == 'Provinsi') badge-secondary
+                            @elseif($prestasi->tingkat == 'Kabupaten') badge-accent
+                            @else badge-neutral @endif 
+                            badge-lg text-white">
+                            {{ $prestasi->tingkat }}
                         </div>
                     </div>
-
-                    <!-- Button -->
-                    <a href="{{ route('prestasi.show', $prestasi->id) }}" 
-                       class="block w-full bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700 text-white text-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-indigo-700 dark:hover:from-blue-800 dark:hover:to-indigo-800 transform hover:-translate-y-0.5 transition duration-300">
-                        Lihat Detail
-                        <svg class="w-4 h-4 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                </figure>
+                
+                <div class="card-body">
+                    <div class="flex items-start justify-between mb-2">
+                        <h2 class="card-title text-lg line-clamp-2">{{ $prestasi->judul }}</h2>
+                    </div>
+                    
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center text-sm text-base-content/70">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>{{ $prestasi->tempat }}</span>
+                        </div>
+                        <div class="flex items-center text-sm text-base-content/70">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span>{{ \Carbon\Carbon::parse($prestasi->tanggal)->format('d M Y') }}</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-trophy mr-2 text-warning"></i>
+                            <span class="font-semibold text-warning">{{ $prestasi->juara }}</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-base-content/80 text-sm line-clamp-3 mb-4">
+                        {{ Str::limit(strip_tags($prestasi->deskripsi), 120) }}
+                    </p>
+                    
+                    <div class="card-actions justify-end">
+                        <a href="{{ route('prestasi.show', $prestasi->id) }}" 
+                           class="btn btn-primary btn-sm">
+                            <i class="fas fa-eye mr-1"></i>
+                            Detail
+                        </a>
+                    </div>
                 </div>
             </div>
             @endforeach
         </div>
+
+        <!-- Pagination -->
+        @if($prestasis->hasPages())
+        <div class="flex justify-center mt-8">
+            <div class="join">
+                {{-- Previous Page Link --}}
+                @if($prestasis->onFirstPage())
+                <button class="join-item btn btn-disabled">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                @else
+                <a href="{{ $prestasis->previousPageUrl() }}" class="join-item btn">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                @endif
+
+                {{-- Pagination Elements --}}
+                @foreach(range(1, $prestasis->lastPage()) as $i)
+                <a href="{{ $prestasis->url($i) }}" 
+                   class="join-item btn {{ $prestasis->currentPage() == $i ? 'btn-active' : '' }}">
+                    {{ $i }}
+                </a>
+                @endforeach
+
+                {{-- Next Page Link --}}
+                @if($prestasis->hasMorePages())
+                <a href="{{ $prestasis->nextPageUrl() }}" class="join-item btn">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                @else
+                <button class="join-item btn btn-disabled">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                @endif
+            </div>
+        </div>
+        @endif
+
+        @else
+        <!-- Empty State -->
+        <div class="text-center py-12">
+            <div class="max-w-md mx-auto">
+                <i class="fas fa-trophy text-6xl text-base-300 mb-4"></i>
+                <h3 class="text-2xl font-bold text-base-content mb-2">Belum Ada Prestasi</h3>
+                <p class="text-base-content/70 mb-6">
+                    Saat ini belum ada data prestasi yang ditampilkan. Silakan kembali lagi nanti.
+                </p>
+            </div>
+        </div>
+        @endif
     </div>
 
-    <x-footer></x-footer>
+    <!-- Footer -->
+    <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
+        <aside>
+            <div class="grid grid-flow-col gap-4">
+                <a class="link link-hover">Tentang Kami</a>
+                <a class="link link-hover">Kontak</a>
+                <a class="link link-hover">Privacy Policy</a>
+            </div>
+            <div class="flex justify-center gap-4 mt-4">
+                <a href="#" class="btn btn-circle btn-outline">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="btn btn-circle btn-outline">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="btn btn-circle btn-outline">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="btn btn-circle btn-outline">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </aside>
+        <div>
+            <p>Copyright © {{ date('Y') }} - {{ config('app.name', 'Sekolah Kami') }}</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.join-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('btn-active'));
+                    // Add active class to clicked button
+                    this.classList.add('btn-active');
+                    
+                    // Here you can add AJAX filtering logic
+                    const filter = this.textContent.trim();
+                    if(filter !== 'Semua') {
+                        // Filter by tingkat
+                        console.log('Filter by:', filter);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

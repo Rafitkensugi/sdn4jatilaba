@@ -20,6 +20,11 @@ return new class extends Migration
             $table->string('domisili');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
+            
+            // Index untuk performa
+            $table->index('status');
+            $table->index('jabatan');
+            $table->index('user_id');
         });
     }
 
@@ -28,4 +33,3 @@ return new class extends Migration
         Schema::dropIfExists('gurus');
     }
 };
-

@@ -2,58 +2,58 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Artikel;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ArtikelSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $artikelData = [
+        $artikels = [
             [
-                'judul' => 'Pentingnya Pendidikan Karakter di Sekolah Dasar',
-                'isi' => 'Pendidikan karakter merupakan fondasi penting dalam membentuk pribadi siswa yang berakhlak mulia. Di SDN 4 Jatilaba, kami menekankan nilai-nilai seperti kejujuran, tanggung jawab, dan gotong royong sejak dini.',
-                'gambar' => null, // Anda bisa tambahkan path gambar jika ada
+                'judul' => 'Penerimaan Peserta Didik Baru Tahun 2024',
+                'slug' => Str::slug('Penerimaan Peserta Didik Baru Tahun 2024'),
+                'isi' => '<p>Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran 2024/2025 akan dibuka mulai tanggal 1 Juni 2024. Berikut adalah informasi lengkap mengenai persyaratan dan jadwal pendaftaran.</p><p>Persyaratan yang harus dipenuhi:</p><ul><li>Foto copy akta kelahiran</li><li>Foto copy kartu keluarga</li><li>Pas foto 3x4</li><li>Rapor SD/MI</li></ul><p>Untuk informasi lebih lanjut, silakan hubungi panitia PPDB di sekolah.</p>',
+                'gambar' => 'artikel/ppdb.jpg',
+                'penulis' => 'Admin Sekolah',
+                'dibaca' => 1250,
+                'status' => 'published',
+                'published_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
-                'judul' => 'Kegiatan Ekstrakurikuler yang Mengasah Bakat Siswa',
-                'isi' => 'SDN 4 Jatilaba menyediakan berbagai ekstrakurikuler seperti pramuka, seni tari, dan olahraga untuk mengembangkan minat dan bakat siswa di luar jam pelajaran.',
-                'gambar' => null,
+                'judul' => 'Workshop Pembelajaran Digital untuk Guru',
+                'slug' => Str::slug('Workshop Pembelajaran Digital untuk Guru'),
+                'isi' => '<p>Dalam rangka meningkatkan kompetensi guru dalam bidang teknologi pendidikan, sekolah menyelenggarakan workshop pembelajaran digital selama 3 hari.</p><p>Workshop ini diikuti oleh seluruh guru dan staf pengajar. Materi yang diberikan meliputi:</p><ul><li>Penggunaan platform e-learning</li><li>Pembuatan konten digital interaktif</li><li>Teknik assessment online</li><li>Manajemen kelas virtual</li></ul><p>Diharapkan setelah workshop ini, guru dapat mengimplementasikan pembelajaran digital yang lebih efektif.</p>',
+                'gambar' => 'artikel/workshop.jpg',
+                'penulis' => 'Tim Kurikulum',
+                'dibaca' => 890,
+                'status' => 'published',
+                'published_at' => now()->subDays(5),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
-                'judul' => 'Peringatan Hari Kemerdekaan di SDN 4 Jatilaba',
-                'isi' => 'Pada 17 Agustus 2025, SDN 4 Jatilaba mengadakan upacara bendera dan berbagai lomba tradisional untuk memperingati Hari Kemerdekaan Republik Indonesia ke-80.',
-                'gambar' => null,
-            ],
-            [
-                'judul' => 'Sosialisasi Bahaya Narkoba untuk Siswa Kelas 6',
-                'isi' => 'Dalam rangka pencegahan dini, pihak sekolah menggandeng BNN Kabupaten untuk memberikan sosialisasi tentang bahaya narkoba kepada siswa kelas 6.',
-                'gambar' => null,
-            ],
-            [
-                'judul' => 'Peningkatan Sarana dan Prasarana Sekolah Tahun 2025',
-                'isi' => 'Tahun ini, SDN 4 Jatilaba mendapatkan bantuan dari pemerintah daerah untuk memperbaiki perpustakaan dan menambah fasilitas laboratorium komputer.',
-                'gambar' => null,
+                'judul' => 'Pentas Seni Tahun 2024 Sukses Digelar',
+                'slug' => Str::slug('Pentas Seni Tahun 2024 Sukses Digelar'),
+                'isi' => '<p>Pentas Seni tahunan sekolah berhasil diselenggarakan dengan meriah pada tanggal 15 Maret 2024. Acara yang mengusung tema "Kreativitas tanpa Batas" ini menampilkan berbagai pertunjukan dari siswa-siswi.</p><p>Beberapa penampilan yang ditampilkan antara lain:</p><ul><li>Tari tradisional dan modern</li><li>Band dan solo vocal</li><li>Teater dan drama musikal</li><li>Pameran karya seni rupa</li></ul><p>Acara ini dihadiri oleh orang tua siswa dan masyarakat sekitar. Semua penampilan mendapat sambutan yang sangat meriah dari penonton.</p>',
+                'gambar' => 'artikel/pentas-seni.jpg',
+                'penulis' => 'Tim Kesenian',
+                'dibaca' => 1560,
+                'status' => 'published',
+                'published_at' => now()->subDays(10),
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ];
 
-        foreach ($artikelData as $data) {
-            DB::table('artikels')->insert([
-                'judul' => $data['judul'],
-                'penulis' => 'Admin SDN 4 Jatilaba',
-                'isi' => $data['isi'],
-                'gambar' => $data['gambar'],
-                'tanggal' => now()->subDays(rand(0, 30)), // Tanggal acak dalam 30 hari terakhir
-                'views' => rand(10, 500),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        foreach ($artikels as $artikel) {
+            Artikel::firstOrCreate(
+                ['slug' => $artikel['slug']],
+                $artikel
+            );
         }
     }
 }

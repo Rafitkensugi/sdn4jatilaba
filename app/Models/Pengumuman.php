@@ -9,18 +9,33 @@ class Pengumuman extends Model
 {
     use HasFactory;
 
-    protected $table = 'pengumuman'; // 👈 Tambahkan ini!
+    protected $table = 'pengumuman';
 
     protected $fillable = [
         'judul',
         'deskripsi',
         'gambar',
-        'tanggal',
         'penulis',
         'status'
     ];
 
     protected $casts = [
-        'tanggal' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
+
+    // Accessor untuk gambar
+    public function getGambarUrlAttribute()
+    {
+        if ($this->gambar) {
+            return asset('storage/' . $this->gambar);
+        }
+        return asset('images/default-pengumuman.jpg');
+    }
+
+    // Scope untuk pengumuman published
+    public function scopePublished($query)
+    {
+        return $query->where('status', 'published');
+    }
 }

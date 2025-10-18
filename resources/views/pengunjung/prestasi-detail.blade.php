@@ -1,254 +1,385 @@
 <!DOCTYPE html>
-<html lang="id" class="dark">
+<html lang="id" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Prestasi - {{ $prestasi->judul }}</title>
+    <title>{{ $prestasi->judul }} - Prestasi - {{ config('app.name', 'Sekolah Kami') }}</title>
+    
+    <!-- DaisyUI via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Inisialisasi dark mode berdasarkan preferensi sistem
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
-    @vite('resources/css/app.css')
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .prestasi-image {
+            max-height: 500px;
+            object-fit: cover;
+            width: 100%;
         }
-        
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
+        .info-card {
+            transition: all 0.3s ease;
         }
-        
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
+        .info-card:hover {
+            transform: translateY(-2px);
         }
-        
-        .animate-fade-in { animation: fadeIn 0.8s ease-out; }
-        .animate-slide-left { animation: slideInLeft 0.8s ease-out; }
-        .animate-slide-right { animation: slideInRight 0.8s ease-out; }
-        
-        .parallax-img {
-            transition: transform 0.3s ease-out;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .decoration-line {
-            position: relative;
-        }
-        
-        .decoration-line::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 2px;
-        }
-        
-        .info-badge {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.9);
-        }
-        
-        .dark .info-badge {
-            background: rgba(0, 0, 0, 0.7);
-        }
-        
-        @media (max-width: 768px) {
-            .hero-height { height: 50vh; }
-        }
-        
-        .hero-height { height: 70vh; }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-
-    <x-navbar></x-navbar>
-
-    <!-- Hero Image Section -->
-    <div class="relative hero-height overflow-hidden">
-        <img src="{{ asset('storage/' . $prestasi->gambar) }}" 
-             alt="{{ $prestasi->judul }}" 
-             class="w-full h-full object-cover parallax-img">
-        
-        <!-- Gradient Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/70"></div>
-        
-        <!-- Trophy Badge -->
-        <div class="absolute top-8 right-8 animate-fade-in">
-            <div class="info-badge rounded-2xl shadow-2xl px-6 py-4 border border-white/20 dark:border-gray-600/50">
-                <div class="flex items-center gap-3">
-                    <svg class="w-8 h-8 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+<body class="min-h-screen bg-base-100">
+    <!-- Navigation -->
+    <div class="navbar bg-primary text-primary-content">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
                     </svg>
-                    <div>
-                        <div class="text-sm text-gray-600 dark:text-gray-300 font-medium">Peringkat</div>
-                        <div class="text-xl font-bold text-gray-900 dark:text-white">{{ $prestasi->juara }}</div>
-                    </div>
                 </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-primary rounded-box w-52">
+                    <li><a href="/">Beranda</a></li>
+                    <li><a href="/prestasi">Prestasi</a></li>
+                    <li><a href="/berita">Berita</a></li>
+                    <li><a href="/pengumuman">Pengumuman</a></li>
+                    <li><a href="/galeri">Galeri</a></li>
+                </ul>
             </div>
+            <a class="btn btn-ghost text-xl" href="/">{{ config('app.name', 'Sekolah Kami') }}</a>
         </div>
-        
-        <!-- Title at Bottom -->
-        <div class="absolute bottom-0 left-0 right-0 p-8 md:p-12 animate-slide-left">
-            <div class="container mx-auto max-w-6xl">
-                <div class="inline-block bg-indigo-600 dark:bg-indigo-700 text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">
-                    {{ $prestasi->tingkat }}
-                </div>
-                <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight drop-shadow-2xl">
-                    {{ $prestasi->judul }}
-                </h1>
-                <div class="flex flex-wrap gap-6 text-white/90">
-                    <div class="flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        </svg>
-                        <span class="font-medium">{{ $prestasi->tempat }}</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        <span class="font-medium">{{ \Carbon\Carbon::parse($prestasi->tanggal)->format('d F Y') }}</span>
-                    </div>
-                </div>
-            </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="/">Beranda</a></li>
+                <li><a href="/prestasi" class="active">Prestasi</a></li>
+                <li><a href="/berita">Berita</a></li>
+                <li><a href="/pengumuman">Pengumuman</a></li>
+                <li><a href="/galeri">Galeri</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <a href="/login" class="btn btn-ghost">
+                <i class="fas fa-sign-in-alt mr-2"></i>
+                Login
+            </a>
         </div>
     </div>
 
-    <!-- Content Section -->
-    <div class="container mx-auto max-w-6xl px-4 py-16 md:py-24">
-        <div class="grid md:grid-cols-3 gap-12">
-            
-            <!-- Main Content -->
-            <div class="md:col-span-2 animate-slide-right">
-                <!-- Deskripsi -->
-                <div class="mb-12">
-                    <h2 class="text-3xl font-bold mb-6 decoration-line gradient-text">
-                        Tentang Prestasi
-                    </h2>
-                    <div class="prose prose-lg max-w-none dark:prose-invert">
-                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                            {{ $prestasi->deskripsi }}
-                        </p>
+    <!-- Breadcrumb -->
+    <div class="container mx-auto px-4 py-4">
+        <div class="text-sm breadcrumbs">
+            <ul>
+                <li><a href="/">Beranda</a></li>
+                <li><a href="{{ route('prestasi.index') }}">Prestasi</a></li>
+                <li class="text-primary">Detail Prestasi</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column - Content -->
+            <div class="lg:col-span-2">
+                <article class="bg-base-100 rounded-2xl">
+                    <!-- Header -->
+                    <header class="mb-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <div class="badge 
+                                @if($prestasi->tingkat == 'Nasional') badge-primary
+                                @elseif($prestasi->tingkat == 'Provinsi') badge-secondary
+                                @elseif($prestasi->tingkat == 'Kabupaten') badge-accent
+                                @else badge-neutral @endif 
+                                badge-lg text-white">
+                                {{ $prestasi->tingkat }}
+                            </div>
+                            <div class="badge badge-success badge-lg text-white">
+                                <i class="fas fa-trophy mr-1"></i>
+                                {{ $prestasi->juara }}
+                            </div>
+                        </div>
+                        
+                        <h1 class="text-4xl font-bold text-base-content mb-4">{{ $prestasi->judul }}</h1>
+                        
+                        <div class="flex flex-wrap gap-4 text-sm text-base-content/70 mb-6">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>{{ \Carbon\Carbon::parse($prestasi->tanggal)->format('d F Y') }}</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>{{ $prestasi->tempat }}</span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Featured Image -->
+                    @if($prestasi->gambar)
+                    <figure class="mb-8 rounded-2xl overflow-hidden shadow-lg">
+                        <img src="{{ asset('storage/' . $prestasi->gambar) }}" 
+                             alt="{{ $prestasi->judul }}" 
+                             class="prestasi-image">
+                    </figure>
+                    @else
+                    <div class="mb-8 rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center h-64">
+                        <i class="fas fa-trophy text-8xl text-primary-content opacity-80"></i>
                     </div>
-                </div>
+                    @endif
 
-                {{-- <!-- Quote/Highlight Section -->
-                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 border-l-4 border-indigo-600 dark:border-indigo-500 p-8 rounded-r-2xl my-12">
-                    <svg class="w-10 h-10 text-indigo-400 dark:text-indigo-300 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                    </svg>
-                    <p class="text-xl text-gray-800 dark:text-gray-200 font-medium italic">
-                        Setiap pencapaian adalah bukti dari dedikasi, kerja keras, dan semangat yang tak pernah padam dalam mengejar keunggulan.
-                    </p>
-                </div> --}}
+                    <!-- Content -->
+                    <div class="prose prose-lg max-w-none mb-8">
+                        <div class="bg-base-200 rounded-2xl p-6 mb-6">
+                            <p class="text-lg leading-relaxed text-base-content">
+                                {{ $prestasi->deskripsi }}
+                            </p>
+                        </div>
+                    </div>
 
-                <!-- Back Button -->
-                <div class="mt-12">
-                    <a href="{{ route('prestasi') }}" 
-                       class="inline-flex items-center gap-3 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl hover:from-gray-900 hover:to-black dark:hover:from-gray-800 dark:hover:to-gray-900 transform hover:-translate-y-1 transition duration-300">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                        </svg>
-                        Kembali ke Galeri
-                    </a>
-                </div>
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <a href="{{ route('prestasi.index') }}" class="btn btn-outline">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Kembali ke Daftar Prestasi
+                        </a>
+                        <button class="btn btn-primary" onclick="window.print()">
+                            <i class="fas fa-print mr-2"></i>
+                            Cetak
+                        </button>
+                        <button class="btn btn-secondary" onclick="sharePrestasi()">
+                            <i class="fas fa-share-alt mr-2"></i>
+                            Bagikan
+                        </button>
+                    </div>
+                </article>
             </div>
 
-            <!-- Sidebar Info -->
-            <div class="md:col-span-1 animate-fade-in">
-                <div class="sticky top-8 space-y-6">
-                    
-                    <!-- Info Cards -->
-                    {{-- <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-lg dark:shadow-gray-900/50 p-6 border border-gray-100 dark:border-gray-700">
-                        <h3 class="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold mb-4">Informasi Detail</h3>
+            <!-- Right Column - Sidebar -->
+            <div class="space-y-6">
+                <!-- Info Card -->
+                <div class="card info-card bg-base-100 shadow-xl border border-base-300">
+                    <div class="card-body">
+                        <h3 class="card-title text-lg mb-4">
+                            <i class="fas fa-info-circle text-primary mr-2"></i>
+                            Informasi Prestasi
+                        </h3>
                         
                         <div class="space-y-4">
-                            <div class="flex items-start gap-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
-                                <div class="flex-shrink-0 w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-gray-500 dark:text-gray-300 font-medium mb-1">Tempat Pelaksanaan</div>
-                                    <div class="text-gray-900 dark:text-white font-semibold">{{ $prestasi->tempat }}</div>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4 p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl">
-                                <div class="flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-gray-500 dark:text-gray-300 font-medium mb-1">Tingkat</div>
-                                    <div class="text-gray-900 dark:text-white font-semibold">{{ $prestasi->tingkat }}</div>
+                            <div class="flex items-center justify-between p-3 bg-base-200 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-trophy text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-base-content/70">Pencapaian</div>
+                                        <div class="font-semibold text-warning">{{ $prestasi->juara }}</div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="flex items-start gap-4 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-xl">
-                                <div class="flex-shrink-0 w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-gray-500 dark:text-gray-300 font-medium mb-1">Tanggal</div>
-                                    <div class="text-gray-900 dark:text-white font-semibold">{{ \Carbon\Carbon::parse($prestasi->tanggal)->format('d F Y') }}</div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-base-200 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-layer-group text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-base-content/70">Tingkat</div>
+                                        <div class="font-semibold">{{ $prestasi->tingkat }}</div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="flex items-start gap-4 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl">
-                                <div class="flex-shrink-0 w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                                    </svg>
+                            
+                            <div class="flex items-center justify-between p-3 bg-base-200 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-base-content/70">Lokasi</div>
+                                        <div class="font-semibold">{{ $prestasi->tempat }}</div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div class="text-xs text-gray-500 dark:text-gray-300 font-medium mb-1">Peringkat</div>
-                                    <div class="text-gray-900 dark:text-white font-semibold">{{ $prestasi->juara }}</div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-base-200 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-neutral rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-calendar-alt text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-base-content/70">Tanggal</div>
+                                        <div class="font-semibold">{{ \Carbon\Carbon::parse($prestasi->tanggal)->format('d M Y') }}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
+                </div>
 
+                <!-- Prestasi Lainnya -->
+                <div class="card bg-base-100 shadow-xl border border-base-300">
+                    <div class="card-body">
+                        <h3 class="card-title text-lg mb-4">
+                            <i class="fas fa-star text-warning mr-2"></i>
+                            Prestasi Lainnya
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            @foreach($prestasiLainnya as $other)
+                            <a href="{{ route('prestasi.show', $other->id) }}" 
+                               class="block p-4 bg-base-200 rounded-lg hover:bg-base-300 transition-colors">
+                                <div class="flex items-start gap-3">
+                                    @if($other->gambar)
+                                    <div class="flex-shrink-0 w-16 h-16">
+                                        <img src="{{ asset('storage/' . $other->gambar) }}" 
+                                             alt="{{ $other->judul }}"
+                                             class="w-16 h-16 object-cover rounded-lg">
+                                    </div>
+                                    @else
+                                    <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-trophy text-white text-sm"></i>
+                                    </div>
+                                    @endif
+                                    
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-semibold text-sm line-clamp-2 mb-1">
+                                            {{ $other->judul }}
+                                        </h4>
+                                        <div class="flex items-center gap-2 text-xs text-base-content/70">
+                                            <span class="badge 
+                                                @if($other->tingkat == 'Nasional') badge-primary
+                                                @elseif($other->tingkat == 'Provinsi') badge-secondary
+                                                @elseif($other->tingkat == 'Kabupaten') badge-accent
+                                                @else badge-neutral @endif 
+                                                badge-xs">
+                                                {{ $other->tingkat }}
+                                            </span>
+                                            <span>{{ $other->juara }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            @endforeach
+                        </div>
+                        
+                        <div class="card-actions justify-center mt-4">
+                            <a href="{{ route('prestasi.index') }}" class="btn btn-outline btn-sm">
+                                Lihat Semua Prestasi
+                                <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Share Section -->
+                <div class="card bg-base-100 shadow-xl border border-base-300">
+                    <div class="card-body">
+                        <h3 class="card-title text-lg mb-4">
+                            <i class="fas fa-share-nodes text-info mr-2"></i>
+                            Bagikan Prestasi
+                        </h3>
+                        
+                        <div class="flex justify-center gap-4">
+                            <button class="btn btn-circle btn-outline btn-info" onclick="shareToFacebook()">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button class="btn btn-circle btn-outline btn-info" onclick="shareToTwitter()">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="btn btn-circle btn-outline btn-info" onclick="shareToWhatsApp()">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                            <button class="btn btn-circle btn-outline btn-info" onclick="copyLink()">
+                                <i class="fas fa-link"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <x-footer></x-footer>
+    <!-- Footer -->
+    <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded mt-12">
+        <aside>
+            <div class="grid grid-flow-col gap-4">
+                <a class="link link-hover">Tentang Kami</a>
+                <a class="link link-hover">Kontak</a>
+                <a class="link link-hover">Privacy Policy</a>
+            </div>
+            <div class="flex justify-center gap-4 mt-4">
+                <a href="#" class="btn btn-circle btn-outline">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="btn btn-circle btn-outline">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="btn btn-circle btn-outline">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="btn btn-circle btn-outline">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </aside>
+        <div>
+            <p>Copyright © {{ date('Y') }} - {{ config('app.name', 'Sekolah Kami') }}</p>
+        </div>
+    </footer>
 
     <script>
-        // Parallax effect untuk hero image
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.parallax-img');
-            if (parallax) {
-                parallax.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
+        // Share functionality
+        function sharePrestasi() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '{{ $prestasi->judul }}',
+                    text: '{{ Str::limit(strip_tags($prestasi->deskripsi), 100) }}',
+                    url: window.location.href,
+                })
+                .then(() => console.log('Berhasil dibagikan'))
+                .catch((error) => console.log('Error sharing', error));
+            } else {
+                // Fallback
+                copyLink();
             }
-        });
-    </script>
+        }
 
+        function shareToFacebook() {
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+            window.open(url, '_blank', 'width=600,height=400');
+        }
+
+        function shareToTwitter() {
+            const text = '{{ $prestasi->judul }}';
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`;
+            window.open(url, '_blank', 'width=600,height=400');
+        }
+
+        function shareToWhatsApp() {
+            const text = '{{ $prestasi->judul }} - ' + window.location.href;
+            const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank', 'width=600,height=400');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                // Show toast notification
+                const toast = document.createElement('div');
+                toast.className = 'toast toast-top toast-center';
+                toast.innerHTML = `
+                    <div class="alert alert-success">
+                        <span>Link berhasil disalin!</span>
+                    </div>
+                `;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 3000);
+            });
+        }
+
+        // Print functionality
+        function printPrestasi() {
+            window.print();
+        }
+    </script>
 </body>
 </html>
