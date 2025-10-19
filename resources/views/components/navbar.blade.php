@@ -244,7 +244,7 @@
                         <a href="{{ route('prestasi') }}">Prestasi</a>
                     </div>
                 </div>
-                <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
+                <a href="{{ route('pengunjung.fasilitas.index') }}" class="nav-link">Fasilitas</a>
                 <a href="{{ route('kontak.index') }}" class="nav-link">Kontak</a>
                 @can('access admin panel')
                     <a href="{{ route('admin.dashboard') }}" class="nav-link">
@@ -292,7 +292,7 @@
                         <a href="{{ route('agenda') }}">Agenda</a>
                     </div>
                 </div>
-            <a href="{{ route('fasilitas.index') }}">Fasilitas</a>
+            <a href="{{ route('pengunjung.fasilitas.index') }}">Fasilitas</a>
             <a href="{{ route('kontak.index') }}">Kontak</a>
             
             <button 
