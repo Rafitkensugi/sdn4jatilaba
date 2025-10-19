@@ -68,8 +68,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Fasilitas
-Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
-Route::get('/fasilitas/{id}', [FasilitasController::class, 'show'])->name('fasilitas.show');
+Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('pengunjung.fasilitas.index');
+Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('pengunjung.fasilitas.show');
 
 // PPDB / SPMB
 Route::get('/spmb', [PPDBController::class, 'index'])->name('spmb');
