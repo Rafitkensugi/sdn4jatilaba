@@ -18,3 +18,6 @@
     </div>
 </section>
 @endsection
+{{-- {{ asset('storage/' . $item->foto) }} --}}
+{{-- or --}}
+{{-- {{ asset($item->foto) }} --}}
