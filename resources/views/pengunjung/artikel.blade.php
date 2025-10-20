@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,22 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <script>
+    // Inisialisasi dark mode berdasarkan preferensi sistem browser
+    function updateTheme() {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+
+    // Jalankan saat pertama kali load
+    updateTheme();
+
+    // Dengarkan perubahan preferensi tema
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+  </script>
   <style>
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -19,6 +35,10 @@
     .hero-gradient {
       background: linear-gradient(135deg, #002147 0%, #004080 50%, #0066cc 100%);
       position: relative;
+    }
+    
+    .dark .hero-gradient {
+      background: linear-gradient(135deg, #001a35 0%, #003366 50%, #0055aa 100%);
     }
     
     .hero-gradient::before {
@@ -84,6 +104,10 @@
       height: 100%;
     }
     
+    .dark .article-card {
+      background: #1f2937;
+    }
+    
     .article-card::before {
       content: '';
       position: absolute;
@@ -91,7 +115,7 @@
       left: 0;
       right: 0;
       height: 4px;
-      background: linear-gradient(90deg, #002147, #0066cc);
+      background: linear-gradient(90deg, #0066cc, #0099ff);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.4s ease;
@@ -106,11 +130,21 @@
       box-shadow: 0 20px 40px rgba(0, 33, 71, 0.15);
     }
     
+    .dark .article-card:hover {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
     .article-image {
       position: relative;
       overflow: hidden;
       height: 240px;
       flex-shrink: 0;
+    }
+    
+    @media (max-width: 640px) {
+      .article-image {
+        height: 200px;
+      }
     }
     
     .article-image img {
@@ -140,17 +174,25 @@
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
     
+    .dark .glass-badge {
+      background: rgba(31, 41, 55, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #d1d5db;
+    }
+    
     .btn-detail {
       position: relative;
       overflow: hidden;
       z-index: 1;
+      background: #0066cc !important;
+      border: none !important;
     }
     
     .btn-detail::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #001a35, #004080);
+      background: linear-gradient(135deg, #004080, #0099ff);
       z-index: -1;
       transition: transform 0.4s ease;
       transform: scaleX(0);
@@ -162,9 +204,18 @@
       transform-origin: left;
     }
     
+    .btn-detail:hover {
+      background: transparent !important;
+    }
+    
     .empty-state {
       background: linear-gradient(135deg, rgba(0, 33, 71, 0.03), rgba(0, 102, 204, 0.03));
       border: 2px dashed rgba(0, 33, 71, 0.2);
+    }
+    
+    .dark .empty-state {
+      background: linear-gradient(135deg, rgba(0, 33, 71, 0.1), rgba(0, 102, 204, 0.1));
+      border: 2px dashed rgba(255, 255, 255, 0.2);
     }
     
     .article-content {
@@ -172,6 +223,12 @@
       flex-direction: column;
       flex: 1;
       padding: 1.5rem;
+    }
+    
+    @media (max-width: 640px) {
+      .article-content {
+        padding: 1rem;
+      }
     }
     
     .article-title {
@@ -190,7 +247,7 @@
   </style>
 </head>
 
-<body class="bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50">
+<body class="bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-50 dark:from-gray-900 dark:via-gray-800/30 dark:to-gray-900">
 
   <x-navbar />
 
@@ -204,7 +261,7 @@
       </div>
       
       <header class="relative z-10 py-16 lg:py-20" data-aos="fade-down">
-        <div class="max-w-7xl mx-auto text-center px-6">
+        <div class="max-w-7xl mx-auto text-center px-4 sm:px-6">
           <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-blue-100 text-sm font-medium mb-6" data-aos="fade-up" data-aos-delay="100">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
@@ -226,26 +283,26 @@
   </div>
 
   <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
     
     @if ($artikels->isEmpty())
       <!-- Empty State -->
-      <div class="empty-state rounded-3xl p-16 text-center max-w-2xl mx-auto" data-aos="fade-up">
-        <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-[#002147] to-[#0066cc] rounded-full flex items-center justify-center shadow-xl">
-          <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="empty-state rounded-3xl p-8 md:p-16 text-center max-w-2xl mx-auto" data-aos="fade-up">
+        <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-gradient-to-br from-[#0066cc] to-[#0099ff] rounded-full flex items-center justify-center shadow-xl">
+          <svg class="w-10 h-10 md:w-12 md:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
           </svg>
         </div>
-        <h3 class="text-2xl font-bold text-gray-800 mb-3">Belum Ada Artikel</h3>
-        <p class="text-gray-600 text-lg">
+        <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-3">Belum Ada Artikel</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-base md:text-lg">
           Artikel akan segera hadir. Pantau terus halaman ini untuk mendapatkan informasi terbaru!
         </p>
       </div>
     @else
       <!-- Articles Grid -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         @foreach ($artikels as $artikel)
-        <div class="article-card rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="{{ $loop->index * 50 }}">
+        <div class="article-card rounded-2xl shadow-lg dark:shadow-gray-900/30" data-aos="fade-up" data-aos-delay="{{ $loop->index * 50 }}">
           
           <!-- Image Container -->
           <div class="article-image relative">
@@ -257,7 +314,7 @@
             
             <!-- Date Badge -->
             <div class="absolute top-4 left-4 glass-badge px-3 py-1.5 rounded-lg shadow-lg">
-              <div class="flex items-center gap-2 text-[#002147]">
+              <div class="flex items-center gap-2 text-[#002147] dark:text-gray-300">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
@@ -268,19 +325,19 @@
 
           <!-- Content -->
           <div class="article-content">
-            <h2 class="article-title text-xl font-bold text-gray-900 hover:text-[#002147] transition-colors duration-300">
+            <h2 class="article-title text-xl font-bold text-gray-900 dark:text-gray-100 hover:text-[#0066cc] dark:hover:text-blue-400 transition-colors duration-300">
               {{ $artikel->judul }}
             </h2>
 
             <!-- Meta Info -->
-            <div class="flex items-center gap-4 text-sm text-gray-500 mb-5">
+            <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-5">
               <div class="flex items-center gap-1.5">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 <span>{{ $artikel->created_at->format('H:i') }}</span>
               </div>
-              <div class="w-1 h-1 bg-gray-300 rounded-full"></div>
+              <div class="w-1 h-1 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
               <div class="flex items-center gap-1.5">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -294,7 +351,7 @@
             <div class="article-footer">
               <a 
                 href="{{ route('artikel.show', $artikel->id) }}" 
-                class="btn-detail inline-flex items-center gap-2 w-full justify-center bg-[#002147] text-white px-5 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group"
+                class="btn-detail inline-flex items-center gap-2 w-full justify-center text-white px-5 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
                 <span>Baca Selengkapnya</span>
                 <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

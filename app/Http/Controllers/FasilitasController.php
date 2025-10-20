@@ -10,14 +10,15 @@ class FasilitasController extends Controller
     public function index()
     {
         $fasilitas = Fasilitas::all();
-        return view('fasilitas.index', compact('fasilitas'));
+        return view('pengunjung.fasilitas.index', compact('fasilitas'));
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $fasilitas = Fasilitas::findOrFail($id);
-        $lainnya = Fasilitas::where('id', '!=', $id)->get();
+        $fasilitas = Fasilitas::where('slug', $slug)->firstOrFail();
 
-        return view('fasilitas.show', compact('fasilitas', 'lainnya'));
+        $lainnya = Fasilitas::where('id', '!=', $fasilitas->id)->get();
+
+        return view('pengunjung.fasilitas.show', compact('fasilitas', 'lainnya'));
     }
 }

@@ -22,29 +22,30 @@ use App\Http\Controllers\{
 use App\Models\Feedback;
 use App\Models\Fasilitas;
 
-// ======================================================
-// 🧑‍💼 ADMIN DASHBOARD
-// ======================================================
-Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-});
+// Import controller Admin
+use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
 
-// ======================================================
-// 👤 USER DASHBOARD
-// ======================================================
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+// =======================================================
+// 🔹 ROUTE UNTUK ADMIN
+// =======================================================
+Route::middleware(['auth', 'role:admin|super-admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        // Dashboard Admin
+        Route::get('/', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
 
-// ======================================================
-// 🌐 HALAMAN PUBLIK
-// ======================================================
-   
-// Halaman Beranda
+        // CRUD Fasilitas (Admin)
+        Route::resource('fasilitas', AdminFasilitasController::class);
+    });
+
+// =======================================================
+// 🔹 ROUTE UNTUK PENGUNJUNG / PUBLIK
+// =======================================================
+
+// Halaman utama / beranda
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/beranda', [BerandaController::class, 'index']);
 
@@ -58,13 +59,30 @@ Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.s
 // Sambutan Kepala Sekolah
 Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 
-// Kontak & Pesan
+// Dashboard default (untuk user login biasa)
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Kontak
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
 Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
 
-// Fasilitas Sekolah
-Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
-Route::get('/fasilitas/{id}', [FasilitasController::class, 'show'])->name('fasilitas.show');
+// Auth
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+// Profile (hanya user login)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Fasilitas (untuk pengunjung)
+Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('pengunjung.fasilitas.index');
+Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('pengunjung.fasilitas.show');
 
 // PPDB / SPMB
 Route::get('/spmb', [PPDBController::class, 'index'])->name('spmb');
@@ -76,6 +94,7 @@ Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.de
 
 // Prestasi
 Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
+Route::get('/prestasi/{id}', [PrestasiController::class, 'show'])->name('prestasi.show');
 
 // Galeri
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
@@ -92,34 +111,4 @@ Route::get('/profil-sekolah', [ProfilSekolahController::class, 'index'])->name('
 // Sejarah Sekolah
 Route::get('/sejarah', [SejarahController::class, 'index'])->name('sejarah');
 
-// ======================================================
-// 🔐 AUTHENTICATION
-// ======================================================
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-// ======================================================
-// 👤 PROFILE (Hanya Untuk User yang Login)
-// ======================================================
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// ======================================================
-// 🔁 API UNTUK REALTIME DASHBOARD (Feedback & Fasilitas)
-// ======================================================
-Route::get('/api/latest-feedback', function () {
-    return Feedback::latest()->take(5)->get();
-});
-
-Route::get('/api/latest-fasilitas', function () {
-    return Fasilitas::latest()->take(5)->get();
-});
-
-// ======================================================
-// ⛓️ INCLUDE ROUTE DARI AUTH.PHP (DEFAULT LARAVEL BREEZE / JETSTREAM)
-// ======================================================
 require __DIR__ . '/auth.php';
