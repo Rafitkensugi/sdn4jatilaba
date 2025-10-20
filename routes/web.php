@@ -21,11 +21,11 @@ use App\Http\Controllers\{
     SejarahController
 };
 
-
 // Import controller Admin
 use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
 use App\Http\Controllers\Admin\PrestasiController as AdminPrestasiController;
+use App\Http\Controllers\Admin\PesanController as AdminPesanController; // ✅ Tambahkan ini
 
 // =======================================================
 // 🔹 ROUTE UNTUK ADMIN
@@ -48,6 +48,10 @@ Route::middleware(['auth', 'role:admin|super-admin'])
 
         // CRUD Prestasi Admin
         Route::resource('prestasi', AdminPrestasiController::class);
+
+        // ✅ CRUD Pesan (dari halaman kontak)
+        Route::get('/pesan', [AdminPesanController::class, 'index'])->name('pesan.index');
+        Route::delete('/pesan/{id}', [AdminPesanController::class, 'destroy'])->name('pesan.destroy');
 
         // Kelola Guru Admin
         Route::get('/kelola-guru', [GuruController::class, 'index'])->name('kelola-guru.index');
