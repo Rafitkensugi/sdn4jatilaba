@@ -4,7 +4,7 @@
 <section class="w-full">
     <!-- Header Foto -->
     <div class="relative w-full h-[350px] md:h-[450px] overflow-hidden">
-        <img src="{{ asset($fasilitas->foto) }}" alt="{{ $fasilitas->nama }}" class="w-full h-full object-cover">
+        <img src="{{ asset('storage/' . $fasilitas->foto) }}" alt="{{ $fasilitas->nama }}" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-black/40"></div>
         <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4">
             <h1 class="text-4xl md:text-5xl font-bold mb-3">{{ $fasilitas->nama }}</h1>

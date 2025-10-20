@@ -6,6 +6,7 @@ use App\Http\Controllers\{
     PPDBController,
     BeritaController,
     GaleriController,
+    GuruController,
     KontakController,
     ProfileController,
     ProgramController,
@@ -108,5 +109,7 @@ Route::get('/profil-sekolah', [ProfilSekolahController::class, 'index'])->name('
 
 // Sejarah Sekolah
 Route::get('/sejarah', [SejarahController::class, 'index'])->name('sejarah');
+
+Route::get('/kelola-guru', [GuruController::class, 'index'])->name('admin.kelola-guru.index');
 
 require __DIR__ . '/auth.php';
