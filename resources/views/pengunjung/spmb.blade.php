@@ -172,7 +172,7 @@
     </style>
 </head>
 <body>
-    <x-navbar></x-navbar>
+    <x-navbar />
 
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
@@ -486,60 +486,8 @@
         </div>
     </section>
 
-    <!-- Additional Info Section -->
-    <section style="background: var(--bg);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Informasi Tambahan</h2>
-                <p>Hal-hal yang perlu diketahui calon orang tua siswa</p>
-            </div>
-
-            <div class="grid grid-3">
-                <div class="card" style="text-align:center;">
-                    <div class="icon-box"><i class="fas fa-graduation-cap"></i></div>
-                    <h4 style="margin-bottom:10px;">Kurikulum</h4>
-                    <p style="line-height:1.6;">Menggunakan Kurikulum Merdeka yang berfokus pada pengembangan karakter dan kompetensi siswa.</p>
-                </div>
-
-                <div class="card" style="text-align:center;">
-                    <div class="icon-box"><i class="fas fa-book"></i></div>
-                    <h4 style="margin-bottom:10px;">Ekstrakurikuler</h4>
-                    <p style="line-height:1.6;">Berbagai pilihan ekstrakurikuler untuk mengembangkan bakat dan minat siswa.</p>
-                </div>
-
-                <div class="card" style="text-align:center;">
-                    <div class="icon-box"><i class="fas fa-heart"></i></div>
-                    <h4 style="margin-bottom:10px;">Lingkungan</h4>
-                    <p style="line-height:1.6;">Lingkungan sekolah yang aman, nyaman, dan mendukung proses belajar mengajar.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer id="kontak">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>SPMB Online - SD Negeri 4 Jatilaba</h4>
-                <p style="color:var(--text-muted); line-height:1.6;">Alamat: Jl. Mawar No.4, Jatilaba. Telepon: (021) 555-1234</p>
-                <div class="social" style="margin-top:12px;">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-col">
-                <h4>Jam Kerja</h4>
-                <p style="color:var(--text-muted);">Senin - Jumat: 07:30 - 15:00<br>Sabtu: 08:00 - 12:00</p>
-            </div>
-
-            <div class="footer-col">
-                <h4>Butuh Bantuan?</h4>
-                <p style="color:var(--text-muted);">Email: admin@sd4jatilaba.sch.id<br>Telp: 08xx-xxxx-xxxx</p>
-            </div>
-        </div>
-    </footer>
+    <x-footer />
 
     <script>
         // Theme Toggle (persist in localStorage)
