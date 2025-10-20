@@ -10,6 +10,6 @@ class Prestasi extends Model
     use HasFactory;
 
     protected $fillable = [
-        'judul', 'tempat', 'tingkat', 'tanggal', 'juara', 'gambar'
+        'judul', 'tempat', 'tingkat', 'tanggal', 'juara', 'gambar', 'deskripsi'
     ];
 }

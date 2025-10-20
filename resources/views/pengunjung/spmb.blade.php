@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>SPMB Online - PPDB</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
@@ -55,28 +56,6 @@
             transition: background 0.3s, color 0.3s;
             -webkit-font-smoothing: antialiased;
         }
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            background: var(--card-bg);
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 4px 20px var(--shadow);
-            padding: 0;
-        }
-        .navbar-container {
-            max-width: 1200px; margin: 0 auto;
-            padding: 0 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            height: 80px;
-        }
-        .navbar-brand { font-size: 1.6rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .navbar-nav { display:flex; gap: 20px; align-items: center; }
-        .navbar-nav a { text-decoration: none; color: var(--text); font-weight: 600; padding: 10px; position: relative; }
-        .navbar-nav a:hover { color: var(--primary); }
-        .navbar-toggle { display: none; background: none; border: none; font-size: 1.3rem; color: var(--text); cursor: pointer; }
 
         /* Theme Toggle Button - Bottom Right */
         .theme-toggle {
@@ -193,7 +172,7 @@
     </style>
 </head>
 <body>
-    <x-navbar></x-navbar>
+    <x-navbar />
 
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
@@ -507,60 +486,8 @@
         </div>
     </section>
 
-    <!-- Additional Info Section -->
-    <section style="background: var(--bg);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Informasi Tambahan</h2>
-                <p>Hal-hal yang perlu diketahui calon orang tua siswa</p>
-            </div>
-
-            <div class="grid grid-3">
-                <div class="card" style="text-align:center;">
-                    <div class="icon-box"><i class="fas fa-graduation-cap"></i></div>
-                    <h4 style="margin-bottom:10px;">Kurikulum</h4>
-                    <p style="line-height:1.6;">Menggunakan Kurikulum Merdeka yang berfokus pada pengembangan karakter dan kompetensi siswa.</p>
-                </div>
-
-                <div class="card" style="text-align:center;">
-                    <div class="icon-box"><i class="fas fa-book"></i></div>
-                    <h4 style="margin-bottom:10px;">Ekstrakurikuler</h4>
-                    <p style="line-height:1.6;">Berbagai pilihan ekstrakurikuler untuk mengembangkan bakat dan minat siswa.</p>
-                </div>
-
-                <div class="card" style="text-align:center;">
-                    <div class="icon-box"><i class="fas fa-heart"></i></div>
-                    <h4 style="margin-bottom:10px;">Lingkungan</h4>
-                    <p style="line-height:1.6;">Lingkungan sekolah yang aman, nyaman, dan mendukung proses belajar mengajar.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer id="kontak">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>SPMB Online - SD Negeri 4 Jatilaba</h4>
-                <p style="color:var(--text-muted); line-height:1.6;">Alamat: Jl. Mawar No.4, Jatilaba. Telepon: (021) 555-1234</p>
-                <div class="social" style="margin-top:12px;">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-col">
-                <h4>Jam Kerja</h4>
-                <p style="color:var(--text-muted);">Senin - Jumat: 07:30 - 15:00<br>Sabtu: 08:00 - 12:00</p>
-            </div>
-
-            <div class="footer-col">
-                <h4>Butuh Bantuan?</h4>
-                <p style="color:var(--text-muted);">Email: admin@sd4jatilaba.sch.id<br>Telp: 08xx-xxxx-xxxx</p>
-            </div>
-        </div>
-    </footer>
+    <x-footer />
 
     <script>
         // Theme Toggle (persist in localStorage)

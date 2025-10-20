@@ -144,6 +144,7 @@
 
         <!-- Form Login -->
         <form method="POST" action="{{ route('login') }}" class="space-y-5">
+            @csrf
             <div>
                 <label for="email" class="block text-sm font-semibold text-black mb-2 dark:text-gray-100">Email</label>
                 <input id="email" type="email" name="email" required autofocus

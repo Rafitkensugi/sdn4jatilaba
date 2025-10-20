@@ -223,9 +223,9 @@
                         <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="#profil">Profil Sekolah</a>
+                        <a href="{{ route('profil-sekolah') }}">Profil Sekolah</a>
                         <a href="{{ route('visi-misi') }}">Visi & Misi</a>
-                        <a href="#sejarah">Sejarah</a>
+                        <a href="{{ route('sejarah') }}">Sejarah</a>
                         <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                     </div>
                 </div>
@@ -238,10 +238,16 @@
                     <div class="dropdown-menu">
                         <a href="{{ route('visi-misi') }}">Pengumuman</a>
                         <a href="{{ route('agenda') }}">Agenda</a>
+                        <a href="{{ route('prestasi') }}">Prestasi</a>
                     </div>
                 </div>
-                <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
+                <a href="{{ route('pengunjung.fasilitas.index') }}" class="nav-link">Fasilitas</a>
                 <a href="{{ route('kontak.index') }}" class="nav-link">Kontak</a>
+                @can('access admin panel')
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                        Admin
+                    </a>
+                @endcan
             </nav>
 
             <button 
@@ -283,7 +289,7 @@
                         <a href="{{ route('agenda') }}">Agenda</a>
                     </div>
                 </div>
-            <a href="{{ route('fasilitas.index') }}">Fasilitas</a>
+            <a href="{{ route('pengunjung.fasilitas.index') }}">Fasilitas</a>
             <a href="{{ route('kontak.index') }}">Kontak</a>
             
             <button 
