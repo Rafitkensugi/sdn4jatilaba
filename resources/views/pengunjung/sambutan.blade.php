@@ -26,7 +26,7 @@
   <!-- Navbar -->
   <x-navbar></x-navbar>
 
-  <!-- Elegant Header -->
+  {{-- <!-- Elegant Header -->
   <header class="relative bg-gradient-to-br from-[#002147] to-blue-800 dark:from-gray-900 dark:to-gray-800 text-white py-20 overflow-hidden">
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')] opacity-10 dark:opacity-5"></div>
     <div class="relative max-w-5xl mx-auto px-6 text-center">
@@ -35,7 +35,17 @@
       </h1>
       <p class="text-blue-100 dark:text-blue-300 text-lg">SDN 4 Jatilaba</p>
     </div>
-  </header>
+  </header> --}}
+
+<!-- Hero Section -->
+    <section class="relative h-[70vh] flex items-center justify-center text-center text-white">
+        <img src="{{ asset('images/hero.jpeg') }}" 
+             class="absolute inset-0 w-full h-full object-cover brightness-50">
+        <div class="relative z-10" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold text-yellow-400 drop-shadow-lg">Sambutan Kepala Sekolah</h1>
+            <p class="mt-4 text-lg md:text-2xl font-medium">SDN 04 Jatilaba</p>
+        </div>
+    </section>
 
   <!-- Main Content -->
   <main class="max-w-5xl mx-auto px-6 py-16">

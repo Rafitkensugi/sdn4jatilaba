@@ -67,7 +67,7 @@
 
     <x-navbar></x-navbar>
 
-    <!-- Hero Section -->
+    {{-- <!-- Hero Section -->
     <div class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-900 dark:via-indigo-900 dark:to-purple-900 text-white py-20 mb-12">
         <div class="absolute inset-0 bg-black opacity-10 dark:opacity-20"></div>
         <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.05\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
@@ -82,7 +82,17 @@
                 </p>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+    <!-- Hero Section -->
+    <section class="relative h-[70vh] flex items-center justify-center text-center text-white mb-11">
+        <img src="{{ asset('images/hero.jpeg') }}" 
+             class="absolute inset-0 w-full h-full object-cover brightness-50">
+        <div class="relative z-10" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold text-yellow-400 drop-shadow-lg">Galeri Prestasi</h1>
+            <p class="mt-4 text-lg md:text-2xl font-medium">Koleksi Pencapaian dan kebanggaan yang Memotivasi Masa Depan</p>
+        </div>
+    </section>
 
     <div class="container mx-auto px-4 pb-16">
         
