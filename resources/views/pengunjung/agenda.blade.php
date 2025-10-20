@@ -6,7 +6,6 @@
   <title>Agenda - SDN 4 Jatilaba</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Inisialisasi dark mode berdasarkan preferensi sistem
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
     } else {
@@ -64,171 +63,39 @@
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       
-      <!-- Card 1 -->
-      <div class="agenda-card bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-all duration-300 border dark:border-gray-700" data-month="oktober">
+      @forelse($agendas as $agenda)
+      <div class="agenda-card bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-all duration-300 border dark:border-gray-700" data-month="{{ strtolower($agenda->bulan) }}">
         <div class="relative h-40 overflow-hidden rounded-t-xl">
-          <img 
-            src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80" 
-            alt="Upacara Bendera"
-            class="w-full h-full object-cover"
-          >
-          <div class="absolute top-3 right-3 bg-white dark:bg-gray-700 rounded-lg shadow px-3 py-1">
-            <div class="text-xs text-gray-500 dark:text-gray-400">OKT</div>
-            <div class="text-lg font-bold text-gray-800 dark:text-white">21</div>
+          @if($agenda->gambar)
+            <img src="{{ asset('storage/' . $agenda->gambar) }}" alt="{{ $agenda->judul }}" class="w-full h-full object-cover">
+          @else
+            <div class="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400">Tidak ada gambar</div>
+          @endif
+
+          <div class="absolute top-3 right-3 bg-white dark:bg-gray-700 rounded-lg shadow px-3 py-1 text-center">
+            <div class="text-xs text-gray-500 dark:text-gray-400">{{ strtoupper(substr($agenda->bulan, 0, 3)) }}</div>
+            <div class="text-lg font-bold text-gray-800 dark:text-white">{{ \Carbon\Carbon::parse($agenda->tanggal)->format('d') }}</div>
           </div>
         </div>
 
         <div class="p-4">
-          <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">Senin, 21 Oktober 2025</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">
+            {{ \Carbon\Carbon::parse($agenda->tanggal)->translatedFormat('l, d F Y') }}
+          </div>
           <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
-            Upacara Bendera Hari Senin
+            {{ $agenda->judul }}
           </h3>
           <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 mb-3">
-            Upacara bendera rutin setiap hari Senin sebagai pembinaan karakter siswa dan peningkatan rasa nasionalisme di lingkungan sekolah.
+            {{ $agenda->deskripsi }}
           </p>
           <div class="text-xs text-gray-500 dark:text-gray-400 pt-2 border-t dark:border-gray-600">
-            📍 Lapangan Sekolah
+            📍 {{ $agenda->lokasi ?? 'Lokasi belum ditentukan' }}
           </div>
         </div>
       </div>
-
-      <!-- Card 2 -->
-      <div class="agenda-card bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-all duration-300 border dark:border-gray-700" data-month="november">
-        <div class="relative h-40 overflow-hidden rounded-t-xl">
-          <img 
-            src="https://images.unsplash.com/photo-1503676382389-4809596d5290?w=800&q=80" 
-            alt="Lomba Seni"
-            class="w-full h-full object-cover"
-          >
-          <div class="absolute top-3 right-3 bg-white dark:bg-gray-700 rounded-lg shadow px-3 py-1">
-            <div class="text-xs text-gray-500 dark:text-gray-400">NOV</div>
-            <div class="text-lg font-bold text-gray-800 dark:text-white">05</div>
-          </div>
-        </div>
-
-        <div class="p-4">
-          <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">Selasa, 05 November 2025</div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
-            Lomba Seni & Budaya Tingkat Sekolah
-          </h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 mb-3">
-            Kompetisi seni meliputi menggambar, melukis, menyanyi, dan tari tradisional untuk mengembangkan bakat siswa di bidang seni dan budaya.
-          </p>
-          <div class="text-xs text-gray-500 dark:text-gray-400 pt-2 border-t dark:border-gray-600">
-            📍 Aula Sekolah
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="agenda-card bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-all duration-300 border dark:border-gray-700" data-month="november">
-        <div class="relative h-40 overflow-hidden rounded-t-xl bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 flex items-center justify-center">
-          <svg class="w-16 h-16 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <div class="absolute top-3 right-3 bg-white dark:bg-gray-700 rounded-lg shadow px-3 py-1">
-            <div class="text-xs text-gray-500 dark:text-gray-400">NOV</div>
-            <div class="text-lg font-bold text-gray-800 dark:text-white">15</div>
-          </div>
-        </div>
-
-        <div class="p-4">
-          <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">Jumat, 15 November 2025</div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
-            Pertemuan Orang Tua Siswa
-          </h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 mb-3">
-            Agenda rutin pertemuan dengan wali murid untuk membahas perkembangan akademik dan karakter siswa selama semester berjalan.
-          </p>
-          <div class="text-xs text-gray-500 dark:text-gray-400 pt-2 border-t dark:border-gray-600">
-            📍 Ruang Kelas Masing-masing
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="agenda-card bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-all duration-300 border dark:border-gray-700" data-month="november">
-        <div class="relative h-40 overflow-hidden rounded-t-xl">
-          <img 
-            src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&q=80" 
-            alt="Senam Bersama"
-            class="w-full h-full object-cover"
-          >
-          <div class="absolute top-3 right-3 bg-white dark:bg-gray-700 rounded-lg shadow px-3 py-1">
-            <div class="text-xs text-gray-500 dark:text-gray-400">NOV</div>
-            <div class="text-lg font-bold text-gray-800 dark:text-white">22</div>
-          </div>
-        </div>
-
-        <div class="p-4">
-          <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">Jumat, 22 November 2025</div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
-            Senam Sehat Bersama
-          </h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 mb-3">
-            Kegiatan senam bersama untuk menjaga kesehatan jasmani siswa dan guru. Dilaksanakan setiap Jumat pagi dengan instruktur profesional.
-          </p>
-          <div class="text-xs text-gray-500 dark:text-gray-400 pt-2 border-t dark:border-gray-600">
-            📍 Halaman Sekolah
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="agenda-card bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-all duration-300 border dark:border-gray-700" data-month="desember">
-        <div class="relative h-40 overflow-hidden rounded-t-xl">
-          <img 
-            src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80" 
-            alt="Kunjungan Perpustakaan"
-            class="w-full h-full object-cover"
-          >
-          <div class="absolute top-3 right-3 bg-white dark:bg-gray-700 rounded-lg shadow px-3 py-1">
-            <div class="text-xs text-gray-500 dark:text-gray-400">DES</div>
-            <div class="text-lg font-bold text-gray-800 dark:text-white">01</div>
-          </div>
-        </div>
-
-        <div class="p-4">
-          <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">Minggu, 01 Desember 2025</div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
-            Kunjungan ke Perpustakaan Daerah
-          </h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 mb-3">
-            Field trip ke perpustakaan daerah untuk menumbuhkan minat baca siswa dan memperkenalkan berbagai jenis buku serta cara memanfaatkan perpustakaan.
-          </p>
-          <div class="text-xs text-gray-500 dark:text-gray-400 pt-2 border-t dark:border-gray-600">
-            📍 Perpustakaan Kota
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="agenda-card bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-all duration-300 border dark:border-gray-700" data-month="desember">
-        <div class="relative h-40 overflow-hidden rounded-t-xl">
-          <img 
-            src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80" 
-            alt="Perayaan Akhir Tahun"
-            class="w-full h-full object-cover"
-          >
-          <div class="absolute top-3 right-3 bg-white dark:bg-gray-700 rounded-lg shadow px-3 py-1">
-            <div class="text-xs text-gray-500 dark:text-gray-400">DES</div>
-            <div class="text-lg font-bold text-gray-800 dark:text-white">20</div>
-          </div>
-        </div>
-
-        <div class="p-4">
-          <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">Jumat, 20 Desember 2025</div>
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
-            Perayaan Akhir Tahun & Pembagian Rapor
-          </h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-3 mb-3">
-            Perayaan akhir semester sekaligus pembagian rapor. Akan ada penampilan dari setiap kelas dan penganugerahan siswa berprestasi.
-          </p>
-          <div class="text-xs text-gray-500 dark:text-gray-400 pt-2 border-t dark:border-gray-600">
-            📍 Aula Utama
-          </div>
-        </div>
-      </div>
+      @empty
+        <p class="text-gray-500 dark:text-gray-400 text-center col-span-3">Belum ada agenda yang ditambahkan.</p>
+      @endforelse
 
     </div>
   </div>

@@ -10,8 +10,11 @@ return new class extends Migration {
         Schema::create('agendas', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->text('deskripsi')->nullable();
             $table->date('tanggal');
+            $table->string('lokasi')->nullable();
+            $table->text('deskripsi')->nullable();
+            $table->string('gambar')->nullable();
+            $table->string('bulan'); // contoh: 'oktober', 'november', 'desember'
             $table->timestamps();
         });
     }
