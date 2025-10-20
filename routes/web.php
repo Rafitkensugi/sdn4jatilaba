@@ -20,6 +20,8 @@ use App\Http\Controllers\{
     ProfilSekolahController,
     SejarahController
 };
+use App\Models\Feedback;
+use App\Models\Fasilitas;
 
 // Import controller Admin
 use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
@@ -55,7 +57,7 @@ Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
 Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
 Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
 
-// Sambutan
+// Sambutan Kepala Sekolah
 Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 
 // Dashboard default (untuk user login biasa)
@@ -87,7 +89,7 @@ Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('pen
 Route::get('/spmb', [PPDBController::class, 'index'])->name('spmb');
 Route::post('/spmb', [PPDBController::class, 'store'])->name('spmb.store');
 
-// Berita
+// Berita Sekolah
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
 Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.detail');
 
@@ -98,10 +100,10 @@ Route::get('/prestasi/{id}', [PrestasiController::class, 'show'])->name('prestas
 // Galeri
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 
-// Program
+// Program Sekolah
 Route::get('/program', [ProgramController::class, 'index'])->name('program');
 
-// Visi Misi
+// Visi & Misi
 Route::get('/visi-misi', [VisiMisiController::class, 'index'])->name('visi-misi');
 
 // Profil Sekolah
