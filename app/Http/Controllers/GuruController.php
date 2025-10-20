@@ -23,4 +23,6 @@ class GuruController extends Controller
     {
         return view('admin.kelola-guru.show', compact('guru'));
     }
+
+    public function 
 }
