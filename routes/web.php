@@ -21,13 +21,11 @@ use App\Http\Controllers\{
     SejarahController
 };
 
-// Import model (jika perlu)
-use App\Models\Feedback;
-use App\Models\Fasilitas;
 
 // Import controller Admin
 use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
+use App\Http\Controllers\Admin\PrestasiController as AdminPrestasiController;
 
 // =======================================================
 // 🔹 ROUTE UNTUK ADMIN
@@ -47,7 +45,10 @@ Route::middleware(['auth', 'role:admin|super-admin'])
 
         // CRUD Agenda Admin
         Route::resource('agenda', AdminAgendaController::class);
-        
+
+        // CRUD Prestasi Admin
+        Route::resource('prestasi', AdminPrestasiController::class);
+
         // Kelola Guru Admin
         Route::get('/kelola-guru', [GuruController::class, 'index'])->name('kelola-guru.index');
     });
