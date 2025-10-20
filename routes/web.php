@@ -34,12 +34,12 @@ Route::get('/prestasi/{id}', [PrestasiController::class, 'show'])->name('prestas
 Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/', [BerandaController::class, 'index']);
 
-// Agenda Sekolah
+// Agenda Sekolah dinamis crud(not yet)
 Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
 // Opsional: detail agenda
 // Route::get('/agenda/{id}', [AgendaController::class, 'show'])->name('agenda.show');
 
-// Artikel
+// Artikel  dinamis crud(not yet)
 Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
 Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
 
@@ -75,20 +75,17 @@ Route::get('/fasilitas/{id}', [FasilitasController::class, 'show'])->name('fasil
 Route::get('/spmb', [PPDBController::class, 'index'])->name('spmb');
 Route::post('/spmb', [PPDBController::class, 'store'])->name('spmb.store');
 
-// Berita
+// Berita  dinamis(not yet)
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
 Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.detail');
 
-// Prestasi
+// Prestasi  dinamis crud (not yet)
 Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
 
-// Galeri
+// Galeri  dinamis, upload, delete(not yet)
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 
-// Kontak
- Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
- Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
-// Program
+// Program  dinamis crud(not yet)
 Route::get('/program', [ProgramController::class, 'index'])->name('program');
 
 // Visi Misi
