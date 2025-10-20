@@ -20,11 +20,14 @@ use App\Http\Controllers\{
     ProfilSekolahController,
     SejarahController
 };
+
+// Import model (jika perlu)
 use App\Models\Feedback;
 use App\Models\Fasilitas;
 
 // Import controller Admin
 use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
+use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
 
 // =======================================================
 // 🔹 ROUTE UNTUK ADMIN
@@ -33,13 +36,20 @@ Route::middleware(['auth', 'role:admin|super-admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
+
         // Dashboard Admin
         Route::get('/', function () {
             return view('admin.dashboard');
         })->name('dashboard');
 
-        // CRUD Fasilitas (Admin)
+        // CRUD Fasilitas Admin
         Route::resource('fasilitas', AdminFasilitasController::class);
+
+        // CRUD Agenda Admin
+        Route::resource('agenda', AdminAgendaController::class);
+        
+        // Kelola Guru Admin
+        Route::get('/kelola-guru', [GuruController::class, 'index'])->name('kelola-guru.index');
     });
 
 // =======================================================
@@ -52,6 +62,7 @@ Route::get('/beranda', [BerandaController::class, 'index']);
 
 // Agenda Sekolah
 Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
+Route::get('/agenda/{id}', [AgendaController::class, 'show'])->name('agenda.show');
 
 // Artikel
 Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
@@ -111,7 +122,5 @@ Route::get('/profil-sekolah', [ProfilSekolahController::class, 'index'])->name('
 
 // Sejarah Sekolah
 Route::get('/sejarah', [SejarahController::class, 'index'])->name('sejarah');
-
-Route::get('/kelola-guru', [GuruController::class, 'index'])->name('admin.kelola-guru.index');
 
 require __DIR__ . '/auth.php';
