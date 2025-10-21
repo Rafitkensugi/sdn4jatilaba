@@ -9,7 +9,9 @@ class AgendaController extends Controller
 {
     public function index()
     {
-        $agendas = Agenda::orderBy('tanggal', 'asc')->get();
+        // Ambil semua data dari tabel agendas
+        $agendas = Agenda::latest()->get();
+
         return view('pengunjung.agenda', compact('agendas'));
     }
 }

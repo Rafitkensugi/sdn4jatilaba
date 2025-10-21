@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<<<<<<< HEAD
     <title>SPMB SDN 4 JATILABA</title>
     <script src="https://cdn.tailwindcss.com"></script>
+=======
+    <title>SPMB Online - PPDB</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+>>>>>>> 3f007fb5925b20294b4142cd2d88857012fbecb3
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <style>
         * { 
@@ -593,6 +600,10 @@
 </head>
 <body>
     <x-navbar />
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3f007fb5925b20294b4142cd2d88857012fbecb3
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
         <i class="fas fa-moon" id="theme-icon"></i>

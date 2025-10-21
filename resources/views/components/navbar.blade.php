@@ -44,7 +44,6 @@
         transition: width 0.3s ease;
     }
 
-    /* Dropdown */
     /* Desktop Dropdown */
     .dropdown {
         position: relative;
@@ -114,7 +113,7 @@
         transform: scale(1.05);
     }
 
-    /* Mobile Menu - Using display instead of max-height for more reliable behavior */
+    /* Mobile Menu */
     #mobile-menu {
         display: none;
     }
@@ -123,7 +122,8 @@
         display: block;
     }
 
-    #mobile-menu a {
+    #mobile-menu a,
+    #mobile-menu .mobile-dropdown-toggle {
         color: white !important;
         padding: 12px;
         border-left: 3px solid transparent;
@@ -132,7 +132,8 @@
         display: block;
     }
 
-    #mobile-menu a:hover {
+    #mobile-menu a:hover,
+    #mobile-menu .mobile-dropdown-toggle:hover {
         color: var(--maize-yellow) !important;
         border-left-color: var(--maize-yellow);
         background-color: rgba(255, 255, 255, 0.05);
@@ -140,20 +141,10 @@
 
     /* Mobile Dropdown */
     .mobile-dropdown-toggle {
+        cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        cursor: pointer;
-        color: white !important;
-        padding: 12px;
-        border-left: 3px solid transparent;
-        transition: all 0.2s;
-    }
-
-    .mobile-dropdown-toggle:hover {
-        color: var(--maize-yellow) !important;
-        border-left-color: var(--maize-yellow);
-        background-color: rgba(255, 255, 255, 0.05);
     }
 
     .mobile-dropdown-toggle.active {
@@ -201,7 +192,6 @@
     <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <!-- Logo tanpa latar kuning -->
                 <div class="flex items-center justify-center">
                     <img 
                         src="https://files.catbox.moe/tfztat.png" 
@@ -219,11 +209,9 @@
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="{{ route('beranda') }}" class="nav-link">Beranda</a>
 
-                <!-- Dropdown Tentang -->
                 <div class="dropdown">
                     <a href="#" class="nav-link flex items-center">
-                        Profil
-                        <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
+                        Profil <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
                     </a>
                     <div class="dropdown-menu">
                         <a href="{{ route('profil-sekolah') }}">Profil Sekolah</a>
@@ -235,22 +223,20 @@
 
                 <div class="dropdown">
                     <a href="#" class="nav-link flex items-center">
-                        Informasi
-                        <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
+                        Informasi <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="{{ route('agenda') }}">Pengumuman</a>
-                        {{-- belum ada pengumuman --}}
+                        <a href="#">Pengumuman</a>
                         <a href="{{ route('agenda') }}">Agenda</a>
                         <a href="{{ route('prestasi') }}">Prestasi</a>
                     </div>
                 </div>
-                <a href="{{ route('fasilitas.index') }}" class="nav-link">Fasilitas</a>
+
+                <a href="{{ route('pengunjung.fasilitas.index') }}" class="nav-link">Fasilitas</a>
                 <a href="{{ route('kontak.index') }}" class="nav-link">Kontak</a>
+
                 @can('access admin panel')
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link">
-                        Admin
-                    </a>
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link">Admin</a>
                 @endcan
             </nav>
 
@@ -261,41 +247,48 @@
             </button>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg">
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg" aria-label="Toggle menu">
                 <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
 
         <!-- Mobile Navigation -->
-        <nav id="mobile-menu" class="md:hidden mt-4 pb-4 space-y-2">
+        <nav id="mobile-menu" class="md:hidden mt-4 pb-4 space-y-2" aria-label="Mobile navigation">
             <a href="{{ route('beranda') }}">Beranda</a>
-            
-            <!-- Mobile Dropdown Profil -->
+
+            <!-- Profil Dropdown -->
             <div class="mobile-dropdown">
-                <div class="mobile-dropdown-toggle" id="mobile-dropdown-toggle">
+                <div class="mobile-dropdown-toggle" data-target="profil">
                     <span>Profil</span>
-                    <i class="fas fa-chevron-down text-sm chevron-icon" id="chevron-icon"></i>
+                    <i class="fas fa-chevron-down text-sm chevron-icon"></i>
                 </div>
-                <div class="mobile-dropdown-content" id="mobile-dropdown-content">
-                    <a href="#profil">Profil Sekolah</a>
+                <div class="mobile-dropdown-content" id="profil-content">
+                    <a href="{{ route('profil-sekolah') }}">Profil Sekolah</a>
                     <a href="{{ route('visi-misi') }}">Visi & Misi</a>
-                    <a href="#sejarah">Sejarah</a>
+                    <a href="{{ route('sejarah') }}">Sejarah</a>
                     <a href="{{ route('sambutan') }}">Kepala Sekolah</a>
                 </div>
             </div>
-                <div class="dropdown">
-                    <a href="#" class="nav-link flex items-center">
-                        Informasi
-                        <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="{{ route('visi-misi') }}">Pengumuman</a>
-                        <a href="{{ route('agenda') }}">Agenda</a>
-                    </div>
+
+            <!-- Informasi Dropdown -->
+            <div class="mobile-dropdown">
+                <div class="mobile-dropdown-toggle" data-target="informasi">
+                    <span>Informasi</span>
+                    <i class="fas fa-chevron-down text-sm chevron-icon"></i>
                 </div>
-            <a href="{{ route('fasilitas.index') }}">Fasilitas</a>
+                <div class="mobile-dropdown-content" id="informasi-content">
+                    <a href="#">Pengumuman</a>
+                    <a href="{{ route('agenda') }}">Agenda</a>
+                    <a href="{{ route('prestasi') }}">Prestasi</a>
+                </div>
+            </div>
+
+            <a href="{{ route('pengunjung.fasilitas.index') }}">Fasilitas</a>
             <a href="{{ route('kontak.index') }}">Kontak</a>
-            
+             @can('access admin panel')
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link">Admin</a>
+            @endcan
+
             <button 
                 onclick="window.location.href='{{ route('spmb') }}'" 
                 class="btn-register-mobile">
@@ -305,106 +298,70 @@
     </div>
 </header>
 
-<!-- Mobile Menu Toggle Script -->
 <script>
-    (function() {
+    (function () {
         'use strict';
-        
-        // Wait for DOM to be fully loaded
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initNavbar);
-        } else {
-            initNavbar();
-        }
-        
-        function initNavbar() {
-            // Get elements
-            var mobileMenuButton = document.getElementById('mobile-menu-button');
-            var mobileMenu = document.getElementById('mobile-menu');
-            var mobileDropdownToggle = document.getElementById('mobile-dropdown-toggle');
-            var mobileDropdownContent = document.getElementById('mobile-dropdown-content');
-            var chevronIcon = document.getElementById('chevron-icon');
-            
-            // Check if elements exist
-            if (!mobileMenuButton || !mobileMenu) {
-                console.error('Mobile menu elements not found');
-                return;
-            }
-            
-            // Toggle Mobile Menu
-            mobileMenuButton.addEventListener('click', function(e) {
-                e.preventDefault();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (!mobileMenuButton || !mobileMenu) return;
+
+            // Toggle main mobile menu
+            mobileMenuButton.addEventListener('click', function (e) {
                 e.stopPropagation();
-                
-                mobileMenu.classList.toggle('show');
-                
-                // Change icon
-                var icon = this.querySelector('i');
+                const isExpanded = mobileMenu.classList.toggle('show');
+                const icon = this.querySelector('i');
                 if (icon) {
-                    if (mobileMenu.classList.contains('show')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                        
-                        // Close dropdown when menu closes
-                        if (mobileDropdownContent && mobileDropdownContent.classList.contains('show')) {
-                            mobileDropdownContent.classList.remove('show');
-                            if (chevronIcon) chevronIcon.classList.remove('rotate');
-                            if (mobileDropdownToggle) mobileDropdownToggle.classList.remove('active');
-                        }
-                    }
+                    icon.className = isExpanded
+                        ? 'fas fa-times text-xl'
+                        : 'fas fa-bars text-xl';
                 }
             });
-            
-            // Toggle Mobile Dropdown
-            if (mobileDropdownToggle) {
-                mobileDropdownToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
+
+            // Handle dropdown toggles
+            const dropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function (e) {
                     e.stopPropagation();
-                    
-                    if (mobileDropdownContent) {
-                        mobileDropdownContent.classList.toggle('show');
-                    }
-                    
-                    if (chevronIcon) {
-                        chevronIcon.classList.toggle('rotate');
-                    }
-                    
-                    this.classList.toggle('active');
+                    const targetId = this.getAttribute('data-target') + '-content';
+                    const content = document.getElementById(targetId);
+                    const icon = this.querySelector('.chevron-icon');
+
+                    if (!content || !icon) return;
+
+                    const isShown = content.classList.toggle('show');
+                    icon.classList.toggle('rotate', isShown);
+                    this.classList.toggle('active', isShown);
                 });
-            }
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!mobileMenu.contains(event.target) && 
-                    !mobileMenuButton.contains(event.target) && 
-                    mobileMenu.classList.contains('show')) {
-                    
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function (e) {
+                if (
+                    !mobileMenu.contains(e.target) &&
+                    !mobileMenuButton.contains(e.target) &&
+                    mobileMenu.classList.contains('show')
+                ) {
                     mobileMenu.classList.remove('show');
-                    
-                    var icon = mobileMenuButton.querySelector('i');
-                    if (icon) {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                    
-                    // Reset dropdown
-                    if (mobileDropdownContent && mobileDropdownContent.classList.contains('show')) {
-                        mobileDropdownContent.classList.remove('show');
-                        if (chevronIcon) chevronIcon.classList.remove('rotate');
-                        if (mobileDropdownToggle) mobileDropdownToggle.classList.remove('active');
-                    }
+                    mobileMenuButton.querySelector('i').className = 'fas fa-bars text-xl';
+
+                    // Close all dropdowns
+                    document.querySelectorAll('.mobile-dropdown-content').forEach(el => {
+                        el.classList.remove('show');
+                    });
+                    document.querySelectorAll('.chevron-icon').forEach(el => {
+                        el.classList.remove('rotate');
+                    });
+                    document.querySelectorAll('.mobile-dropdown-toggle').forEach(el => {
+                        el.classList.remove('active');
+                    });
                 }
             });
-            
-            // Prevent menu from closing when clicking inside
-            if (mobileMenu) {
-                mobileMenu.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
-            }
-        }
+
+            // Prevent closing when clicking inside menu
+            mobileMenu.addEventListener('click', e => e.stopPropagation());
+        });
     })();
 </script>

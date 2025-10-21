@@ -21,14 +21,14 @@ use App\Http\Controllers\{
     SejarahController
 };
 
-// Import controller Admin
+// Controller untuk Admin
 use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
 use App\Http\Controllers\Admin\PrestasiController as AdminPrestasiController;
 use App\Http\Controllers\Admin\PesanController as AdminPesanController; // ✅ Tambahkan ini
 
 // =======================================================
-// 🔹 ROUTE UNTUK ADMIN
+// 🔹 ROUTE UNTUK ADMIN (Dashboard & CRUD)
 // =======================================================
 Route::middleware(['auth', 'role:admin|super-admin'])
     ->prefix('admin')
@@ -40,18 +40,18 @@ Route::middleware(['auth', 'role:admin|super-admin'])
             return view('admin.dashboard');
         })->name('dashboard');
 
-        // // CRUD Fasilitas Admin
-        // Route::resource('fasilitas', AdminFasilitasController::class);
+        // CRUD Fasilitas Admin
+        Route::resource('fasilitas', AdminFasilitasController::class);
 
-        // // CRUD Agenda Admin
-        // Route::resource('agenda', AdminAgendaController::class);
+        // CRUD Agenda Admin
+        Route::resource('agenda', AdminAgendaController::class);
 
-        // // CRUD Prestasi Admin
-        // Route::resource('prestasi', AdminPrestasiController::class);
+        // CRUD Prestasi Admin
+        Route::resource('prestasi', AdminPrestasiController::class);
 
-        // // ✅ CRUD Pesan (dari halaman kontak)
-        // Route::get('/pesan', [AdminPesanController::class, 'index'])->name('pesan.index');
-        // Route::delete('/pesan/{id}', [AdminPesanController::class, 'destroy'])->name('pesan.destroy');
+        // ✅ CRUD Pesan (dari halaman kontak)
+        Route::get('/pesan', [AdminPesanController::class, 'index'])->name('pesan.index');
+        Route::delete('/pesan/{id}', [AdminPesanController::class, 'destroy'])->name('pesan.destroy');
 
         // Kelola Guru Admin
         Route::prefix('kelola-guru')->name('kelola-guru.')->group(function () {
@@ -106,6 +106,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Fasilitas (untuk pengunjung)
+// Fasilitas
 Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('pengunjung.fasilitas.index');
 Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('pengunjung.fasilitas.show');
 
