@@ -6,6 +6,7 @@ use App\Http\Controllers\{
     PPDBController,
     BeritaController,
     GaleriController,
+    GuruController,
     KontakController,
     ProfileController,
     ProgramController,
@@ -83,10 +84,28 @@ Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.s
 // Sambutan Kepala Sekolah
 Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 
+// Dashboard default (untuk user login biasa)
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
 // Kontak
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
 Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
 
+// Auth
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+// Profile (hanya user login)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Fasilitas (untuk pengunjung)
 // Fasilitas
 Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('pengunjung.fasilitas.index');
 Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('pengunjung.fasilitas.show');
