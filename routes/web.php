@@ -19,20 +19,12 @@ use App\Http\Controllers\{
     ProfilSekolahController,
     SejarahController
 };
-use App\Models\Feedback;
-use App\Models\Fasilitas;
 
 // Controller untuk Admin
 use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
-use App\Http\Controllers\Admin\GuruController as AdminGuruController;
-use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
+use App\Http\Controllers\Admin\PrestasiController as AdminPrestasiController;
+use App\Http\Controllers\Admin\PesanController as AdminPesanController; // ✅ Tambahkan ini
 
 // =======================================================
 // 🔹 ROUTE UNTUK ADMIN (Dashboard & CRUD)
@@ -42,18 +34,26 @@ Route::middleware(['auth', 'role:admin|super-admin'])
     ->name('admin.')
     ->group(function () {
 
-        // Dashboard
+        // Dashboard Admin
         Route::get('/', function () {
             return view('admin.dashboard');
         })->name('dashboard');
 
-        // CRUD Fasilitas
+        // CRUD Fasilitas Admin
         Route::resource('fasilitas', AdminFasilitasController::class);
 
-        // CRUD Agenda
+        // CRUD Agenda Admin
         Route::resource('agenda', AdminAgendaController::class);
-        Route::resource('/berita', BeritaController::class);
-        Route::get('/berita', [BeritaController::class, 'adminIndex'])->name('admin.berita.index');     
+
+        // CRUD Prestasi Admin
+        Route::resource('prestasi', AdminPrestasiController::class);
+
+        // ✅ CRUD Pesan (dari halaman kontak)
+        Route::get('/pesan', [AdminPesanController::class, 'index'])->name('pesan.index');
+        Route::delete('/pesan/{id}', [AdminPesanController::class, 'destroy'])->name('pesan.destroy');
+
+        // Kelola Guru Admin
+        Route::get('/kelola-guru', [GuruController::class, 'index'])->name('kelola-guru.index');
     });
 
 // =======================================================
@@ -66,6 +66,7 @@ Route::get('/beranda', [BerandaController::class, 'index']);
 
 // Agenda Sekolah
 Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
+Route::get('/agenda/{id}', [AgendaController::class, 'show'])->name('agenda.show');
 
 // Artikel
 Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
@@ -109,24 +110,4 @@ Route::get('/profil-sekolah', [ProfilSekolahController::class, 'index'])->name('
 // Sejarah Sekolah
 Route::get('/sejarah', [SejarahController::class, 'index'])->name('sejarah');
 
-// =======================================================
-// 🔹 ROUTE UNTUK AUTENTIKASI & PROFILE
-// =======================================================
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-// Dashboard user biasa
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-// Profile user login
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// Route tambahan Laravel Breeze / Jetstream
 require __DIR__ . '/auth.php';
