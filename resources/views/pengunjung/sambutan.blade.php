@@ -56,7 +56,7 @@
         <!-- Photo -->
         <div class="flex-shrink-0">
           <div class="relative">
-            <img src="https://www.wowkeren.com/images/photo/cristiano_ronaldo.jpg" 
+            <img src="{{ asset('images/SRI NURHAYATI, S.Pd.SD..jpg') }}" 
                  alt="Kepala Sekolah SDN 4 Jatilaba" 
                  class="w-56 h-56 object-cover rounded-xl shadow-md ring-4 ring-blue-100 dark:ring-gray-600 transition-transform duration-300 hover:scale-105">
             <div class="absolute -bottom-3 -right-3 bg-blue-600 dark:bg-blue-700 text-white text-xs px-3 py-1 rounded-full shadow-lg">
