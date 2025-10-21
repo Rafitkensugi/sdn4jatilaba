@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\PrestasiController as AdminPrestasiController;
 use App\Http\Controllers\Admin\PesanController as AdminPesanController;
 use App\Http\Controllers\Admin\ArtikelController as AdminArtikelController;
 use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController;
+use App\Http\Controllers\Admin\PPDBController as AdminPPDBController;
 
 // =======================================================
 // 🔹 ROUTE UNTUK ADMIN (Dashboard & CRUD)
@@ -61,6 +62,15 @@ Route::middleware(['auth', 'role:admin|super-admin'])
         // ✅ CRUD Pesan (dari halaman kontak)
         Route::get('/pesan', [AdminPesanController::class, 'index'])->name('pesan.index');
         Route::delete('/pesan/{id}', [AdminPesanController::class, 'destroy'])->name('pesan.destroy');
+
+        // ✅ CRUD PPDB (Data Pendaftaran)
+        Route::prefix('ppdb')->name('ppdb.')->group(function () {
+            Route::get('/', [AdminPPDBController::class, 'index'])->name('index');
+            Route::get('/{id}', [AdminPPDBController::class, 'show'])->name('show');
+            Route::delete('/{id}', [AdminPPDBController::class, 'destroy'])->name('destroy');
+            Route::get('/{id}/download-pdf', [AdminPPDBController::class, 'downloadPDF'])->name('download.pdf');
+            Route::get('/{id}/view-pdf', [AdminPPDBController::class, 'viewPDF'])->name('view.pdf');
+        });
 
         // Kelola Guru Admin
         Route::prefix('kelola-guru')->name('kelola-guru.')->group(function () {
