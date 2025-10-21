@@ -15,21 +15,20 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         //
-        $roles = ['admin', 'super-admin'];
-
-        foreach ($roles as $role)
-        {
-            Role::firstOrCreate(['name' => $role]);
-        }
+        $superAdmin = Role::firstOrCreate(['name' => 'super-admin']);
+        $admin = Role::firstOrCreate(['name' => 'admin']);
 
         $permissions =
         [
             'access admin panel',
+            'create teacher account',
         ];
 
         foreach ($permissions as $permission)
         {
             Permission::firstOrCreate(['name' => $permission]);
         }
+
+        $admin->givePermissionTo('access admin panel');
     }
 }
