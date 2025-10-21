@@ -40,7 +40,7 @@
             Agenda & Kegiatan
         </h1>
         <p class="text-gray-600 dark:text-gray-300">
-            Daftar kegiatan dan acara penting di SDN 4 Jatilaba
+            Daftar kegiatan dan acara di SDN 4 Jatilaba
         </p>
     </div>
 
