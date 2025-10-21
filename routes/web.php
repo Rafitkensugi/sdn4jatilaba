@@ -17,7 +17,8 @@ use App\Http\Controllers\{
     BerandaController,
     AgendaController,
     ProfilSekolahController,
-    SejarahController
+    SejarahController,
+    GuruController
 };
 
 // Controller untuk Admin
