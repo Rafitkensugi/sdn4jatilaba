@@ -2,14 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Agenda extends Model
 {
-    protected $table = 'agendas'; // nama tabel
+    use HasFactory;
+
     protected $fillable = [
         'judul',
-        'deskripsi',
         'tanggal',
+        'lokasi',
+        'deskripsi',
+        'gambar',
+        'bulan'
+    ];
+
+    protected $casts = [
+        'tanggal' => 'date',
     ];
 }

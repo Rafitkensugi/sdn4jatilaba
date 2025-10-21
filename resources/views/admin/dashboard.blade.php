@@ -101,7 +101,7 @@
                     </svg>
                     Pengumuman
                 </a>
-                <a href="#" class="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors duration-200">
+                <a href="{{ route('admin.prestasi.index') }}" class="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors duration-200">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
@@ -113,7 +113,13 @@
                     </svg>
                     Fasilitas
                 </a>
-                <a href="{{ route('admin.kelola-guru.index') }}" class="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors duration-200">
+                <a href="{{ route('admin.agenda.index') }}" class="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors duration-200">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                    Agenda
+                </a>
+                <a href="{{ route('admin.kelola-guru.index') }}"class="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors duration-200">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
                     </svg>
@@ -125,7 +131,7 @@
                     </svg>
                     Informasi PPDB
                 </a>
-                <a href="#" class="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors duration-200">
+                <a href="{{ route('admin.pesan.index') }}" class="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors duration-200">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
                     </svg>
@@ -164,7 +170,7 @@
                 <div class="flex items-center justify-between px-4 sm:px-6 py-3">
                     <div class="text-lg font-semibold text-gray-800 dark:text-white">Dashboard Admin</div>
                     <div class="flex items-center space-x-4">
-                        <span class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Halo, Admin</span>
+                        <span class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Halo, {{ Auth::user()->name }}</span>
                         <img class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-gray-300 dark:border-gray-600" src="https://ui-avatars.com/api/?name=Admin&background=4F46E5&color=ffffff" alt="Profile">
                     </div>
                 </div>
@@ -174,7 +180,7 @@
             <main class="flex-1 overflow-y-auto p-4 sm:p-6 bg-gray-100 dark:bg-gray-900 custom-scrollbar transition-colors duration-300">
                 <!-- Welcome Section -->
                 <div class="mb-6">
-                    <h1 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-2">Selamat Datang, Admin!</h1>
+                    <h1 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-2">Selamat Datang, {{  Auth::user()->name }}!</h1>
                     <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base">Kelola konten website SDN 4 Jatilaba dengan mudah melalui dashboard ini.</p>
                 </div>
 

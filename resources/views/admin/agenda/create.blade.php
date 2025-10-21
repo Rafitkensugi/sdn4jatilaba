@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Fasilitas - SDN 4 Jatilaba</title>
+    <title>Tambah Agenda - SDN 4 Jatilaba</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -41,25 +41,25 @@
         }
 
         .drag-over {
-            background-color: #eff6ff;
-            border-color: #3b82f6;
+            background-color: #faf5ff;
+            border-color: #8b5cf6;
         }
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
     <!-- Header Section -->
-    <div class="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-800 dark:to-blue-900 shadow-lg">
+    <div class="bg-gradient-to-r from-purple-600 to-purple-700 dark:from-purple-800 dark:to-purple-900 shadow-lg">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex items-center">
-                <a href="{{ route('admin.fasilitas.index') }}" class="mr-4 p-2 hover:bg-white/10 rounded-lg transition-colors duration-200">
+                <a href="{{ route('admin.agenda.index') }}" class="mr-4 p-2 hover:bg-white/10 rounded-lg transition-colors duration-200">
                     <i class="fas fa-arrow-left text-white text-xl"></i>
                 </a>
                 <div>
                     <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2 flex items-center">
                         <i class="fas fa-plus-circle mr-3 text-white"></i>
-                        Tambah Fasilitas Baru
+                        Tambah Agenda Baru
                     </h1>
-                    <p class="text-blue-100 text-sm sm:text-base">Lengkapi formulir di bawah ini untuk menambahkan fasilitas</p>
+                    <p class="text-purple-100 text-sm sm:text-base">Buat agenda baru untuk SDN 4 Jatilaba</p>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
                 <li>
                     <div class="flex items-center">
                         <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
-                        <a href="{{ route('admin.fasilitas.index') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">Fasilitas</a>
+                        <a href="{{ route('admin.agenda.index') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">Agenda</a>
                     </div>
                 </li>
                 <li aria-current="page">
@@ -93,38 +93,117 @@
         <!-- Form Card -->
         <div class="max-w-4xl mx-auto">
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden">
-                <div class="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-gray-700 dark:to-gray-700 px-6 py-4 border-b border-blue-200 dark:border-gray-600">
+                <div class="bg-gradient-to-r from-purple-50 to-purple-100 dark:from-gray-700 dark:to-gray-700 px-6 py-4 border-b border-purple-200 dark:border-gray-600">
                     <h2 class="text-xl font-bold text-gray-800 dark:text-white flex items-center">
-                        <i class="fas fa-file-alt mr-2 text-blue-600 dark:text-blue-400"></i>
-                        Formulir Data Fasilitas
+                        <i class="fas fa-calendar-plus mr-2 text-purple-600 dark:text-purple-400"></i>
+                        Formulir Tambah Agenda
                     </h2>
                     <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Semua field bertanda <span class="text-red-500">*</span> wajib diisi</p>
                 </div>
 
-                <form action="{{ route('admin.fasilitas.store') }}" method="POST" enctype="multipart/form-data" class="p-6 sm:p-8">
+                <form action="{{ route('admin.agenda.store') }}" method="POST" enctype="multipart/form-data" class="p-6 sm:p-8">
                     @csrf
                     
                     <div class="space-y-6">
-                        <!-- Nama Fasilitas -->
+                        <!-- Judul Agenda -->
                         <div>
-                            <label for="nama" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            <label for="judul" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 <span class="flex items-center">
-                                    <i class="fas fa-tag mr-2 text-blue-600 dark:text-blue-400"></i>
-                                    Nama Fasilitas <span class="text-red-500">*</span>
+                                    <i class="fas fa-heading mr-2 text-purple-600 dark:text-purple-400"></i>
+                                    Judul Agenda <span class="text-red-500">*</span>
                                 </span>
                             </label>
                             <input type="text" 
-                                   name="nama" 
-                                   id="nama" 
-                                   value="{{ old('nama') }}"
-                                   class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 @error('nama') border-red-500 ring-2 ring-red-200 @enderror" 
-                                   placeholder="Contoh: Perpustakaan, Lab Komputer, Ruang Kelas" 
+                                   name="judul" 
+                                   id="judul" 
+                                   value="{{ old('judul') }}"
+                                   class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:text-white transition-all duration-200 @error('judul') border-red-500 ring-2 ring-red-200 @enderror" 
+                                   placeholder="Contoh: Upacara Bendera, Rapat Guru, Porseni" 
                                    required>
                             <p class="mt-1 text-xs text-gray-500 dark:text-gray-400 flex items-center">
                                 <i class="fas fa-info-circle mr-1"></i>
-                                Gunakan nama yang jelas dan mudah dipahami
+                                Berikan judul yang jelas dan deskriptif
                             </p>
-                            @error('nama')
+                            @error('judul')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-2"></i>
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
+
+                        <!-- Tanggal -->
+                        <div>
+                            <label for="tanggal" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                <span class="flex items-center">
+                                    <i class="fas fa-calendar-day mr-2 text-purple-600 dark:text-purple-400"></i>
+                                    Tanggal <span class="text-red-500">*</span>
+                                </span>
+                            </label>
+                            <input type="date" 
+                                   name="tanggal" 
+                                   id="tanggal"
+                                   value="{{ old('tanggal') }}"
+                                   class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:text-white transition-all duration-200 @error('tanggal') border-red-500 ring-2 ring-red-200 @enderror" 
+                                   required>
+                            @error('tanggal')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-2"></i>
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
+
+                        <!-- Bulan -->
+                        <div>
+                            <label for="bulan" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                <span class="flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2 text-purple-600 dark:text-purple-400"></i>
+                                    Bulan <span class="text-red-500">*</span>
+                                </span>
+                            </label>
+                            <select name="bulan" 
+                                    id="bulan" 
+                                    class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:text-white transition-all duration-200 @error('bulan') border-red-500 ring-2 ring-red-200 @enderror">
+                                @php
+                                    $months = [
+                                        'januari', 'februari', 'maret', 'april', 'mei', 'juni',
+                                        'juli', 'agustus', 'september', 'oktober', 'november', 'desember'
+                                    ];
+                                @endphp
+                                @foreach($months as $month)
+                                    <option value="{{ $month }}" {{ old('bulan') == $month ? 'selected' : '' }}>
+                                        {{ ucfirst($month) }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400 flex items-center">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Bulan akan otomatis terisi berdasarkan tanggal yang dipilih
+                            </p>
+                            @error('bulan')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-2"></i>
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
+
+                        <!-- Lokasi -->
+                        <div>
+                            <label for="lokasi" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                <span class="flex items-center">
+                                    <i class="fas fa-map-marker-alt mr-2 text-purple-600 dark:text-purple-400"></i>
+                                    Lokasi
+                                </span>
+                            </label>
+                            <input type="text" 
+                                   name="lokasi" 
+                                   id="lokasi" 
+                                   value="{{ old('lokasi') }}"
+                                   class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:text-white transition-all duration-200 @error('lokasi') border-red-500 ring-2 ring-red-200 @enderror" 
+                                   placeholder="Contoh: Aula Sekolah, Lapangan Utama, Ruang Guru">
+                            @error('lokasi')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
                                 <i class="fas fa-exclamation-circle mr-2"></i>
                                 {{ $message }}
@@ -136,20 +215,19 @@
                         <div>
                             <label for="deskripsi" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 <span class="flex items-center">
-                                    <i class="fas fa-align-left mr-2 text-blue-600 dark:text-blue-400"></i>
-                                    Deskripsi <span class="text-red-500">*</span>
+                                    <i class="fas fa-align-left mr-2 text-purple-600 dark:text-purple-400"></i>
+                                    Deskripsi
                                 </span>
                             </label>
                             <textarea name="deskripsi" 
                                       id="deskripsi" 
                                       rows="5"
-                                      class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 @error('deskripsi') border-red-500 ring-2 ring-red-200 @enderror" 
-                                      placeholder="Deskripsikan fasilitas secara detail (kondisi, fungsi, kapasitas, dll.)..." 
-                                      required>{{ old('deskripsi') }}</textarea>
+                                      class="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:text-white transition-all duration-200 @error('deskripsi') border-red-500 ring-2 ring-red-200 @enderror" 
+                                      placeholder="Jelaskan detail agenda, peserta, dan informasi penting lainnya...">{{ old('deskripsi') }}</textarea>
                             <div class="mt-1 flex justify-between items-center">
                                 <p class="text-xs text-gray-500 dark:text-gray-400 flex items-center">
                                     <i class="fas fa-info-circle mr-1"></i>
-                                    Minimal 20 karakter, jelaskan kondisi dan fungsi fasilitas
+                                    Deskripsi opsional untuk informasi tambahan
                                 </p>
                                 <span id="charCount" class="text-xs text-gray-400">0 karakter</span>
                             </div>
@@ -161,19 +239,18 @@
                             @enderror
                         </div>
 
-                        <!-- Upload Foto -->
+                        <!-- Upload Gambar -->
                         <div>
-                            <label for="foto" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            <label for="gambar" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 <span class="flex items-center">
-                                    <i class="fas fa-camera mr-2 text-blue-600 dark:text-blue-400"></i>
-                                    Foto Fasilitas <span class="text-red-500">*</span>
+                                    <i class="fas fa-camera mr-2 text-purple-600 dark:text-purple-400"></i>
+                                    Upload Gambar (Opsional)
                                 </span>
                             </label>
-                            
                             <div class="mt-2">
-                                <label for="foto" class="file-upload relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 transition-all duration-300 overflow-hidden group @error('foto') border-red-500 @enderror">
+                                <label for="gambar" class="file-upload relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 transition-all duration-300 overflow-hidden group @error('gambar') border-red-500 @enderror">
                                     <div id="uploadPlaceholder" class="flex flex-col items-center justify-center pt-5 pb-6 px-4 text-center">
-                                        <i class="file-upload-icon mb-3 text-4xl text-gray-400 group-hover:text-blue-500 transition-colors duration-200 fas fa-cloud-upload-alt"></i>
+                                        <i class="file-upload-icon mb-3 text-4xl text-gray-400 group-hover:text-purple-500 transition-colors duration-200 fas fa-cloud-upload-alt"></i>
                                         <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
                                             <span class="font-semibold">Klik untuk upload</span><br>
                                             atau drag & drop file di sini
@@ -182,7 +259,7 @@
                                             <i class="fas fa-file-image mr-1"></i>
                                             PNG, JPG, JPEG (maksimal 2MB)
                                         </p>
-                                        <p class="text-xs text-blue-600 dark:text-blue-400 mt-2 font-medium">
+                                        <p class="text-xs text-purple-600 dark:text-purple-400 mt-2 font-medium">
                                             <i class="fas fa-ruler-combined mr-1"></i>
                                             Rekomendasi: 800x600 px
                                         </p>
@@ -191,11 +268,11 @@
                                         <img id="imagePreview" class="w-full h-full object-cover" alt="Preview">
                                         <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                             <p class="text-white font-semibold text-center">
-                                                <i class="fas fa-sync-alt mr-2"></i>Klik untuk ganti foto
+                                                <i class="fas fa-sync-alt mr-2"></i>Klik untuk ganti gambar
                                             </p>
                                         </div>
                                     </div>
-                                    <input id="foto" name="foto" type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*" required onchange="previewImage(event)" />
+                                    <input id="gambar" name="gambar" type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*" onchange="previewImage(event)" />
                                 </label>
                             </div>
                             
@@ -219,7 +296,7 @@
                                 </div>
                             </div>
                             
-                            @error('foto')
+                            @error('gambar')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center">
                                 <i class="fas fa-exclamation-circle mr-2"></i>
                                 {{ $message }}
@@ -230,22 +307,22 @@
                         <!-- Action Buttons -->
                         <div class="flex flex-col sm:flex-row justify-between gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
                             <div class="flex gap-3">
-                                <a href="{{ route('admin.fasilitas.index') }}" 
+                                <a href="{{ route('admin.agenda.index') }}" 
                                    class="flex items-center justify-center px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
                                     <i class="fas fa-arrow-left mr-2"></i>
                                     Kembali
                                 </a>
                                 <button type="button" 
                                         onclick="resetForm()"
-                                        class="flex items-center justify-center px-6 py-3 border-2 border-blue-300 dark:border-blue-600 text-blue-700 dark:text-blue-300 rounded-lg font-semibold hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200">
+                                        class="flex items-center justify-center px-6 py-3 border-2 border-purple-300 dark:border-purple-600 text-purple-700 dark:text-purple-300 rounded-lg font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors duration-200">
                                     <i class="fas fa-undo mr-2"></i>
                                     Reset Form
                                 </button>
                             </div>
                             <button type="submit" 
-                                    class="flex items-center justify-center px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                                    class="flex items-center justify-center px-8 py-3 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
                                 <i class="fas fa-save mr-2"></i>
-                                Simpan Fasilitas
+                                Simpan Agenda
                             </button>
                         </div>
                     </div>
@@ -253,30 +330,30 @@
             </div>
 
             <!-- Info Card -->
-            <div class="mt-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
+            <div class="mt-6 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-xl p-4">
                 <div class="flex">
-                    <i class="fas fa-lightbulb text-blue-600 dark:text-blue-400 text-xl mr-3 flex-shrink-0 mt-1"></i>
-                    <div class="text-sm text-blue-800 dark:text-blue-300">
+                    <i class="fas fa-lightbulb text-purple-600 dark:text-purple-400 text-xl mr-3 flex-shrink-0 mt-1"></i>
+                    <div class="text-sm text-purple-800 dark:text-purple-300">
                         <p class="font-semibold mb-2 flex items-center">
                             <i class="fas fa-tips mr-2"></i>
-                            Tips Mengisi Form:
+                            Tips Mengisi Form Agenda:
                         </p>
                         <ul class="list-none space-y-2 text-xs">
                             <li class="flex items-start">
                                 <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Gunakan nama fasilitas yang jelas dan mudah dipahami</span>
+                                <span>Gunakan judul yang jelas dan mudah dipahami</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Deskripsi minimal 20 karakter untuk penjelasan yang detail</span>
+                                <span>Pilih tanggal yang tepat untuk agenda</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Upload foto dengan kualitas baik dan pencahayaan yang cukup</span>
+                                <span>Sertakan lokasi jika agenda memiliki tempat khusus</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Pastikan ukuran foto tidak melebihi 2MB</span>
+                                <span>Upload gambar dengan kualitas baik jika diperlukan</span>
                             </li>
                         </ul>
                     </div>
@@ -284,22 +361,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Success Alert (jika ada) -->
-    @if (session('success'))
-    <div id="successAlert" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg animate-fade-in-down z-50">
-        <div class="flex items-center">
-            <i class="fas fa-check-circle mr-3 text-xl"></i>
-            <div>
-                <p class="font-semibold">Berhasil!</p>
-                <p class="text-sm">{{ session('success') }}</p>
-            </div>
-            <button onclick="closeAlert()" class="ml-4 text-white hover:text-gray-200">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-    @endif
 
     <script>
     // Fungsi preview gambar
@@ -346,39 +407,27 @@
         }
     }
 
-    // Fungsi tutup alert
-    function closeAlert() {
-        const alert = document.getElementById('successAlert');
-        if (alert) {
-            alert.style.transition = 'opacity 0.3s ease';
-            alert.style.opacity = '0';
-            setTimeout(() => alert.remove(), 300);
-        }
-    }
-
-    // Auto close success alert setelah 5 detik
-    setTimeout(() => {
-        closeAlert();
-    }, 5000);
-
     // Character counter untuk deskripsi
     document.getElementById('deskripsi').addEventListener('input', function(e) {
         const charCount = e.target.value.length;
         const counter = document.getElementById('charCount');
         counter.textContent = charCount + ' karakter';
-        
-        if (charCount < 20) {
-            counter.classList.add('text-red-500');
-            counter.classList.remove('text-green-500');
-        } else {
-            counter.classList.remove('text-red-500');
-            counter.classList.add('text-green-500');
-        }
+    });
+
+    // Auto update bulan berdasarkan tanggal
+    document.getElementById('tanggal').addEventListener('change', function(e) {
+        const date = new Date(e.target.value);
+        const monthNames = [
+            'januari', 'februari', 'maret', 'april', 'mei', 'juni',
+            'juli', 'agustus', 'september', 'oktober', 'november', 'desember'
+        ];
+        const month = monthNames[date.getMonth()];
+        document.getElementById('bulan').value = month;
     });
 
     // Drag and drop functionality
     const fileUpload = document.querySelector('.file-upload');
-    const fileInput = document.getElementById('foto');
+    const fileInput = document.getElementById('gambar');
 
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         fileUpload.addEventListener(eventName, preventDefaults, false);
@@ -416,24 +465,25 @@
 
     // Form validation sebelum submit
     document.querySelector('form').addEventListener('submit', function(e) {
-        const nama = document.getElementById('nama').value.trim();
-        const deskripsi = document.getElementById('deskripsi').value.trim();
-        const foto = document.getElementById('foto').files[0];
+        const judul = document.getElementById('judul').value.trim();
+        const tanggal = document.getElementById('tanggal').value;
+        const bulan = document.getElementById('bulan').value;
         
         let isValid = true;
         let errorMessage = '';
 
-        if (nama.length < 3) {
+        if (judul.length < 3) {
             isValid = false;
-            errorMessage = 'Nama fasilitas minimal 3 karakter!';
-            document.getElementById('nama').focus();
-        } else if (deskripsi.length < 20) {
+            errorMessage = 'Judul agenda minimal 3 karakter!';
+            document.getElementById('judul').focus();
+        } else if (!tanggal) {
             isValid = false;
-            errorMessage = 'Deskripsi minimal 20 karakter!';
-            document.getElementById('deskripsi').focus();
-        } else if (!foto) {
+            errorMessage = 'Tanggal agenda wajib diisi!';
+            document.getElementById('tanggal').focus();
+        } else if (!bulan) {
             isValid = false;
-            errorMessage = 'Foto fasilitas wajib diupload!';
+            errorMessage = 'Bulan agenda wajib diisi!';
+            document.getElementById('bulan').focus();
         }
 
         if (!isValid) {
@@ -448,12 +498,6 @@
         const deskripsi = document.getElementById('deskripsi');
         const charCount = document.getElementById('charCount');
         charCount.textContent = deskripsi.value.length + ' karakter';
-        
-        if (deskripsi.value.length < 20) {
-            charCount.classList.add('text-red-500');
-        } else {
-            charCount.classList.add('text-green-500');
-        }
     });
     </script>
 </body>
