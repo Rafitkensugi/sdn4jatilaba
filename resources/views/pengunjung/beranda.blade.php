@@ -399,7 +399,7 @@
                 <!-- Teachers Container -->
                 <div id="teachersContainer" class="teachers-container flex overflow-x-auto gap-6 pb-4 px-2 scroll-smooth" style="scrollbar-width: none;">
                     <!-- Teacher Card 1 - Kepala Sekolah -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in">
+                    {{-- <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in">
                         <div class="p-4">
                             <div class="text-center mb-4">
                                 <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Kepala Sekolah</span>
@@ -812,8 +812,35 @@
                                 Detail
                             </button>
                         </div>
+                    </div> --}}     
+                    @foreach ($gurus as $guru)
+                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 1.5s;">
+                        <div class="p-4">
+                            <div class="text-center mb-4">
+                                    <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
+                            </div>
+                            <div class="flex justify-center mb-4">
+                                <img src="{{ asset('storage/gurus/' . $guru->foto) }}   " alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                            </div>
+                                <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">{{ $guru->nama }}</h4>
+                                <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 2B</p>
+                                <div class="hidden teacher-details">
+                                    <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                        <p><span class="font-semibold">NIP:</span>{{ $guru->nip }}</p>
+                                        <p><span class="font-semibold">Aktif:</span> 2020</p>
+                                        <p><span class="font-semibold">Jabatan:</span>{{ $guru->jabatan }}</p>
+                                        <p><span class="font-semibold">Bidang Studi:</span> {{ $guru->bidang_studi }}</p>
+                                        <p><span class="font-semibold">Domisili:</span> Tegal</p>
+                                    </div>
+                                </div>
+                                <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
+                                    Detail
+                                </button>
+                        </div>
                     </div>
+                    @endforeach
                 </div>
+                
                 
                 <!-- Loading indicator for infinite scroll -->
                 <div id="loadingIndicator" class="loading-indicator">

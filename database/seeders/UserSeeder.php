@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
         if (!$admin->hasRole('admin')) {
             $admin->assignRole('admin');
         }
-
+        
         $this->command->info('Users with roles created successfully!');
     }
 }
