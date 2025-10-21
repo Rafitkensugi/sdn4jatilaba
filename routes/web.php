@@ -25,7 +25,8 @@ use App\Http\Controllers\{
 use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
 use App\Http\Controllers\Admin\PrestasiController as AdminPrestasiController;
-use App\Http\Controllers\Admin\PesanController as AdminPesanController; // ✅ Tambahkan ini
+use App\Http\Controllers\Admin\PesanController as AdminPesanController;
+use App\Http\Controllers\Admin\ArtikelController as AdminArtikelController;
 
 // =======================================================
 // 🔹 ROUTE UNTUK ADMIN (Dashboard & CRUD)
@@ -39,6 +40,9 @@ Route::middleware(['auth', 'role:admin|super-admin'])
         Route::get('/', function () {
             return view('admin.dashboard');
         })->name('dashboard');
+
+        // CRUD Artikel Admin ✅
+        Route::resource('artikel', AdminArtikelController::class);
 
         // CRUD Fasilitas Admin
         Route::resource('fasilitas', AdminFasilitasController::class);
@@ -106,7 +110,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Fasilitas (untuk pengunjung)
-// Fasilitas
 Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('pengunjung.fasilitas.index');
 Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('pengunjung.fasilitas.show');
 
