@@ -10,15 +10,15 @@ class PengumumanController extends Controller
     // ----------------- Pengunjung -----------------
     public function index()
     {
-        $pengumumans = Pengumuman::orderBy('created_at', 'desc')->paginate(6);
-        return view('pengunjung.pengumuman', compact('pengumumans'));
+        $pengumuman = Pengumuman::orderBy('created_at', 'desc')->paginate(6);
+        return view('pengunjung.pengumuman', compact('pengumuman'));
     }
 
     public function show($id)
     {
         $pengumuman = Pengumuman::findOrFail($id);
 
-        // Tambah 1 ke view count
+        // Tambah 1 ke jumlah views
         $pengumuman->increment('views');
 
         return view('pengunjung.pengumuman-detail', compact('pengumuman'));
@@ -33,12 +33,12 @@ class PengumumanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required',
+            'judul' => 'required|string|max:255',
             'isi' => 'required',
             'gambar' => 'nullable|image|max:2048'
         ]);
 
-        $path = $request->file('gambar')?->store('pengumumans', 'public');
+        $path = $request->file('gambar')?->store('pengumuman', 'public');
 
         Pengumuman::create([
             'judul' => $request->judul,

@@ -9,6 +9,9 @@ class Pengumuman extends Model
 {
     use HasFactory;
 
+    // Tambahkan baris ini untuk memastikan Laravel pakai tabel 'pengumuman'
+    protected $table = 'pengumuman';
+
     protected $fillable = [
         'judul',
         'penulis',
@@ -18,3 +21,4 @@ class Pengumuman extends Model
         'views',
     ];
 }
+    

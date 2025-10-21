@@ -111,23 +111,12 @@
             <p class="text-sm text-black mt-2 font-medium dark:text-gray-200">Silahkan Login</p>
         </div>
 
-<<<<<<< HEAD
-        <!-- Error Messages -->
-        <div id="email-error" class="bg-red-500/10 border border-red-500/30 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg mb-5 text-sm hidden">
-            Email tidak ditemukan
-        </div>
-
-        <div id="password-error" class="bg-red-500/10 border border-red-500/30 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg mb-5 text-sm hidden">
-            Kata sandi salah
-        </div>
-=======
         {{-- ✅ ALERT --}}
         @if (session('error'))
             <div class="bg-red-500/10 border border-red-500/30 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg mb-5 text-sm animate-fadeIn">
                 <strong>Gagal:</strong> {{ session('error') }}
             </div>
         @endif
->>>>>>> c156071f217c09a664fd9e2fb8584989acdb4011
 
         @if ($errors->has('email'))
             <div class="bg-red-500/10 border border-red-500/30 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg mb-5 text-sm animate-fadeIn">
@@ -161,17 +150,6 @@
             <div class="relative">
                 <label for="password" class="block text-sm font-semibold text-black mb-2 dark:text-gray-100">Kata Sandi</label>
                 <input id="password" type="password" name="password" required
-<<<<<<< HEAD
-                    class="w-full px-4 py-3 pr-12 rounded-xl border border-gray-300 focus:border-primary-500 focus:ring-0 outline-none placeholder:text-gray-400 transition-all bg-white dark:bg-gray-800 dark:border-gray-600 dark:placeholder:text-gray-400 dark:text-white text-gray-900 input-glow"
-                    placeholder="Masukan kata sandi">
-                <button type="button" id="toggle-password" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
-                    <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                    <svg id="eye-off-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
-=======
                     class="w-full px-4 py-3 pr-12 rounded-xl border border-gray-300 focus:border-primary-500 focus:ring-0 outline-none placeholder:text-gray-400 transition-all bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white input-glow"
                     placeholder="Masukan kata sandi">
 
@@ -188,7 +166,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.964 9.964 0 012.223-3.592M6.18 6.18A9.966 9.966 0 0112 5c4.477 0 8.268 2.943 9.542 7a9.986 9.986 0 01-4.255 5.525" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l18 18" />
->>>>>>> c156071f217c09a664fd9e2fb8584989acdb4011
                     </svg>
                 </button>
             </div>
@@ -242,45 +219,6 @@
         setTheme();
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setTheme);
 
-<<<<<<< HEAD
-        // Toggle password visibility
-        document.getElementById('toggle-password').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.getElementById('eye-icon');
-            const eyeOffIcon = document.getElementById('eye-off-icon');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.classList.add('hidden');
-                eyeOffIcon.classList.remove('hidden');
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.classList.remove('hidden');
-                eyeOffIcon.classList.add('hidden');
-            }
-        });
-
-        // Simulasi validasi error (gantilah dengan logika backend sesungguhnya)
-        // Contoh: Tampilkan error jika form dikirim
-        // document.querySelector('form').addEventListener('submit', function(e) {
-        //     e.preventDefault();
-        //     const email = document.getElementById('email').value;
-        //     const password = document.getElementById('password').value;
-            
-        //     // Reset error
-        //     document.getElementById('email-error').classList.add('hidden');
-        //     document.getElementById('password-error').classList.add('hidden');
-            
-        //     // Simulasi validasi
-        //     if (email !== 'admin@sdn4jatilaba.sch.id') {
-        //         document.getElementById('email-error').classList.remove('hidden');
-        //     } else if (password !== 'password123') {
-        //         document.getElementById('password-error').classList.remove('hidden');
-        //     } else {
-        //         alert('Login berhasil!');
-        //     }
-        // });
-=======
         // 👁️ Toggle Password
         const pwd = document.getElementById('password');
         const toggle = document.getElementById('togglePassword');
@@ -295,8 +233,6 @@
                 iconEyeOff.classList.toggle('hidden', isPassword);
             });
         }
->>>>>>> c156071f217c09a664fd9e2fb8584989acdb4011
     </script>
 </body>
 </html>
-

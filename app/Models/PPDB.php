@@ -9,6 +9,8 @@ class PPDB extends Model
 {
     use HasFactory;
 
+    protected $table = 'ppdb';
+
     protected $fillable = [
         'nama_lengkap',
         'nama_panggilan',
@@ -21,7 +23,10 @@ class PPDB extends Model
         'nama_ibu',
         'pekerjaan_ayah',
         'pekerjaan_ibu',
-        'no_telepon'
+        'no_telepon',
+        'no_darurat',
+        'akta_path',
+        'kk_path'
     ];
 
     protected $casts = [

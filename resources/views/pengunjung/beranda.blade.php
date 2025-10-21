@@ -274,7 +274,7 @@
                 <article class="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-700 flex flex-col">
                     <!-- Image Container with Overlay -->
                     <div class="relative overflow-hidden h-56">
-                        <img src="{{ $artikel->gambar ?? asset('images/no-image.jpg') }}" 
+                        <img src="{{ asset('storage/'.$artikel->gambar) }}" 
                              alt="{{ $artikel->judul }}" 
                              class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
