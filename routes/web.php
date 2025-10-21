@@ -54,7 +54,15 @@ Route::middleware(['auth', 'role:admin|super-admin'])
         Route::delete('/pesan/{id}', [AdminPesanController::class, 'destroy'])->name('pesan.destroy');
 
         // Kelola Guru Admin
-        Route::get('/kelola-guru', [GuruController::class, 'index'])->name('kelola-guru.index');
+        Route::prefix('kelola-guru')->name('kelola-guru.')->group(function () {
+            Route::get('/', [GuruController::class, 'index'])->name('index');
+            Route::get('/create', [GuruController::class, 'create'])->name('create');
+            Route::post('/', [GuruController::class, 'store'])->name('store');
+            Route::get('/{guru}', [GuruController::class, 'show'])->name('show');
+            Route::get('/{guru}/edit', [GuruController::class, 'edit'])->name('edit');
+            Route::put('/{guru}', [GuruController::class, 'update'])->name('update');
+            Route::delete('/{guru}', [GuruController::class, 'destroy'])->name('destroy');
+        });
     });
 
 // =======================================================
