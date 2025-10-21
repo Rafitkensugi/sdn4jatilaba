@@ -685,225 +685,308 @@
                             Formulir Pendaftaran
                         </h2>
 
-                        <form id="registration-form">
-                            <h4 class="form-section-title">
-                                <i class="fas fa-user"></i>
-                                Data Calon Siswa
-                            </h4>
+                        <form id="registration-form" method="POST" action="{{ route('spmb.store') }}" enctype="multipart/form-data">
+    @csrf
+    
+    <!-- Tambahkan alert untuk success/error message -->
+    @if(session('success'))
+        <div class="success-message" style="background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 12px 16px; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.3); margin-bottom: 20px;">
+            <i class="fas fa-check-circle"></i> {{ session('success') }}
+        </div>
+    @endif
 
-                            <div class="form-group">
-                                <label class="form-label" for="nama_lengkap">Nama Lengkap</label>
-                                <input 
-                                    id="nama_lengkap" 
-                                    type="text" 
-                                    name="nama_lengkap" 
-                                    class="form-input" 
-                                    required 
-                                    placeholder="Masukkan nama lengkap"
-                                >
-                            </div>
+    @if(session('error'))
+        <div class="error-message" style="background: rgba(239, 68, 68, 0.1); color: var(--danger); padding: 12px 16px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); margin-bottom: 20px;">
+            <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
+        </div>
+    @endif
 
-                            <div class="form-group">
-                                <label class="form-label" for="nama_panggilan">Nama Panggilan</label>
-                                <input 
-                                    id="nama_panggilan" 
-                                    type="text" 
-                                    name="nama_panggilan" 
-                                    class="form-input" 
-                                    required 
-                                    placeholder="Masukkan nama panggilan"
-                                >
-                            </div>
+    @if($errors->any())
+        <div class="error-message" style="background: rgba(239, 68, 68, 0.1); color: var(--danger); padding: 12px 16px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); margin-bottom: 20px;">
+            <strong><i class="fas fa-exclamation-circle"></i> Terdapat kesalahan:</strong>
+            <ul style="margin: 8px 0 0 20px;">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-                            <div class="input-grid input-grid-2">
-                                <div class="form-group">
-                                    <label class="form-label" for="tempat_lahir">Tempat Lahir</label>
-                                    <input 
-                                        id="tempat_lahir" 
-                                        type="text" 
-                                        name="tempat_lahir" 
-                                        class="form-input" 
-                                        required 
-                                        placeholder="Kota kelahiran"
-                                    >
-                                </div>
+    <h4 class="form-section-title">
+        <i class="fas fa-user"></i>
+        Data Calon Siswa
+    </h4>
 
-                                <div class="form-group">
-                                    <label class="form-label" for="tanggal_lahir">Tanggal Lahir</label>
-                                    <input 
-                                        id="tanggal_lahir" 
-                                        type="date" 
-                                        name="tanggal_lahir" 
-                                        class="form-input" 
-                                        required
-                                    >
-                                </div>
-                            </div>
+    <div class="form-group">
+        <label class="form-label" for="nama_lengkap">Nama Lengkap *</label>
+        <input 
+            id="nama_lengkap" 
+            type="text" 
+            name="nama_lengkap" 
+            class="form-input @error('nama_lengkap') invalid @enderror" 
+            value="{{ old('nama_lengkap') }}"
+            required 
+            placeholder="Masukkan nama lengkap"
+        >
+        @error('nama_lengkap')
+            <div class="field-error">{{ $message }}</div>
+        @enderror
+    </div>
 
-                            <div class="form-group">
-                                <label class="form-label">Jenis Kelamin</label>
-                                <div class="radio-group">
-                                    <label class="radio-label">
-                                        <input type="radio" name="jenis_kelamin" value="L" required>
-                                        <span>Laki-laki</span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="jenis_kelamin" value="P">
-                                        <span>Perempuan</span>
-                                    </label>
-                                </div>
-                            </div>
+    <div class="form-group">
+        <label class="form-label" for="nama_panggilan">Nama Panggilan *</label>
+        <input 
+            id="nama_panggilan" 
+            type="text" 
+            name="nama_panggilan" 
+            class="form-input @error('nama_panggilan') invalid @enderror" 
+            value="{{ old('nama_panggilan') }}"
+            required 
+            placeholder="Masukkan nama panggilan"
+        >
+        @error('nama_panggilan')
+            <div class="field-error">{{ $message }}</div>
+        @enderror
+    </div>
 
-                            <div class="form-group">
-                                <label class="form-label" for="agama">Agama</label>
-                                <select id="agama" name="agama" class="form-select" required>
-                                    <option value="">Pilih Agama</option>
-                                    <option value="Islam">Islam</option>
-                                    <option value="Kristen">Kristen</option>
-                                    <option value="Katolik">Katolik</option>
-                                    <option value="Hindu">Hindu</option>
-                                    <option value="Buddha">Buddha</option>
-                                    <option value="Konghucu">Konghucu</option>
-                                </select>
-                            </div>
+    <div class="input-grid input-grid-2">
+        <div class="form-group">
+            <label class="form-label" for="tempat_lahir">Tempat Lahir *</label>
+            <input 
+                id="tempat_lahir" 
+                type="text" 
+                name="tempat_lahir" 
+                class="form-input @error('tempat_lahir') invalid @enderror" 
+                value="{{ old('tempat_lahir') }}"
+                required 
+                placeholder="Kota kelahiran"
+            >
+            @error('tempat_lahir')
+                <div class="field-error">{{ $message }}</div>
+            @enderror
+        </div>
 
-                            <div class="form-group">
-                                <label class="form-label" for="alamat">Alamat</label>
-                                <textarea 
-                                    id="alamat" 
-                                    name="alamat" 
-                                    rows="3" 
-                                    class="form-textarea" 
-                                    required 
-                                    placeholder="Masukkan alamat lengkap"
-                                ></textarea>
-                            </div>
+        <div class="form-group">
+            <label class="form-label" for="tanggal_lahir">Tanggal Lahir *</label>
+            <input 
+                id="tanggal_lahir" 
+                type="date" 
+                name="tanggal_lahir" 
+                class="form-input @error('tanggal_lahir') invalid @enderror" 
+                value="{{ old('tanggal_lahir') }}"
+                required
+            >
+            @error('tanggal_lahir')
+                <div class="field-error">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
 
-                            <h4 class="form-section-title">
-                                <i class="fas fa-users"></i>
-                                Data Orang Tua / Wali
-                            </h4>
+    <div class="form-group">
+        <label class="form-label">Jenis Kelamin *</label>
+        <div class="radio-group">
+            <label class="radio-label">
+                <input type="radio" name="jenis_kelamin" value="L" {{ old('jenis_kelamin') == 'L' ? 'checked' : '' }} required>
+                <span>Laki-laki</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="jenis_kelamin" value="P" {{ old('jenis_kelamin') == 'P' ? 'checked' : '' }}>
+                <span>Perempuan</span>
+            </label>
+        </div>
+        @error('jenis_kelamin')
+            <div class="field-error">{{ $message }}</div>
+        @enderror
+    </div>
 
-                            <div class="input-grid input-grid-2">
-                                <div class="form-group">
-                                    <label class="form-label" for="nama_ayah">Nama Ayah</label>
-                                    <input 
-                                        id="nama_ayah" 
-                                        type="text" 
-                                        name="nama_ayah" 
-                                        class="form-input" 
-                                        required 
-                                        placeholder="Nama ayah"
-                                    >
-                                </div>
+    <div class="form-group">
+        <label class="form-label" for="agama">Agama *</label>
+        <select id="agama" name="agama" class="form-select @error('agama') invalid @enderror" required>
+            <option value="">Pilih Agama</option>
+            <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
+            <option value="Kristen" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+            <option value="Katolik" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+            <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+            <option value="Buddha" {{ old('agama') == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+            <option value="Konghucu" {{ old('agama') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
+        </select>
+        @error('agama')
+            <div class="field-error">{{ $message }}</div>
+        @enderror
+    </div>
 
-                                <div class="form-group">
-                                    <label class="form-label" for="nama_ibu">Nama Ibu</label>
-                                    <input 
-                                        id="nama_ibu" 
-                                        type="text" 
-                                        name="nama_ibu" 
-                                        class="form-input" 
-                                        required 
-                                        placeholder="Nama ibu"
-                                    >
-                                </div>
-                            </div>
+    <div class="form-group">
+        <label class="form-label" for="alamat">Alamat *</label>
+        <textarea 
+            id="alamat" 
+            name="alamat" 
+            rows="3" 
+            class="form-textarea @error('alamat') invalid @enderror" 
+            required 
+            placeholder="Masukkan alamat lengkap"
+        >{{ old('alamat') }}</textarea>
+        @error('alamat')
+            <div class="field-error">{{ $message }}</div>
+        @enderror
+    </div>
 
-                            <div class="input-grid input-grid-2">
-                                <div class="form-group">
-                                    <label class="form-label" for="pekerjaan_ayah">Pekerjaan Ayah</label>
-                                    <input 
-                                        id="pekerjaan_ayah" 
-                                        type="text" 
-                                        name="pekerjaan_ayah" 
-                                        class="form-input" 
-                                        placeholder="Pekerjaan ayah"
-                                    >
-                                </div>
+    <h4 class="form-section-title">
+        <i class="fas fa-users"></i>
+        Data Orang Tua / Wali
+    </h4>
 
-                                <div class="form-group">
-                                    <label class="form-label" for="pekerjaan_ibu">Pekerjaan Ibu</label>
-                                    <input 
-                                        id="pekerjaan_ibu" 
-                                        type="text" 
-                                        name="pekerjaan_ibu" 
-                                        class="form-input" 
-                                        placeholder="Pekerjaan ibu"
-                                    >
-                                </div>
-                            </div>
+    <div class="input-grid input-grid-2">
+        <div class="form-group">
+            <label class="form-label" for="nama_ayah">Nama Ayah *</label>
+            <input 
+                id="nama_ayah" 
+                type="text" 
+                name="nama_ayah" 
+                class="form-input @error('nama_ayah') invalid @enderror" 
+                value="{{ old('nama_ayah') }}"
+                required 
+                placeholder="Nama ayah"
+            >
+            @error('nama_ayah')
+                <div class="field-error">{{ $message }}</div>
+            @enderror
+        </div>
 
-                            <div class="form-group">
-                                <label class="form-label" for="no_telepon">No. Telepon/HP</label>
-                                <input 
-                                    id="no_telepon" 
-                                    type="tel" 
-                                    name="no_telepon" 
-                                    class="form-input" 
-                                    required 
-                                    placeholder="08xx xxxx xxxx"
-                                >
-                            </div>
+        <div class="form-group">
+            <label class="form-label" for="nama_ibu">Nama Ibu *</label>
+            <input 
+                id="nama_ibu" 
+                type="text" 
+                name="nama_ibu" 
+                class="form-input @error('nama_ibu') invalid @enderror" 
+                value="{{ old('nama_ibu') }}"
+                required 
+                placeholder="Nama ibu"
+            >
+            @error('nama_ibu')
+                <div class="field-error">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
 
-                            <div class="form-group">
-                                <label class="form-label" for="no_darurat">Kontak Darurat</label>
-                                <input 
-                                    id="no_darurat" 
-                                    type="tel" 
-                                    name="no_darurat" 
-                                    class="form-input" 
-                                    placeholder="Nomor telepon jika darurat"
-                                >
-                                <div class="form-hint">
-                                    Opsional — nomor keluarga atau saudara yang bisa dihubungi saat darurat.
-                                </div>
-                            </div>
+    <div class="input-grid input-grid-2">
+        <div class="form-group">
+            <label class="form-label" for="pekerjaan_ayah">Pekerjaan Ayah *</label>
+            <input 
+                id="pekerjaan_ayah" 
+                type="text" 
+                name="pekerjaan_ayah" 
+                class="form-input @error('pekerjaan_ayah') invalid @enderror" 
+                value="{{ old('pekerjaan_ayah') }}"
+                required 
+                placeholder="Pekerjaan ayah"
+            >
+            @error('pekerjaan_ayah')
+                <div class="field-error">{{ $message }}</div>
+            @enderror
+        </div>
 
-                            <h4 class="form-section-title">
-                                <i class="fas fa-paperclip"></i>
-                                Upload Berkas (opsional)
-                            </h4>
+        <div class="form-group">
+            <label class="form-label" for="pekerjaan_ibu">Pekerjaan Ibu *</label>
+            <input 
+                id="pekerjaan_ibu" 
+                type="text" 
+                name="pekerjaan_ibu" 
+                class="form-input @error('pekerjaan_ibu') invalid @enderror" 
+                value="{{ old('pekerjaan_ibu') }}"
+                required 
+                placeholder="Pekerjaan ibu"
+            >
+            @error('pekerjaan_ibu')
+                <div class="field-error">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
 
-                            <div class="form-group">
-                                <label class="form-label" for="akta">Akta Kelahiran</label>
-                                <input 
-                                    id="akta" 
-                                    type="file" 
-                                    name="akta" 
-                                    accept=".jpg,.jpeg,.png,.pdf" 
-                                    class="form-input"
-                                >
-                                <div class="form-hint">Format: JPG/PNG/PDF - Maksimal 2MB</div>
-                            </div>
+    <div class="form-group">
+        <label class="form-label" for="no_telepon">No. Telepon/HP *</label>
+        <input 
+            id="no_telepon" 
+            type="tel" 
+            name="no_telepon" 
+            class="form-input @error('no_telepon') invalid @enderror" 
+            value="{{ old('no_telepon') }}"
+            required 
+            placeholder="08xx xxxx xxxx"
+        >
+        @error('no_telepon')
+            <div class="field-error">{{ $message }}</div>
+        @enderror
+    </div>
 
-                            <div class="form-group">
-                                <label class="form-label" for="kk">Kartu Keluarga</label>
-                                <input 
-                                    id="kk" 
-                                    type="file" 
-                                    name="kk" 
-                                    accept=".jpg,.jpeg,.png,.pdf" 
-                                    class="form-input"
-                                >
-                                <div class="form-hint">Format: JPG/PNG/PDF - Maksimal 2MB</div>
-                            </div>
+    <div class="form-group">
+        <label class="form-label" for="no_darurat">Kontak Darurat</label>
+        <input 
+            id="no_darurat" 
+            type="tel" 
+            name="no_darurat" 
+            class="form-input @error('no_darurat') invalid @enderror" 
+            value="{{ old('no_darurat') }}"
+            placeholder="Nomor telepon jika darurat"
+        >
+        <div class="form-hint">
+            Opsional — nomor keluarga atau saudara yang bisa dihubungi saat darurat.
+        </div>
+        @error('no_darurat')
+            <div class="field-error">{{ $message }}</div>
+        @enderror
+    </div>
 
-                            <div class="action-buttons">
-                                <button type="submit" class="btn" aria-label="Kirim Pendaftaran">
-                                    <i class="fas fa-paper-plane"></i>
-                                    <span>Daftar Sekarang</span>
-                                </button>
+    <h4 class="form-section-title">
+        <i class="fas fa-paperclip"></i>
+        Upload Berkas (opsional)
+    </h4>
 
-                                <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">
-                                    Batal
-                                </button>
-                            </div>
+    <div class="form-group">
+        <label class="form-label" for="akta">Akta Kelahiran</label>
+        <input 
+            id="akta" 
+            type="file" 
+            name="akta" 
+            accept=".jpg,.jpeg,.png,.pdf" 
+            class="form-input @error('akta') invalid @enderror"
+        >
+        <div class="form-hint">Format: JPG/PNG/PDF - Maksimal 2MB</div>
+        @error('akta')
+            <div class="field-error">{{ $message }}</div>
+        @enderror
+    </div>
 
-                            <p class="form-hint" style="margin-top: 16px; text-align: center;">
-                                Dengan menekan <strong>Daftar Sekarang</strong> Anda menyetujui bahwa data yang dimasukkan adalah benar.
-                            </p>
-                        </form>
+    <div class="form-group">
+        <label class="form-label" for="kk">Kartu Keluarga</label>
+        <input 
+            id="kk" 
+            type="file" 
+            name="kk" 
+            accept=".jpg,.jpeg,.png,.pdf" 
+            class="form-input @error('kk') invalid @enderror"
+        >
+        <div class="form-hint">Format: JPG/PNG/PDF - Maksimal 2MB</div>
+        @error('kk')
+            <div class="field-error">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="action-buttons">
+        <button type="submit" class="btn" aria-label="Kirim Pendaftaran">
+            <i class="fas fa-paper-plane"></i>
+            <span>Daftar Sekarang</span>
+        </button>
+
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">
+            Batal
+        </button>
+    </div>
+
+    <p class="form-hint" style="margin-top: 16px; text-align: center;">
+        Dengan menekan <strong>Daftar Sekarang</strong> Anda menyetujui bahwa data yang dimasukkan adalah benar.
+    </p>
+</form>
                     </div>
                 </div>
             </div>
@@ -914,117 +997,115 @@
     <x-footer />
 
     <script>
-        // Theme Toggle
-        function toggleTheme() {
-            const html = document.documentElement;
-            const current = html.getAttribute('data-theme');
-            const icon = document.getElementById('theme-icon');
+        
+    // Theme Toggle
+    function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute('data-theme');
+        const icon = document.getElementById('theme-icon');
 
-            const next = current === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-            
-            icon.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        
+        icon.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+    // Load saved theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const saved = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', saved);
+        const icon = document.getElementById('theme-icon');
+        if (icon) {
+            icon.className = saved === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
         }
 
-        // Load saved theme on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const saved = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', saved);
-            const icon = document.getElementById('theme-icon');
-            if (icon) {
-                icon.className = saved === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-
-            // Form validation
-            const form = document.getElementById('registration-form');
-            if (form) {
-                const inputs = form.querySelectorAll('input, select, textarea');
-                
-                inputs.forEach(input => {
-                    // Real-time validation feedback
-                    input.addEventListener('blur', function() {
-                        if (this.hasAttribute('required') && !this.value.trim()) {
-                            this.classList.add('invalid');
-                        } else {
-                            this.classList.remove('invalid');
-                        }
-                    });
-
-                    // Remove invalid class on input
-                    input.addEventListener('input', function() {
-                        this.classList.remove('invalid');
-                    });
-                });
-
-                // Form submit validation
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    let isValid = true;
-                    const requiredFields = form.querySelectorAll('[required]');
-                    
-                    requiredFields.forEach(field => {
-                        if (!field.value || field.value.trim() === '') {
-                            field.classList.add('invalid');
-                            isValid = false;
-                        } else {
-                            field.classList.remove('invalid');
-                        }
-                    });
-
-                    if (isValid) {
-                        // Show success message
-                        const submitBtn = form.querySelector('button[type="submit"]');
-                        const originalText = submitBtn.innerHTML;
-                        submitBtn.innerHTML = '<i class="fas fa-check"></i> Berhasil!';
-                        submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-                        
-                        setTimeout(() => {
-                            alert('Pendaftaran berhasil! Data Anda telah dikirim.');
-                            form.reset();
-                            submitBtn.innerHTML = originalText;
-                            submitBtn.style.background = '';
-                        }, 1500);
+        // Form validation
+        const form = document.getElementById('registration-form');
+        if (form) {
+            const inputs = form.querySelectorAll('input, select, textarea');
+            
+            inputs.forEach(input => {
+                // Real-time validation feedback
+                input.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        this.classList.add('invalid');
                     } else {
-                        // Scroll to first invalid field
-                        const firstInvalid = form.querySelector('.invalid');
-                        if (firstInvalid) {
-                            firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            firstInvalid.focus();
-                        }
+                        this.classList.remove('invalid');
                     }
                 });
-            }
 
-            // Smooth scroll for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
+                // Remove invalid class on input
+                input.addEventListener('input', function() {
+                    this.classList.remove('invalid');
                 });
             });
 
-            // File input feedback
-            const fileInputs = document.querySelectorAll('input[type="file"]');
-            fileInputs.forEach(input => {
-                input.addEventListener('change', function() {
-                    if (this.files.length > 0) {
-                        const fileName = this.files[0].name;
-                        const label = this.previousElementSibling;
-                        if (label && label.classList.contains('form-label')) {
-                            label.innerHTML = `${label.textContent.split(' - ')[0]} - <span style="color: var(--success);">${fileName}</span>`;
-                        }
+            // Form submit validation - HANYA validasi, biarkan form submit normal
+            form.addEventListener('submit', function(e) {
+                let isValid = true;
+                const requiredFields = form.querySelectorAll('[required]');
+                
+                requiredFields.forEach(field => {
+                    if (!field.value || field.value.trim() === '') {
+                        field.classList.add('invalid');
+                        isValid = false;
+                    } else {
+                        field.classList.remove('invalid');
                     }
                 });
+
+                if (!isValid) {
+                    // Hanya prevent default jika form tidak valid
+                    e.preventDefault();
+                    
+                    // Scroll to first invalid field
+                    const firstInvalid = form.querySelector('.invalid');
+                    if (firstInvalid) {
+                        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstInvalid.focus();
+                    }
+                }
+                // Jika valid, biarkan form submit secara normal
+            });
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
-    </script>
+
+        // File input validation
+const fileInputs = document.querySelectorAll('input[type="file"]');
+fileInputs.forEach(input => {
+    input.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            const file = this.files[0];
+            const maxSize = 2 * 1024 * 1024; // 2MB in bytes
+            
+            if (file.size > maxSize) {
+                alert('File terlalu besar! Maksimal ukuran file adalah 2MB.');
+                this.value = ''; // Clear the input
+                return;
+            }
+            
+            const fileName = file.name;
+            const label = this.previousElementSibling;
+            if (label && label.classList.contains('form-label')) {
+                label.innerHTML = `${label.textContent.split(' - ')[0]} - <span style="color: var(--success);">${fileName}</span>`;
+            }
+        }
+    });
+});
+</script>
 </body>
 </html>
