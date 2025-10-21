@@ -226,7 +226,7 @@
                         Informasi <i class="fas fa-chevron-down text-xs ml-1 mt-0.5"></i>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="#">Pengumuman</a>
+                        <a href="{{ route('pengumuman') }}">Pengumuman</a>
                         <a href="{{ route('agenda') }}">Agenda</a>
                         <a href="{{ route('prestasi') }}">Prestasi</a>
                     </div>
@@ -277,7 +277,7 @@
                     <i class="fas fa-chevron-down text-sm chevron-icon"></i>
                 </div>
                 <div class="mobile-dropdown-content" id="informasi-content">
-                    <a href="#">Pengumuman</a>
+                    <a href="{{ route('pengumuman') }}">Pengumuman</a>
                     <a href="{{ route('agenda') }}">Agenda</a>
                     <a href="{{ route('prestasi') }}">Prestasi</a>
                 </div>
