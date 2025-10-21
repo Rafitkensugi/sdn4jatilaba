@@ -24,11 +24,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        try {
+            $request->authenticate();
+            $request->session()->regenerate();
 
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard', absolute: false));
+            // ✅ Tambahkan pesan sukses login
+            return redirect()->intended(route('dashboard', absolute: false))
+                ->with('success', 'Berhasil login! Selamat datang, ' . Auth::user()->name . '.');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // ❌ Jika gagal login, tampilkan pesan error
+            return back()
+                ->with('error', 'Email atau password salah!')
+                ->withInput($request->only('email'));
+        }
     }
 
     /**
@@ -39,9 +47,9 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        // ✅ Tambahkan pesan logout sukses
+        return redirect('/login')->with('success', 'Berhasil logout.');
     }
 }
