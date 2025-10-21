@@ -19,11 +19,5 @@ class DatabaseSeeder extends Seeder
             ArtikelSeeder::class,
         PrestasiSeeder::class,
         ]);
-
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
     }
 }
