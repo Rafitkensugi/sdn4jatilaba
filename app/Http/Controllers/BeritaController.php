@@ -15,7 +15,7 @@ class BeritaController extends Controller
     public function index()
     {
         $beritas = Berita::latest()->paginate(12);
-        return view('pages.berita', compact('beritas'));
+        return view('pengunjung.berita', compact('beritas'));
     }
 
     /**

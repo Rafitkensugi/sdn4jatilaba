@@ -6,7 +6,6 @@ use App\Http\Controllers\{
     PPDBController,
     BeritaController,
     GaleriController,
-    GuruController,
     KontakController,
     ProfileController,
     ProgramController,
@@ -21,14 +20,14 @@ use App\Http\Controllers\{
     SejarahController
 };
 
-// Import controller Admin
+// Controller untuk Admin
 use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
 use App\Http\Controllers\Admin\PrestasiController as AdminPrestasiController;
 use App\Http\Controllers\Admin\PesanController as AdminPesanController; // ✅ Tambahkan ini
 
 // =======================================================
-// 🔹 ROUTE UNTUK ADMIN
+// 🔹 ROUTE UNTUK ADMIN (Dashboard & CRUD)
 // =======================================================
 Route::middleware(['auth', 'role:admin|super-admin'])
     ->prefix('admin')
@@ -54,7 +53,15 @@ Route::middleware(['auth', 'role:admin|super-admin'])
         Route::delete('/pesan/{id}', [AdminPesanController::class, 'destroy'])->name('pesan.destroy');
 
         // Kelola Guru Admin
-        Route::get('/kelola-guru', [GuruController::class, 'index'])->name('kelola-guru.index');
+        Route::prefix('kelola-guru')->name('kelola-guru.')->group(function () {
+            Route::get('/', [GuruController::class, 'index'])->name('index');
+            Route::get('/create', [GuruController::class, 'create'])->name('create');
+            Route::post('/', [GuruController::class, 'store'])->name('store');
+            Route::get('/{guru}', [GuruController::class, 'show'])->name('show');
+            Route::get('/{guru}/edit', [GuruController::class, 'edit'])->name('edit');
+            Route::put('/{guru}', [GuruController::class, 'update'])->name('update');
+            Route::delete('/{guru}', [GuruController::class, 'destroy'])->name('destroy');
+        });
     });
 
 // =======================================================
@@ -76,28 +83,11 @@ Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.s
 // Sambutan Kepala Sekolah
 Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 
-// Dashboard default (untuk user login biasa)
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 // Kontak
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
 Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
 
-// Auth
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-// Profile (hanya user login)
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// Fasilitas (untuk pengunjung)
+// Fasilitas
 Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('pengunjung.fasilitas.index');
 Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('pengunjung.fasilitas.show');
 
