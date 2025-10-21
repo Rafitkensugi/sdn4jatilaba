@@ -6,6 +6,7 @@ use App\Http\Controllers\{
     PPDBController,
     BeritaController,
     GaleriController,
+    GuruController,
     KontakController,
     ProfileController,
     ProgramController,
@@ -20,33 +21,70 @@ use App\Http\Controllers\{
     SejarahController
 };
 
-//admin route
-Route::get('/admin', function() 
-    {
-        return view('admin.dashboard');
-    })
-    ->middleware(['role:admin|super-admin'])
-    ->name('admin.dashboard');
-Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
-Route::get('/prestasi/{id}', [PrestasiController::class, 'show'])->name('prestasi.show');
+// Import controller Admin
+use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
+use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
+use App\Http\Controllers\Admin\PrestasiController as AdminPrestasiController;
+use App\Http\Controllers\Admin\PesanController as AdminPesanController; // ✅ Tambahkan ini
 
-// ✅ Halaman utama beranda
-Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
-Route::get('/', [BerandaController::class, 'index']);
+// =======================================================
+// 🔹 ROUTE UNTUK ADMIN
+// =======================================================
+Route::middleware(['auth', 'role:admin|super-admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
 
-// Agenda Sekolah dinamis crud(not yet)
+        // Dashboard Admin
+        Route::get('/', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
+
+        // // CRUD Fasilitas Admin
+        // Route::resource('fasilitas', AdminFasilitasController::class);
+
+        // // CRUD Agenda Admin
+        // Route::resource('agenda', AdminAgendaController::class);
+
+        // // CRUD Prestasi Admin
+        // Route::resource('prestasi', AdminPrestasiController::class);
+
+        // // ✅ CRUD Pesan (dari halaman kontak)
+        // Route::get('/pesan', [AdminPesanController::class, 'index'])->name('pesan.index');
+        // Route::delete('/pesan/{id}', [AdminPesanController::class, 'destroy'])->name('pesan.destroy');
+
+        // Kelola Guru Admin
+        Route::prefix('kelola-guru')->name('kelola-guru.')->group(function () {
+            Route::get('/', [GuruController::class, 'index'])->name('index');
+            Route::get('/create', [GuruController::class, 'create'])->name('create');
+            Route::post('/', [GuruController::class, 'store'])->name('store');
+            Route::get('/{guru}', [GuruController::class, 'show'])->name('show');
+            Route::get('/{guru}/edit', [GuruController::class, 'edit'])->name('edit');
+            Route::put('/{guru}', [GuruController::class, 'update'])->name('update');
+            Route::delete('/{guru}', [GuruController::class, 'destroy'])->name('destroy');
+        });
+    });
+
+// =======================================================
+// 🔹 ROUTE UNTUK PENGUNJUNG / PUBLIK
+// =======================================================
+
+// Halaman utama / beranda
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+Route::get('/beranda', [BerandaController::class, 'index']);
+
+// Agenda Sekolah
 Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
-// Opsional: detail agenda
-// Route::get('/agenda/{id}', [AgendaController::class, 'show'])->name('agenda.show');
+Route::get('/agenda/{id}', [AgendaController::class, 'show'])->name('agenda.show');
 
-// Artikel  dinamis crud(not yet)
+// Artikel
 Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
 Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
 
-// Sambutan
+// Sambutan Kepala Sekolah
 Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
 
-// Dashboard
+// Dashboard default (untuk user login biasa)
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -60,41 +98,42 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('l
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-// Profile
+// Profile (hanya user login)
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Fasilitas
-Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
-Route::get('/fasilitas/{id}', [FasilitasController::class, 'show'])->name('fasilitas.show');
+// Fasilitas (untuk pengunjung)
+Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('pengunjung.fasilitas.index');
+Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('pengunjung.fasilitas.show');
 
 // PPDB / SPMB
 Route::get('/spmb', [PPDBController::class, 'index'])->name('spmb');
 Route::post('/spmb', [PPDBController::class, 'store'])->name('spmb.store');
 
-// Berita  dinamis(not yet)
+// Berita Sekolah
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
 Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.detail');
 
-// Prestasi  dinamis crud (not yet)
+// Prestasi
 Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
+Route::get('/prestasi/{id}', [PrestasiController::class, 'show'])->name('prestasi.show');
 
-// Galeri  dinamis, upload, delete(not yet)
+// Galeri
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
 
-// Program  dinamis crud(not yet)
+// Program Sekolah
 Route::get('/program', [ProgramController::class, 'index'])->name('program');
 
-// Visi Misi
+// Visi & Misi
 Route::get('/visi-misi', [VisiMisiController::class, 'index'])->name('visi-misi');
 
-// profil sekolah
+// Profil Sekolah
 Route::get('/profil-sekolah', [ProfilSekolahController::class, 'index'])->name('profil-sekolah');
 
-// sejarah 
+// Sejarah Sekolah
 Route::get('/sejarah', [SejarahController::class, 'index'])->name('sejarah');
 
 require __DIR__ . '/auth.php';
