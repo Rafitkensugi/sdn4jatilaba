@@ -194,10 +194,10 @@
                     "Setiap anak adalah bintang, tugas kita adalah membuatnya bersinar."
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="transition-delay: 0.4s;">
-                    <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 flex items-center justify-center dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 hover:shadow-lg hover:-translate-y-1">
+                    <button class= "border-2 border-white text-white-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 hover:text-purple-600 transition-all duration-300 flex items-center justify-center dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 hover:shadow-lg hover:-translate-y-1">
                         Daftar Sekarang <i class="fas fa-arrow-right ml-2 icon-glow"></i>
                     </button>
-                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 dark:border-gray-300 dark:hover:bg-gray-300 hover:shadow-lg hover:-translate-y-1">
+                    <button class="border-2 border-white text-purple px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-all duration-300 dark:border-gray-300 dark:hover:bg-gray-300 hover:shadow-lg hover:-translate-y-1">
                         Kunjungi Sekolah
                     </button>
                 </div>
