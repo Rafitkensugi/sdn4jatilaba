@@ -32,4 +32,28 @@ class PPDB extends Model
     protected $casts = [
         'tanggal_lahir' => 'date'
     ];
+
+    // Accessor untuk jenis kelamin
+    public function getJenisKelaminTextAttribute()
+    {
+        return $this->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan';
+    }
+
+    // Accessor untuk tanggal lahir format Indonesia
+    public function getTanggalLahirFormattedAttribute()
+    {
+        return $this->tanggal_lahir->format('d F Y');
+    }
+
+    // Accessor untuk tanggal lahir format pendek
+    public function getTanggalLahirShortAttribute()
+    {
+        return $this->tanggal_lahir->format('d/m/Y');
+    }
+
+    // Accessor untuk usia
+    public function getUsiaAttribute()
+    {
+        return $this->tanggal_lahir->age;
+    }
 }
