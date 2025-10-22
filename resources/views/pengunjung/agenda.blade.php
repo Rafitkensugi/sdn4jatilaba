@@ -44,21 +44,7 @@
         </p>
     </div>
 
-    <!-- Filter -->
-    <div class="flex flex-wrap gap-2 justify-center mb-6">
-        <button class="filter-btn px-4 py-2 rounded-full bg-blue-600 text-white text-sm font-medium" onclick="filterAgenda('all')">
-            Semua
-        </button>
-        <button class="filter-btn px-4 py-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium border dark:border-gray-700" onclick="filterAgenda('oktober')">
-            Oktober
-        </button>
-        <button class="filter-btn px-4 py-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium border dark:border-gray-700" onclick="filterAgenda('november')">
-            November
-        </button>
-        <button class="filter-btn px-4 py-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium border dark:border-gray-700" onclick="filterAgenda('desember')">
-            Desember
-        </button>
-    </div>
+    
 
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -247,7 +247,7 @@
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2 fade-in">
                     <div class="relative">
-                        <img src="https://placehold.co/600x400/1e40af/ffffff?text=Sekolah+Harapan+Bangsa" alt="Sekolah Harapan Bangsa" class="rounded-xl shadow-lg w-full hover-lift">
+                        <img src="{{ asset('images/hero.jpeg') }}" alt="Sekolah Harapan Bangsa" class="rounded-xl shadow-lg w-full hover-lift">
                         <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 dark:bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl icon-glow animate-float">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
@@ -304,7 +304,7 @@
                 <article class="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-700 flex flex-col">
                     <!-- Image Container with Overlay -->
                     <div class="relative overflow-hidden h-56">
-                        <img src="{{ $artikel->gambar ?? asset('images/no-image.jpg') }}" 
+                        <img src="{{ asset('storage/'.$artikel->gambar) }}" 
                              alt="{{ $artikel->judul }}" 
                              class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

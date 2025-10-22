@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('pekerjaan_ayah');
             $table->string('pekerjaan_ibu');
             $table->string('no_telepon');
+            $table->string('no_darurat')->nullable();
+            $table->string('akta_path')->nullable();
+            $table->string('kk_path')->nullable();
             $table->timestamps();
         });
     }
