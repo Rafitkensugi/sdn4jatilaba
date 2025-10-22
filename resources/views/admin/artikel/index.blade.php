@@ -99,30 +99,10 @@
 
         <!-- Main Content -->
         <div class="flex-1">
-            <!-- Top Header -->
-            <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
-                <div class="flex items-center justify-between px-6 py-4">
-                    <div class="flex items-center">
-                        <button @click="sidebarOpen = !sidebarOpen" class="lg:hidden p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <i class="fas fa-bars text-lg"></i>
-                        </button>
-                        <h1 class="text-xl font-semibold text-gray-800 dark:text-white ml-4">Kelola Artikel</h1>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <button class="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-                            <i class="fas fa-bell"></i>
-                        </button>
-                        <button class="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-                            <i class="fas fa-cog"></i>
-                        </button>
-                    </div>
-                </div>
-            </header>
-
             <!-- Rest of your content remains the same -->
-            <main class="p-6">
+            <main class="p-4"> <!-- Mengurangi padding dari p-6 ke p-4 -->
                 <!-- Header Section -->
-                <div class="bg-gradient-to-r from-indigo-600 to-purple-700 dark:from-indigo-800 dark:to-purple-900 rounded-2xl shadow-xl p-6 mb-8">
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-700 dark:from-indigo-800 dark:to-purple-900 rounded-2xl shadow-xl p-6 mb-6"> <!-- Mengurangi margin bottom dari mb-8 ke mb-6 -->
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
                             <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2 flex items-center">
@@ -155,7 +135,7 @@
                 @endif
 
                 <!-- Stats Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6"> <!-- Mengurangi margin bottom dari mb-8 ke mb-6 -->
                     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300">
                         <div class="flex items-center">
                             <div class="p-3 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
@@ -369,7 +349,7 @@
 
                 <!-- Pagination -->
                 @if($artikels->hasPages())
-                <div class="mt-8">
+                <div class="mt-6"> <!-- Mengurangi margin top dari mt-8 ke mt-6 -->
                     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4">
                         <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
                             <div class="text-sm text-gray-600 dark:text-gray-400">
