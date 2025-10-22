@@ -18,15 +18,19 @@ use App\Http\Controllers\{
     BerandaController,
     AgendaController,
     ProfilSekolahController,
-    SejarahController
+    SejarahController,
+    PengumumanController,
 };
 
 // Controller untuk Admin
 use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\PrestasiController as AdminPrestasiController;
 use App\Http\Controllers\Admin\PesanController as AdminPesanController;
 use App\Http\Controllers\Admin\ArtikelController as AdminArtikelController;
+use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController;
+use App\Http\Controllers\Admin\PPDBController as AdminPPDBController; // TAMBAH INI
 
 // =======================================================
 // 🔹 ROUTE UNTUK ADMIN (Dashboard & CRUD)
@@ -44,6 +48,9 @@ Route::middleware(['auth', 'role:admin|super-admin'])
         // CRUD Artikel Admin ✅
         Route::resource('artikel', AdminArtikelController::class);
 
+        // CRUD Pengumuman Admin ✅
+        Route::resource('pengumuman', AdminPengumumanController::class);
+
         // CRUD Fasilitas Admin
         Route::resource('fasilitas', AdminFasilitasController::class);
 
@@ -56,6 +63,17 @@ Route::middleware(['auth', 'role:admin|super-admin'])
         // ✅ CRUD Pesan (dari halaman kontak)
         Route::get('/pesan', [AdminPesanController::class, 'index'])->name('pesan.index');
         Route::delete('/pesan/{id}', [AdminPesanController::class, 'destroy'])->name('pesan.destroy');
+
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+        // ✅ CRUD PPDB (Data Pendaftaran) - DIPERBAIKI
+        Route::prefix('ppdb')->name('ppdb.')->group(function () {
+            Route::get('/', [AdminPPDBController::class, 'index'])->name('index');
+            Route::get('/{id}', [AdminPPDBController::class, 'show'])->name('show');
+            Route::delete('/{id}', [AdminPPDBController::class, 'destroy'])->name('destroy');
+            Route::get('/{id}/download-pdf', [AdminPPDBController::class, 'downloadPDF'])->name('download.pdf');
+            Route::get('/{id}/view-pdf', [AdminPPDBController::class, 'viewPDF'])->name('view.pdf');
+        });
 
         // Kelola Guru Admin
         Route::prefix('kelola-guru')->name('kelola-guru.')->group(function () {
@@ -84,6 +102,10 @@ Route::get('/agenda/{id}', [AgendaController::class, 'show'])->name('agenda.show
 // Artikel
 Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
 Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
+
+// PENGUMUMAN
+Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
+Route::get('/pengumuman/{id}', [PengumumanController::class, 'show'])->name('pengumuman.show');
 
 // Sambutan Kepala Sekolah
 Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
