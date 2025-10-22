@@ -155,6 +155,118 @@
             animation: fade-in 0.6s ease-out;
         }
 
+        /* Hero Button Animations */
+        @keyframes glow-pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
+                            0 0 40px rgba(255, 255, 255, 0.2),
+                            0 0 60px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.5),
+                            0 0 60px rgba(255, 255, 255, 0.3),
+                            0 0 90px rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes border-dance {
+            0%, 100% {
+                border-color: rgba(255, 255, 255, 0.8);
+            }
+            25% {
+                border-color: rgba(147, 197, 253, 0.8);
+            }
+            50% {
+                border-color: rgba(196, 181, 253, 0.8);
+            }
+            75% {
+                border-color: rgba(252, 211, 77, 0.8);
+            }
+        }
+
+        @keyframes float-button {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .hero-cta-button {
+            position: relative;
+            overflow: hidden;
+            animation: float-button 3s ease-in-out infinite;
+        }
+
+        .hero-cta-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        .hero-cta-button.primary {
+            animation: glow-pulse 2s ease-in-out infinite, float-button 3s ease-in-out infinite;
+        }
+
+        .hero-cta-button.secondary {
+            animation: border-dance 3s linear infinite, float-button 3s ease-in-out infinite;
+            animation-delay: 0s, 0.5s;
+        }
+
+        .hero-cta-button:active {
+            transform: scale(0.95) translateY(0);
+            transition: transform 0.1s ease;
+        }
+
+        .hero-cta-button .icon-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta-button:hover .icon-arrow {
+            transform: translateX(5px);
+        }
+
+        /* Ripple effect on click */
+        .hero-cta-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .hero-cta-button:active::after {
+            width: 300px;
+            height: 300px;
+            opacity: 0;
+        }
+
         .line-clamp-2 {
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -194,12 +306,16 @@
                     "Setiap anak adalah bintang, tugas kita adalah membuatnya bersinar."
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="transition-delay: 0.4s;">
-                    <button class= "border-2 border-white text-white-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 hover:text-purple-600 transition-all duration-300 flex items-center justify-center dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 hover:shadow-lg hover:-translate-y-1">
-                        Daftar Sekarang <i class="fas fa-arrow-right ml-2 icon-glow"></i>
-                    </button>
-                    <button class="border-2 border-white text-purple px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-all duration-300 dark:border-gray-300 dark:hover:bg-gray-300 hover:shadow-lg hover:-translate-y-1">
-                        Kunjungi Sekolah
-                    </button>
+                    <!-- Tombol Daftar Sekarang - Mengarah ke formulir pendaftaran SPMB -->
+                    <a href="{{ route('spmb') }}#form-section" class="hero-cta-button primary border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 hover:text-purple-600 transition-all duration-300 flex items-center justify-center dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 hover:shadow-lg hover:scale-105">
+                        <span>Daftar Sekarang</span>
+                        <i class="fas fa-arrow-right ml-2 icon-glow icon-arrow"></i>
+                    </a>
+                    <!-- Tombol Kunjungi Sekolah - Mengarah ke informasi SPMB -->
+                    <a href="{{ route('spmb') }}#info-section" class="hero-cta-button secondary border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-all duration-300 dark:border-gray-300 dark:hover:bg-gray-300 hover:shadow-lg hover:scale-105">
+                        <span>Informasi SPMB</span>
+                        <i class="fas fa-info-circle ml-2 icon-glow"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -242,7 +358,9 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-10">Sejarah Singkat</h3>
-                <p class="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto text-justify leading-relaxed"> SD Negeri 4 Jatilaba di Kecamatan Margasari, Tegal, didirikan pada 1980-an untuk mempermudah akses pendidikan dasar bagi anak-anak setempat. Kehadirannya menjadi solusi pemerataan pendidikan dan terus berkembang dalam mutu serta fasilitas. Tujuan utamanya ialah mencerdaskan generasi muda dan membentuk karakter disiplin. Hingga kini, SDN 4 Jatilaba berpengaruh besar dalam meningkatkan kesadaran pendidikan dan melahirkan lulusan berprestasi yang berkontribusi bagi kemajuan daerah.</p>
+                <p class="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto text-justify leading-relaxed">
+                    SD Negeri 4 Jatilaba di Kecamatan Margasari, Tegal, didirikan pada 1980-an untuk mempermudah akses pendidikan dasar bagi anak-anak setempat. Kehadirannya menjadi solusi pemerataan pendidikan dan terus berkembang dalam mutu serta fasilitas. Tujuan utamanya ialah mencerdaskan generasi muda dan membentuk karakter disiplin. Hingga kini, SDN 4 Jatilaba berpengaruh besar dalam meningkatkan kesadaran pendidikan dan melahirkan lulusan berprestasi yang berkontribusi bagi kemajuan daerah.
+                </p>
             </div>
         </div>
     </section>
@@ -368,449 +486,31 @@
                 
                 <!-- Teachers Container -->
                 <div id="teachersContainer" class="teachers-container flex overflow-x-auto gap-6 pb-4 px-2 scroll-smooth" style="scrollbar-width: none;">
-                    <!-- Teacher Card 1 - Kepala Sekolah -->
-                    {{-- <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Kepala Sekolah</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/SRI NURHAYATI, S.Pd.SD..jpg') }}" alt="Kepala Sekolah" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Sri Nurhayati, S.Pd.SD.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Kepala Sekolah</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 197008121999032007</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2022</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Kepala Sekolah</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Teacher Card 2 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.1s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/ANI LATIFAH, S.Pd..jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Ani Latifah, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 5B</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 198312212008012001</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2020</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Teacher Card 3 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.2s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/RAIHAN AJI ZAEFANI, S.Pd.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Raihan Aji Zaefani, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 3</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 199112222019031002</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2019</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Teacher Card 4 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.3s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru PJOK</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/SITI DAHLIYA, S.Pd..jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Siti Dahlia, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru PJOK</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 198604252020122004</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2020</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Guru PJOK</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Alamat:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Teacher Card 5 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.4s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/Parwiti, S.Pd.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Parwiti, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 5A</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 196904261993032007</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2013</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Card 6 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.5s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Dewi Sartika, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 2A</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 198203152006042001</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2015</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Card 7 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.6s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru Agama</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Ahmad Fauzi, S.Ag.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Pendidikan Agama</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 197511032003121002</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2010</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Guru Agama</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Card 8 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.7s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Rina Marlina, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 1B</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 198609172009012003</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2017</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Card 9 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.8s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru Seni</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Sari Indah, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Seni Budaya</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 198704152011012004</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2018</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Guru Seni</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Card 10 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 0.9s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Budi Santoso, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 4A</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 197812032005011002</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2012</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Card 11 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 1.0s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru Bahasa</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Maya Sari, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Bahasa Indonesia</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 198205142007012003</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2014</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Guru Bahasa</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Card 12 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 1.1s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Rizki Pratama, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 6B</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 199003152016021001</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2019</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Card 13 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 1.2s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru Matematika</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Andi Wijaya, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Matematika</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 198101202005011003</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2011</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Guru Matematika</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Card 14 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 1.3s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Sinta Dewi, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 1A</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 198708192010012004</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2016</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Card 15 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 1.4s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Guru IPA</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Rina Handayani, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru IPA</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 198303182008012002</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2013</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Guru IPA</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Teacher Card 16 -->
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 1.5s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">Dian Permatasari, S.Pd.</h4>
-                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 2B</p>
-                            <div class="hidden teacher-details">
-                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                    <p><span class="font-semibold">NIP:</span> 198911202014022001</p>
-                                    <p><span class="font-semibold">Aktif:</span> 2020</p>
-                                    <p><span class="font-semibold">Jabatan:</span> Wali Kelas</p>
-                                    <p><span class="font-semibold">Status:</span> PNS</p>
-                                    <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                </div>
-                            </div>
-                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                Detail
-                            </button>
-                        </div>
-                    </div> --}}     
                     @foreach ($gurus as $guru)
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 1.5s;">
+                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in">
                         <div class="p-4">
                             <div class="text-center mb-4">
-                                    <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
+                                <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">{{ $guru->jabatan }}</span>
                             </div>
                             <div class="flex justify-center mb-4">
-                                <img src="{{ asset('storage/gurus/' . $guru->foto) }}   " alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                                <img src="{{ asset('storage/gurus/' . $guru->foto) }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
                             </div>
-                                <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">{{ $guru->nama }}</h4>
-                                <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 2B</p>
-                                <div class="hidden teacher-details">
-                                    <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                        <p><span class="font-semibold">NIP:</span>{{ $guru->nip }}</p>
-                                        <p><span class="font-semibold">Aktif:</span> 2020</p>
-                                        <p><span class="font-semibold">Jabatan:</span>{{ $guru->jabatan }}</p>
-                                        <p><span class="font-semibold">Bidang Studi:</span> {{ $guru->bidang_studi }}</p>
-                                        <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                    </div>
+                            <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">{{ $guru->nama }}</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-4">{{ $guru->bidang_studi }}</p>
+                            <div class="hidden teacher-details">
+                                <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                    <p><span class="font-semibold">NIP:</span> {{ $guru->nip }}</p>
+                                    <p><span class="font-semibold">Jabatan:</span> {{ $guru->jabatan }}</p>
+                                    <p><span class="font-semibold">Bidang Studi:</span> {{ $guru->bidang_studi }}</p>
                                 </div>
-                                <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                    Detail
-                                </button>
+                            </div>
+                            <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
+                                Detail
+                            </button>
                         </div>
                     </div>
                     @endforeach
                 </div>
-                
                 
                 <!-- Loading indicator for infinite scroll -->
                 <div id="loadingIndicator" class="loading-indicator">
@@ -825,7 +525,7 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Testimoni Orang Tua</h3>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Apa kata mereka tentang pengalaman di Sekolah Harapan Bangsa.</p>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Apa kata mereka tentang pengalaman di SD Negeri 4 Jatilaba.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="glass-card p-6 rounded-xl hover-lift fade-in">
@@ -979,7 +679,6 @@
         const teachersContainer = document.getElementById('teachersContainer');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        const loadingIndicator = document.getElementById('loadingIndicator');
         
         if (teachersContainer && prevBtn && nextBtn) {
             const scrollAmount = 300;
@@ -997,102 +696,47 @@
                     behavior: 'smooth'
                 });
             });
-            
-            // Infinite scroll functionality
-            let isLoading = false;
-            let currentTeachers = 16; // Starting with 16 teachers
-            
-            teachersContainer.addEventListener('scroll', () => {
-                const { scrollLeft, scrollWidth, clientWidth } = teachersContainer;
+        }
+
+        // Enhanced ripple effect for hero buttons
+        document.querySelectorAll('.hero-cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
                 
-                // Check if we've scrolled to the end
-                if (scrollLeft + clientWidth >= scrollWidth - 100 && !isLoading) {
-                    loadMoreTeachers();
-                }
-            });
-            
-            function loadMoreTeachers() {
-                if (isLoading) return;
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple-effect');
                 
-                isLoading = true;
-                loadingIndicator.classList.add('show');
+                this.appendChild(ripple);
                 
-                // Simulate API call delay
                 setTimeout(() => {
-                    // Create new teacher cards
-                    for (let i = 0; i < 4; i++) {
-                        currentTeachers++;
-                        const newTeacherCard = createTeacherCard(currentTeachers);
-                        teachersContainer.appendChild(newTeacherCard);
-                    }
-                    
-                    isLoading = false;
-                    loadingIndicator.classList.remove('show');
-                }, 1500);
-            }
-            
-            function createTeacherCard(index) {
-                const teacherNames = [
-                    'Ahmad Subagja, S.Pd.', 'Dewi Anggraini, S.Pd.', 
-                    'Rizki Maulana, S.Pd.', 'Sari Indah, S.Pd.',
-                    'Budi Setiawan, S.Pd.', 'Maya Sari, S.Pd.',
-                    'Rina Handayani, S.Pd.', 'Andi Wijaya, S.Pd.'
-                ];
-                
-                const positions = [
-                    'Wali Kelas', 'Guru Matematika', 'Guru Bahasa Indonesia',
-                    'Guru IPA', 'Guru IPS', 'Guru Seni Budaya',
-                    'Guru PJOK', 'Guru Agama'
-                ];
-                
-                const randomName = teacherNames[Math.floor(Math.random() * teacherNames.length)];
-                const randomPosition = positions[Math.floor(Math.random() * positions.length)];
-                
-                const card = document.createElement('div');
-                card.className = 'teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in';
-                card.innerHTML = `
-                    <div class="p-4">
-                        <div class="text-center mb-4">
-                            <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">${randomPosition}</span>
-                        </div>
-                        <div class="flex justify-center mb-4">
-                            <img src="{{ asset('images/teacher-placeholder.jpg') }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">${randomName}</h4>
-                        <p class="text-gray-600 dark:text-gray-300 text-center mb-4">${randomPosition}</p>
-                        <div class="hidden teacher-details">
-                            <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                <p><span class="font-semibold">NIP:</span> ${Math.floor(1000000000000000 + Math.random() * 9000000000000000)}</p>
-                                <p><span class="font-semibold">Aktif:</span> ${2010 + Math.floor(Math.random() * 13)}</p>
-                                <p><span class="font-semibold">Jabatan:</span> ${randomPosition}</p>
-                                <p><span class="font-semibold">Status:</span> PNS</p>
-                                <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                            </div>
-                        </div>
-                        <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                            Detail
-                        </button>
-                    </div>
-                `;
-                
-                // Add event listener to the new detail button
-                const detailBtn = card.querySelector('.detail-btn');
-                detailBtn.addEventListener('click', function() {
-                    const details = this.previousElementSibling;
-                    const isHidden = details.classList.contains('hidden');
-                    
-                    if (isHidden) {
-                        details.classList.remove('hidden');
-                        this.textContent = 'Sembunyikan';
-                    } else {
-                        details.classList.add('hidden');
-                        this.textContent = 'Detail';
-                    }
-                });
-                
-                return card;
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
+    
+    <style>
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s ease-out;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
             }
         }
-    </script>
+    </style>
 </body>
 </html>
