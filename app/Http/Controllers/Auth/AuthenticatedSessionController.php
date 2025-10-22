@@ -28,8 +28,17 @@ class AuthenticatedSessionController extends Controller
             $request->authenticate();
             $request->session()->regenerate();
 
+            $user = Auth::user();
+
+            $redirectRoute = '';
+
+            if ($user->hasAnyRole(['super-admin', 'admin'])) {
+                $redirectRoute = 'admin.dashboard';
+            } else {
+                $redirectRoute = 'pengunjung.beranda';
+            }
             // ✅ Tambahkan pesan sukses login
-            return redirect()->intended(route('dashboard', absolute: false))
+            return redirect()->intended(route($redirectRoute, absolute: false))
                 ->with('success', 'Berhasil login! Selamat datang, ' . Auth::user()->name . '.');
         } catch (\Illuminate\Validation\ValidationException $e) {
             // ❌ Jika gagal login, tampilkan pesan error

@@ -62,6 +62,8 @@ class GuruController extends Controller
         'guru_id' => $guru->id,
     ]);
 
+    $user->assignRole('admin');
+
     return redirect()->route('admin.kelola-guru.index')
         ->with('success', 'Data guru dan akun berhasil ditambahkan!');
 }

@@ -107,10 +107,10 @@
                             <div class="p-3 rounded-xl bg-blue-100 dark:bg-blue-900/30">
                                 <i class="fas fa-newspaper text-blue-600 dark:text-blue-400 text-xl"></i>
                             </div>
-                            <span class="text-xs font-medium px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">+2 baru</span>
+                            <span class="text-xs font-medium px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">+{{ $newArtikel    }} baru</span>
                         </div>
                         <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">Total Berita</h3>
-                        <p class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-2">24</p>
+                        <p class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-2">{{ $artikels }}</p>
                         <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                             <div class="bg-blue-600 h-2 rounded-full progress-bar" style="width: 75%"></div>
                         </div>
@@ -121,10 +121,10 @@
                             <div class="p-3 rounded-xl bg-green-100 dark:bg-green-900/30">
                                 <i class="fas fa-bullhorn text-green-600 dark:text-green-400 text-xl"></i>
                             </div>
-                            <span class="text-xs font-medium px-2 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">+1 baru</span>
+                            <span class="text-xs font-medium px-2 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">+{{ $newPengumuman }} baru</span>
                         </div>
                         <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">Total Pengumuman</h3>
-                        <p class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-2">8</p>
+                        <p class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-2">{{ $pengumumans }}</p>
                         <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                             <div class="bg-green-600 h-2 rounded-full progress-bar" style="width: 40%"></div>
                         </div>
@@ -135,10 +135,10 @@
                             <div class="p-3 rounded-xl bg-purple-100 dark:bg-purple-900/30">
                                 <i class="fas fa-trophy text-purple-600 dark:text-purple-400 text-xl"></i>
                             </div>
-                            <span class="text-xs font-medium px-2 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">+5 baru</span>
+                            <span class="text-xs font-medium px-2 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">+{{ $newPrestasi }} baru</span>
                         </div>
                         <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">Total Prestasi</h3>
-                        <p class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-2">36</p>
+                        <p class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-2">{{ $prestasis }}</p>
                         <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                             <div class="bg-purple-600 h-2 rounded-full progress-bar" style="width: 90%"></div>
                         </div>
@@ -149,10 +149,10 @@
                             <div class="p-3 rounded-xl bg-yellow-100 dark:bg-yellow-900/30">
                                 <i class="fas fa-building text-yellow-600 dark:text-yellow-400 text-xl"></i>
                             </div>
-                            <span class="text-xs font-medium px-2 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400">+0 baru</span>
+                            <span class="text-xs font-medium px-2 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400">+{{ $newFasilitas }} baru</span>
                         </div>
                         <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">Total Fasilitas</h3>
-                        <p class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-2">15</p>
+                        <p class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-2">{{ $fasilitas }}</p>
                         <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                             <div class="bg-yellow-600 h-2 rounded-full progress-bar" style="width: 60%"></div>
                         </div>

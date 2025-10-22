@@ -25,6 +25,7 @@ use App\Http\Controllers\{
 // Controller untuk Admin
 use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\PrestasiController as AdminPrestasiController;
 use App\Http\Controllers\Admin\PesanController as AdminPesanController;
 use App\Http\Controllers\Admin\ArtikelController as AdminArtikelController;
@@ -62,6 +63,8 @@ Route::middleware(['auth', 'role:admin|super-admin'])
         // ✅ CRUD Pesan (dari halaman kontak)
         Route::get('/pesan', [AdminPesanController::class, 'index'])->name('pesan.index');
         Route::delete('/pesan/{id}', [AdminPesanController::class, 'destroy'])->name('pesan.destroy');
+
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 
         // ✅ CRUD PPDB (Data Pendaftaran) - DIPERBAIKI
         Route::prefix('ppdb')->name('ppdb.')->group(function () {
