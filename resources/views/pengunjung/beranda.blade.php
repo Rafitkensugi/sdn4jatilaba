@@ -194,10 +194,10 @@
                     "Setiap anak adalah bintang, tugas kita adalah membuatnya bersinar."
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="transition-delay: 0.4s;">
-                    <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 flex items-center justify-center dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 hover:shadow-lg hover:-translate-y-1">
+                    <button class= "border-2 border-white text-white-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 hover:text-purple-600 transition-all duration-300 flex items-center justify-center dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 hover:shadow-lg hover:-translate-y-1">
                         Daftar Sekarang <i class="fas fa-arrow-right ml-2 icon-glow"></i>
                     </button>
-                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 dark:border-gray-300 dark:hover:bg-gray-300 hover:shadow-lg hover:-translate-y-1">
+                    <button class="border-2 border-white text-purple px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-all duration-300 dark:border-gray-300 dark:hover:bg-gray-300 hover:shadow-lg hover:-translate-y-1">
                         Kunjungi Sekolah
                     </button>
                 </div>
@@ -210,25 +210,25 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="space-y-2 fade-in">
-                    <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 flex items-center justify-center">
                         40+ <i class="fas fa-history ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Tahun Berdiri</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.1s;">
-                    <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 flex items-center justify-center">
                         300+ <i class="fas fa-user-graduate ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Siswa Aktif</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.2s;">
-                    <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 flex items-center justify-center">
                         16 <i class="fas fa-chalkboard-teacher ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Guru Profesional</p>
                 </div>
                 <div class="space-y-2 fade-in" style="transition-delay: 0.3s;">
-                    <div class="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 flex items-center justify-center">
                         A <i class="fas fa-trophy ml-2 text-lg icon-glow"></i>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300">Akreditasi Sekolah</p>
@@ -241,38 +241,8 @@
     <section id="about" class="py-20 bg-white dark:bg-transparent border-gradient" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Sejarah Singkat</h3>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Misi kami adalah memberikan pendidikan terbaik yang mengembangkan potensi setiap siswa secara holistik.</p>
-            </div>
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <div class="lg:w-1/2 fade-in">
-                    <div class="relative">
-                        <img src="https://placehold.co/600x400/1e40af/ffffff?text=Sekolah+Harapan+Bangsa" alt="Sekolah Harapan Bangsa" class="rounded-xl shadow-lg w-full hover-lift">
-                        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 dark:bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl icon-glow animate-float">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 space-y-6 fade-in" style="transition-delay: 0.2s;">
-                    <h4 class="text-2xl font-bold text-gray-800 dark:text-white">Visi & Misi</h4>
-                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                        Sekolah Harapan Bangsa berkomitmen untuk menjadi lembaga pendidikan unggulan yang menghasilkan lulusan berkarakter, berprestasi, dan siap menghadapi tantangan global.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <i class="fas fa-check-circle text-blue-600 dark:text-blue-400 mt-1 icon-glow"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Kurikulum berbasis karakter dan kompetensi</span>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <i class="fas fa-check-circle text-blue-600 dark:text-blue-400 mt-1 icon-glow"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Pengembangan soft skills dan leadership</span>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <i class="fas fa-check-circle text-blue-600 dark:text-blue-400 mt-1 icon-glow"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Lingkungan belajar yang kondusif dan inspiratif</span>
-                        </div>
-                    </div>
-                </div>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-10">Sejarah Singkat</h3>
+                <p class="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto text-justify leading-relaxed"> SD Negeri 4 Jatilaba di Kecamatan Margasari, Tegal, didirikan pada 1980-an untuk mempermudah akses pendidikan dasar bagi anak-anak setempat. Kehadirannya menjadi solusi pemerataan pendidikan dan terus berkembang dalam mutu serta fasilitas. Tujuan utamanya ialah mencerdaskan generasi muda dan membentuk karakter disiplin. Hingga kini, SDN 4 Jatilaba berpengaruh besar dalam meningkatkan kesadaran pendidikan dan melahirkan lulusan berprestasi yang berkontribusi bagi kemajuan daerah.</p>
             </div>
         </div>
     </section>
