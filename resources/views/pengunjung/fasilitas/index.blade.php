@@ -21,3 +21,4 @@
 {{-- {{ asset('storage/' . $item->foto) }} --}}
 {{-- or --}}
 {{-- {{ asset($item->foto) }} --}}
+sjuduwhsdhhuuwhudiasuhduhsiieudhasheudh

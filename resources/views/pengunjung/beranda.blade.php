@@ -73,8 +73,7 @@
         .dark .border-gradient {
             position: relative;
         }
-
-        .dark .border-gradient::before {
+      .dark .border-gradient::before {
             content: '';
             position: absolute;
             top: 0;
