@@ -615,15 +615,6 @@
                 Segera daftarkan putra-putri Anda di SD Negeri 4 Jatilaba.
                 Sekolah yang berkomitmen mencetak generasi cerdas, berkarakter, dan berprestasi!
                 </p>
-            <div class="hero-cta">
-                <a href="#form-section" class="hero-btn hero-btn-primary">
-                        <i class="fas fa-edit"></i>
-                        <span>Daftar Sekarang</span>
-                </a>
-                <a href="#info-section" class="hero-btn hero-btn-secondary">
-                        <i class="fas fa-info-circle"></i>
-                        <span>Lihat Informasi</span>
-                </a>
             </div>
         </div>
     </section>
