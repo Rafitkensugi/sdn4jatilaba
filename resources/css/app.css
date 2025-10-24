@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom utilities for animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn .6s ease-out both; }
+
+/* color palette adjustments */
+:root{
+  --green-600: #064E3B;
+  --yellow-400: #FDE68A;
+  --accent: #FDE68A;
+}

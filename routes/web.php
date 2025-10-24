@@ -1,0 +1,165 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    ArtikelController,
+    PPDBController,
+    BeritaController,
+    GaleriController,
+    GuruController,
+    KontakController,
+    ProfileController,
+    ProgramController,
+    PrestasiController,
+    SambutanController,
+    VisiMisiController,
+    FasilitasController,
+    Auth\AuthenticatedSessionController,
+    BerandaController,
+    AgendaController,
+    ProfilSekolahController,
+    SejarahController,
+    PengumumanController,
+};
+
+// Controller untuk Admin
+use App\Http\Controllers\Admin\FasilitasController as AdminFasilitasController;
+use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\PrestasiController as AdminPrestasiController;
+use App\Http\Controllers\Admin\PesanController as AdminPesanController;
+use App\Http\Controllers\Admin\ArtikelController as AdminArtikelController;
+use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController;
+use App\Http\Controllers\Admin\PPDBController as AdminPPDBController; // TAMBAH INI
+
+// =======================================================
+// 🔹 ROUTE UNTUK ADMIN (Dashboard & CRUD)
+// =======================================================
+Route::middleware(['auth', 'role:admin|super-admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        // Dashboard Admin
+        Route::get('/', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
+
+        // CRUD Artikel Admin ✅
+        Route::resource('artikel', AdminArtikelController::class);
+
+        // CRUD Pengumuman Admin ✅
+        Route::resource('pengumuman', AdminPengumumanController::class);
+
+        // CRUD Fasilitas Admin
+        Route::resource('fasilitas', AdminFasilitasController::class);
+
+        // CRUD Agenda Admin
+        Route::resource('agenda', AdminAgendaController::class);
+
+        // CRUD Prestasi Admin
+        Route::resource('prestasi', AdminPrestasiController::class);
+
+        // ✅ CRUD Pesan (dari halaman kontak)
+        Route::get('/pesan', [AdminPesanController::class, 'index'])->name('pesan.index');
+        Route::delete('/pesan/{id}', [AdminPesanController::class, 'destroy'])->name('pesan.destroy');
+
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+        // ✅ CRUD PPDB (Data Pendaftaran) - DIPERBAIKI
+        Route::prefix('ppdb')->name('ppdb.')->group(function () {
+            Route::get('/', [AdminPPDBController::class, 'index'])->name('index');
+            Route::get('/{id}', [AdminPPDBController::class, 'show'])->name('show');
+            Route::delete('/{id}', [AdminPPDBController::class, 'destroy'])->name('destroy');
+            Route::get('/{id}/download-pdf', [AdminPPDBController::class, 'downloadPDF'])->name('download.pdf');
+            Route::get('/{id}/view-pdf', [AdminPPDBController::class, 'viewPDF'])->name('view.pdf');
+        });
+
+        // Kelola Guru Admin
+        Route::prefix('kelola-guru')->name('kelola-guru.')->group(function () {
+            Route::get('/', [GuruController::class, 'index'])->name('index');
+            Route::get('/create', [GuruController::class, 'create'])->name('create');
+            Route::post('/', [GuruController::class, 'store'])->name('store');
+            Route::get('/{guru}', [GuruController::class, 'show'])->name('show');
+            Route::get('/{guru}/edit', [GuruController::class, 'edit'])->name('edit');
+            Route::put('/{guru}', [GuruController::class, 'update'])->name('update');
+            Route::delete('/{guru}', [GuruController::class, 'destroy'])->name('destroy');
+        });
+    });
+
+// =======================================================
+// 🔹 ROUTE UNTUK PENGUNJUNG / PUBLIK
+// =======================================================
+
+// Halaman utama / beranda
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+Route::get('/beranda', [BerandaController::class, 'index']);
+
+// Agenda Sekolah
+Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
+Route::get('/agenda/{id}', [AgendaController::class, 'show'])->name('agenda.show');
+
+// Artikel
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
+Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
+
+// PENGUMUMAN
+Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
+Route::get('/pengumuman/{id}', [PengumumanController::class, 'show'])->name('pengumuman.show');
+
+// Sambutan Kepala Sekolah
+Route::get('/sambutan', [SambutanController::class, 'index'])->name('sambutan');
+
+// Dashboard default (untuk user login biasa)
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Kontak
+Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
+Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
+
+// Auth
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+// Profile (hanya user login)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Fasilitas (untuk pengunjung)
+Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('pengunjung.fasilitas.index');
+Route::get('/fasilitas/{slug}', [FasilitasController::class, 'show'])->name('pengunjung.fasilitas.show');
+
+// PPDB / SPMB
+Route::get('/spmb', [PPDBController::class, 'index'])->name('spmb');
+Route::post('/spmb', [PPDBController::class, 'store'])->name('spmb.store');
+
+// Berita Sekolah
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
+Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.detail');
+
+// Prestasi
+Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi');
+Route::get('/prestasi/{id}', [PrestasiController::class, 'show'])->name('prestasi.show');
+
+// Galeri
+Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri');
+
+// Program Sekolah
+Route::get('/program', [ProgramController::class, 'index'])->name('program');
+
+// Visi & Misi
+Route::get('/visi-misi', [VisiMisiController::class, 'index'])->name('visi-misi');
+
+// Profil Sekolah
+Route::get('/profil-sekolah', [ProfilSekolahController::class, 'index'])->name('profil-sekolah');
+
+// Sejarah Sekolah
+Route::get('/sejarah', [SejarahController::class, 'index'])->name('sejarah');
+
+require __DIR__ . '/auth.php';
