@@ -354,11 +354,6 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-        <!-- Konten halaman akan ditampilkan di sini -->
-    </main>
-
     <script>
         (function () {
             'use strict';

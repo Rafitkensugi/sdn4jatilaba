@@ -44,8 +44,11 @@
         </p>
     </div>
 
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> db9df84d023881fac6c3bb4d8eb187a93636929c
     <!-- Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       
