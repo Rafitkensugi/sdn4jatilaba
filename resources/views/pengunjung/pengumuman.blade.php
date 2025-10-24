@@ -122,15 +122,6 @@
       transform-origin: left;
     }
     .btn-detail:hover { background: transparent !important; }
-
-    .empty-state {
-      background: linear-gradient(135deg, rgba(0, 66, 37, 0.03), rgba(0, 166, 90, 0.03));
-      border: 2px dashed rgba(0, 66, 37, 0.2);
-    }
-    .dark .empty-state {
-      background: linear-gradient(135deg, rgba(0, 66, 37, 0.1), rgba(0, 166, 90, 0.1));
-      border: 2px dashed rgba(255, 255, 255, 0.2);
-    }
   </style>
 </head>
 
@@ -138,50 +129,38 @@
 
   <x-navbar />
 
-  <!-- Hero Header -->
-  <div class="relative overflow-hidden">
-    <div class="hero-gradient">
-      <div class="floating-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-      </div>
-
-      <header class="relative z-10 py-16 lg:py-20" data-aos="fade-down">
-        <div class="max-w-7xl mx-auto text-center px-4 sm:px-6">
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-green-100 text-sm font-medium mb-6" data-aos="fade-up" data-aos-delay="100">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
-              <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
-            </svg>
-            Portal Pengumuman
-          </div>
-
-          <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight" data-aos="fade-up" data-aos-delay="150">
-            Pengumuman Sekolah
-          </h1>
-
-          <p class="text-green-100 text-lg md:text-xl max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-            Informasi resmi dan terbaru dari SDN 4 Jatilaba
-          </p>
+  <!-- Hero Section -->
+    <section id="home" 
+        class="relative py-20 md:py-32 bg-center bg-cover bg-no-repeat" 
+        style="background-image: url('{{ asset('images/hero.jpeg') }}');">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50 dark:from-black/80 dark:to-purple-900/30"></div>
+        <div class="container mx-auto px-4 relative z-10 text-center text-white">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    Pengumuman Sekolah
+                </h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto text-gray-100">
+                    Informasi resmi dan terbaru dari SDN 4 Jatilaba
+                </p>
+            </div>
         </div>
-      </header>
-    </div>
-  </div>
+    </section>
 
   <!-- Main Content -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
     
     @if ($pengumuman->isEmpty())
-      <div class="empty-state rounded-3xl p-8 md:p-16 text-center max-w-2xl mx-auto" data-aos="fade-up">
-        <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-gradient-to-br from-[#00a65a] to-[#00d278] rounded-full flex items-center justify-center shadow-xl">
+      <!-- Versi sederhana tapi besar -->
+      <div class="empty-state rounded-3xl p-8 md:p-16 text-center max-w-2xl mx-auto bg-gray-100 dark:bg-gray-800 shadow-lg" data-aos="fade-up">
+        <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 bg-[#00a65a] rounded-full flex items-center justify-center">
           <svg class="w-10 h-10 md:w-12 md:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </div>
-        <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-3">Belum Ada Pengumuman</h3>
-        <p class="text-gray-600 dark:text-gray-400 text-base md:text-lg">
-          Pengumuman akan segera dipublikasikan. Tetap pantau halaman ini untuk informasi terbaru!
+        <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-3">Belum Ada Pengumuman</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-base md:text-lg leading-relaxed">
+          Pengumuman akan segera dipublikasikan.<br>
+          Tetap pantau halaman ini untuk informasi terbaru!
         </p>
       </div>
     @else

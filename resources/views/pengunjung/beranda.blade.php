@@ -357,13 +357,9 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h3 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-10">Sejarah Singkat</h3>
-<<<<<<< HEAD
-                <p class="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto text-justify leading-relaxed"> SD Negeri 4 Jatilaba di Kecamatan Margasari, Tegal, didirikan pada 1980-an untuk mempermudah akses pendidikan dasar bagi anak-anak setempat. Kehadirannya menjadi solusi pemerataan pendidikan dan terus berkembang dalam mutu serta fasilitas. Tujuan utamanya ialah -mencerdaskan generasi muda dan membentuk karakter disiplin. Hingga kini, SDN 4 Jatilaba berpengaruh besar dalam meningkatkan kesadaran pendidikan dan melahirkan lulusan berprestasi yang berkontribusi bagi kemajuan daerah.</p>
-=======
                 <p class="text-gray-600 dark:text-gray-300 max-w-4xl mx-auto text-justify leading-relaxed">
                     SD Negeri 4 Jatilaba di Kecamatan Margasari, Tegal, didirikan pada 1980-an untuk mempermudah akses pendidikan dasar bagi anak-anak setempat. Kehadirannya menjadi solusi pemerataan pendidikan dan terus berkembang dalam mutu serta fasilitas. Tujuan utamanya ialah mencerdaskan generasi muda dan membentuk karakter disiplin. Hingga kini, SDN 4 Jatilaba berpengaruh besar dalam meningkatkan kesadaran pendidikan dan melahirkan lulusan berprestasi yang berkontribusi bagi kemajuan daerah.
                 </p>
->>>>>>> cc5bf6089e446cd0627678b628fdb8cda8665f41
             </div>
         </div>
     </section>
