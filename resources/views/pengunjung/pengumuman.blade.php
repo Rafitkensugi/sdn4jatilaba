@@ -3,53 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <title>Pengumuman - SDN 4 Jatilaba</title>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
-  <script>
-    function updateTheme() {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
-    updateTheme();
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
-  </script>
-
   <style>
+    html {
+      color-scheme: light dark;
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
     body { font-family: 'Inter', system-ui, sans-serif; }
     .font-display { font-family: 'Playfair Display', serif; }
 
-    /* Hero Gradient with Purple Accent */
-    .hero-gradient {
-      background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 30%, #4a1a4a 60%, #6b2d6b 100%);
+    /* Hero Section with Background Image */
+    .hero-section {
       position: relative;
       overflow: hidden;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
-    .dark .hero-gradient {
-      background: linear-gradient(135deg, #0a0a14 0%, #1a1a2e 30%, #2d1a2d 60%, #4a1a4a 100%);
-    }
+    .hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
+  z-index: 1;
+}
 
-    /* Animated Background Pattern */
-    .hero-gradient::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(192, 132, 252, 0.08) 0%, transparent 50%);
-      animation: pulse 15s ease-in-out infinite;
-    }
+.dark .hero-section::before {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(88, 28, 135, 0.3) 100%);
+}
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.8; }
-    }
 
     /* Floating Particles */
     .floating-shapes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
@@ -71,7 +59,7 @@
       66%{ transform:translate(-30px,30px) scale(0.9); opacity:0.4; }
     }
 
-    /* Elegant Card Design */
+    /* Announcement Card - FIXED DARK MODE */
     .announcement-card {
       position: relative;
       overflow: hidden;
@@ -83,12 +71,20 @@
       height: 100%;
       backdrop-filter: blur(10px);
     }
+    
+    /* Dark mode styles for announcement card */
+    @media (prefers-color-scheme: dark) {
+      .announcement-card { 
+        background: linear-gradient(to bottom, #1f1f2e, #1a1a28);
+        border: 1px solid rgba(139, 92, 246, 0.15);
+      }
+    }
+    
     .dark .announcement-card { 
       background: linear-gradient(to bottom, #1f1f2e, #1a1a28);
       border: 1px solid rgba(139, 92, 246, 0.15);
     }
 
-    /* Top Purple Accent Line */
     .announcement-card::before {
       content: '';
       position: absolute;
@@ -100,7 +96,6 @@
       transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Glow Effect on Hover */
     .announcement-card::after {
       content: '';
       position: absolute;
@@ -113,17 +108,21 @@
       filter: blur(20px);
     }
 
-    .announcement-card:hover::before { 
-      transform: scaleX(1); 
-    }
-    .announcement-card:hover::after {
-      opacity: 0.3;
-    }
+    .announcement-card:hover::before { transform: scaleX(1); }
+    .announcement-card:hover::after { opacity: 0.3; }
     .announcement-card:hover {
       transform: translateY(-12px) scale(1.02);
       box-shadow: 0 25px 50px rgba(139, 92, 246, 0.2), 0 10px 20px rgba(0, 0, 0, 0.15);
       border-color: rgba(139, 92, 246, 0.3);
     }
+    
+    /* Dark mode hover effects */
+    @media (prefers-color-scheme: dark) {
+      .announcement-card:hover {
+        box-shadow: 0 25px 50px rgba(139, 92, 246, 0.3), 0 10px 20px rgba(0, 0, 0, 0.5);
+      }
+    }
+    
     .dark .announcement-card:hover {
       box-shadow: 0 25px 50px rgba(139, 92, 246, 0.3), 0 10px 20px rgba(0, 0, 0, 0.5);
     }
@@ -136,9 +135,7 @@
       position: relative;
       z-index: 1;
     }
-    @media (max-width:640px){ 
-      .announcement-content{ padding:1.5rem; } 
-    }
+    @media (max-width:640px){ .announcement-content{ padding:1.5rem; } }
 
     .announcement-title {
       display: -webkit-box;
@@ -153,13 +150,24 @@
       background-clip: text;
       transition: all 0.3s ease;
     }
+    
+    /* Dark mode text colors */
+    @media (prefers-color-scheme: dark) {
+      .announcement-title {
+        background: linear-gradient(135deg, #ffffff 0%, #c084fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+    
     .dark .announcement-title {
       background: linear-gradient(135deg, #ffffff 0%, #c084fc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
+    
     .announcement-card:hover .announcement-title {
       background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
       -webkit-background-clip: text;
@@ -167,7 +175,21 @@
       background-clip: text;
     }
 
-    /* Elegant Button */
+    /* Text content in cards */
+    .announcement-content .text-gray-700 {
+      color: #374151;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .announcement-content .text-gray-700 {
+        color: #d1d5db;
+      }
+    }
+    
+    .dark .announcement-content .text-gray-700 {
+      color: #d1d5db;
+    }
+
     .btn-detail {
       position: relative;
       overflow: hidden;
@@ -186,17 +208,13 @@
       transform: scaleX(0);
       transform-origin: right;
     }
-    .btn-detail:hover::before {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
+    .btn-detail:hover::before { transform: scaleX(1); transform-origin: left; }
     .btn-detail:hover { 
       background: transparent !important; 
       box-shadow: 0 6px 25px rgba(139, 92, 246, 0.6);
       transform: translateY(-2px);
     }
 
-    /* Date Badge */
     .date-badge {
       display: inline-flex;
       align-items: center;
@@ -209,19 +227,35 @@
       color: #6b2d6b;
       transition: all 0.3s ease;
     }
+    
+    @media (prefers-color-scheme: dark) {
+      .date-badge {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(168, 85, 247, 0.1));
+        border-color: rgba(139, 92, 246, 0.3);
+        color: #c084fc;
+      }
+    }
+    
     .dark .date-badge {
       background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(168, 85, 247, 0.1));
       border-color: rgba(139, 92, 246, 0.3);
       color: #c084fc;
     }
 
-    /* Empty State */
     .empty-state {
       background: linear-gradient(135deg, rgba(139, 92, 246, 0.03), rgba(168, 85, 247, 0.02));
       border: 2px dashed rgba(139, 92, 246, 0.2);
       position: relative;
       overflow: hidden;
     }
+    
+    @media (prefers-color-scheme: dark) {
+      .empty-state {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(168, 85, 247, 0.05));
+        border: 2px dashed rgba(139, 92, 246, 0.3);
+      }
+    }
+    
     .empty-state::before {
       content: '';
       position: absolute;
@@ -229,34 +263,16 @@
       background: conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(139, 92, 246, 0.05) 180deg, transparent 360deg);
       animation: rotate 20s linear infinite;
     }
-    @keyframes rotate {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes rotate { to { transform: rotate(360deg); } }
     .dark .empty-state {
       background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(168, 85, 247, 0.05));
       border: 2px dashed rgba(139, 92, 246, 0.3);
     }
 
-    /* Badge Styling */
     .portal-badge {
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(192, 132, 252, 0.1));
       border: 1px solid rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(10px);
-    }
-
-    /* Smooth Scroll */
-    html { scroll-behavior: smooth; }
-
-    /* Content Animation */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
   </style>
 </head>
@@ -265,44 +281,39 @@
 
   <x-navbar />
 
-  <!-- Hero Header -->
-  <div class="relative overflow-hidden">
-    <div class="hero-gradient">
-      <div class="floating-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
+  <!-- Hero Header with Background Image -->
+  <section id="home" class="hero-section py-20 md:py-32" style="background-image: url('{{ asset('images/hero.jpeg') }}');">
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+
+    <div class="relative z-10 text-center">
+      <div class="portal-badge inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-purple-100 text-sm font-semibold mb-8 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+          <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+        </svg>
+        Portal Pengumuman Resmi
       </div>
 
-      <header class="relative z-10 py-20 lg:py-28" data-aos="fade-down">
-        <div class="max-w-7xl mx-auto text-center px-4 sm:px-6">
-          <div class="portal-badge inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-purple-100 text-sm font-semibold mb-8 shadow-lg" data-aos="fade-up" data-aos-delay="100">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
-              <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
-            </svg>
-            Portal Pengumuman Resmi
-          </div>
+      <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-[0_4px_6px_rgba(0,0,0,0.3)]" data-aos="fade-up" data-aos-delay="150">
+        Pengumuman Sekolah
+      </h1>
 
-          <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight" data-aos="fade-up" data-aos-delay="150" style="text-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);">
-            Pengumuman Sekolah
-          </h1>
+      <p class="text-white text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto font-light leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]" data-aos="fade-up" data-aos-delay="200">
+        Informasi resmi dan terbaru dari SDN 4 Jatilaba
+      </p>
 
-          <p class="text-purple-100 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto font-light leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-            Informasi resmi dan terbaru dari SDN 4 Jatilaba
-          </p>
-
-          <!-- Decorative Line -->
-          <div class="mt-8 flex items-center justify-center gap-3" data-aos="fade-up" data-aos-delay="250">
-            <div class="h-px w-16 bg-gradient-to-r from-transparent to-purple-300"></div>
-            <div class="w-2 h-2 rounded-full bg-purple-300"></div>
-            <div class="h-px w-16 bg-gradient-to-l from-transparent to-purple-300"></div>
-          </div>
-        </div>
-      </header>
+      <div class="mt-8 flex items-center justify-center gap-3" data-aos="fade-up" data-aos-delay="250">
+        <div class="h-px w-16 bg-gradient-to-r from-transparent to-purple-300"></div>
+        <div class="w-2 h-2 rounded-full bg-purple-300"></div>
+        <div class="h-px w-16 bg-gradient-to-l from-transparent to-purple-300"></div>
+      </div>
     </div>
-  </div>
+  </section>
 
   <!-- Main Content -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
@@ -322,34 +333,49 @@
       </div>
     @else
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-        @foreach ($pengumuman as $pengumuman)
-        <div class="announcement-card rounded-3xl shadow-xl" data-aos="fade-up" data-aos-delay="{{ $loop->index * 80 }}">
-          <div class="announcement-content">
-            <h2 class="announcement-title text-2xl font-bold leading-tight">
-              {{ $pengumuman->judul }}
-            </h2>
+       @foreach ($pengumuman as $pengumuman)
+  <div class="announcement-card rounded-3xl shadow-xl overflow-hidden" data-aos="fade-up" data-aos-delay="{{ $loop->index * 80 }}">
+    
+    {{-- Thumbnail --}}
+    @if ($pengumuman->gambar)
+      <div class="relative overflow-hidden group">
+        <img src="{{ asset('storage/pengumuman/' . $pengumuman->gambar) }}" 
+             alt="{{ $pengumuman->judul }}" 
+             class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      </div>
+    @endif
 
-            <div class="date-badge mb-6">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-              </svg>
-              <span class="font-medium">{{ $pengumuman->created_at->format('d M Y, H:i') }}</span>
-            </div>
+    {{-- Konten --}}
+    <div class="announcement-content">
+      <h2 class="announcement-title text-2xl font-bold leading-tight">
+        {{ $pengumuman->judul }}
+      </h2>
 
-            <div class="mb-8 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-3 text-base">
-              {{ Str::limit(strip_tags($pengumuman->isi), 130, '...') }}
-            </div>
+      <div class="date-badge mb-6">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+        <span class="font-medium">{{ $pengumuman->created_at->translatedFormat('d F Y') }}</span>
+      </div>
 
-            <a href="{{ route('pengumuman.show', $pengumuman->id) }}" 
-              class="btn-detail inline-flex items-center gap-2 w-full justify-center text-white px-6 py-3.5 rounded-2xl font-semibold transition-all duration-400 group mt-auto">
-              <span>Baca Selengkapnya</span>
-              <svg class="w-5 h-5 transition-transform duration-400 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-        @endforeach
+      <div class="mb-8 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-3 text-base">
+        {!! Str::limit(strip_tags($pengumuman->isi), 150, '...') !!}
+      </div>
+
+      <div class="mt-auto pt-6">
+        <a href="{{ route('pengumuman.show', $pengumuman->id) }}" 
+           class="btn-detail text-white font-medium px-5 py-3 rounded-xl shadow-md transition-all duration-300 inline-flex items-center gap-2 group">
+          <span>Lihat Detail</span>
+          <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+@endforeach
+
       </div>
     @endif
   </main>
@@ -358,13 +384,7 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ 
-      duration: 1000, 
-      once: true, 
-      easing: 'ease-out-cubic', 
-      offset: 120,
-      delay: 100
-    });
+    AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
   </script>
 </body>
 </html>
