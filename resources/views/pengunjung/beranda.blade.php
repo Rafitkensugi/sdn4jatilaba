@@ -6,6 +6,8 @@
     <title>Sekolah Dasar Negeri 04 Jatilaba - Beranda</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Tambahkan Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -172,12 +174,52 @@
         .loading-indicator.show {
             display: block;
         }
+
+        /* Custom styles for Swiper */
+        .swiper-pengumuman {
+            padding: 20px 10px;
+        }
+
+        .swiper-pengumuman .swiper-slide {
+            height: auto;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: #3B82F6;
+            background: rgba(255, 255, 255, 0.8);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .dark .swiper-button-next, .dark .swiper-button-prev {
+            background: rgba(30, 41, 59, 0.8);
+            color: #93c5fd;
+        }
+
+        .swiper-pagination-bullet {
+            background: #3B82F6;
+            opacity: 0.5;
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+        }
+
+        .dark .swiper-pagination-bullet {
+            background: #93c5fd;
+        }
     </style>
 </head>
+<x-navbar />
 
 <body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-500">
-   <x-navbar></x-navbar>
-
    <!-- Hero Section -->
    <section id="home" 
         class="relative py-20 md:py-32 bg-center bg-cover bg-no-repeat" 
@@ -193,9 +235,13 @@
                     "Setiap anak adalah bintang, tugas kita adalah membuatnya bersinar."
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="transition-delay: 0.4s;">
-                    <button class= "border-2 border-white text-white-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 hover:text-purple-600 transition-all duration-300 flex items-center justify-center dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 hover:shadow-lg hover:-translate-y-1">
-                        Daftar Sekarang <i class="fas fa-arrow-right ml-2 icon-glow"></i>
-                    </button>
+                    <button 
+  onclick="window.location.href='{{ route('spmb') }}'" 
+  class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 hover:text-purple-600 transition-all duration-300 flex items-center justify-center dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 hover:shadow-lg hover:-translate-y-1">
+  Daftar Sekarang 
+  <i class="fas fa-arrow-right ml-2 icon-glow"></i>
+</button>
+
                     <button class="border-2 border-white text-purple px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-all duration-300 dark:border-gray-300 dark:hover:bg-gray-300 hover:shadow-lg hover:-translate-y-1">
                         Kunjungi Sekolah
                     </button>
@@ -204,35 +250,82 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Pengumuman Section -->
     <section class="py-16 bg-grey dark:bg-transparent border-gradient" data-aos="fade-up">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="space-y-2 fade-in">
-                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 flex items-center justify-center">
-                        40+ <i class="fas fa-history ml-2 text-lg icon-glow"></i>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">Tahun Berdiri</p>
-                </div>
-                <div class="space-y-2 fade-in" style="transition-delay: 0.1s;">
-                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 flex items-center justify-center">
-                        300+ <i class="fas fa-user-graduate ml-2 text-lg icon-glow"></i>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">Siswa Aktif</p>
-                </div>
-                <div class="space-y-2 fade-in" style="transition-delay: 0.2s;">
-                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 flex items-center justify-center">
-                        16 <i class="fas fa-chalkboard-teacher ml-2 text-lg icon-glow"></i>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">Guru Profesional</p>
-                </div>
-                <div class="space-y-2 fade-in" style="transition-delay: 0.3s;">
-                    <div class="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 flex items-center justify-center">
-                        A <i class="fas fa-trophy ml-2 text-lg icon-glow"></i>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">Akreditasi Sekolah</p>
-                </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Pengumuman Terbaru</h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Informasi terbaru dari SD Negeri 04 Jatilaba</p>
             </div>
+            
+            @if ($pengumuman->isEmpty())
+                <div class="empty-state text-center py-12">
+                    <div class="inline-flex items-center justify-center w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-full mb-6">
+                        <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Belum Ada Pengumuman</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-lg mb-8">Pengumuman akan segera hadir. Nantikan update terbaru dari kami!</p>
+                </div>
+            @else
+                <!-- Swiper Container -->
+                <div class="swiper swiper-pengumuman">
+                    <div class="swiper-wrapper">
+                        @foreach ($pengumuman as $item)
+                        <div class="swiper-slide">
+                            <div class="announcement-card glass-card rounded-xl shadow-md hover-lift overflow-hidden h-full flex flex-col">
+                                <!-- Thumbnail -->
+                                @if ($item->gambar)
+                                    <div class="relative overflow-hidden group">
+                                        <img src="{{ asset('storage/pengumuman/' . $item->gambar) }}" 
+                                             alt="{{ $item->judul }}" 
+                                             class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                    </div>
+                                @endif
+
+                                <!-- Konten -->
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <h2 class="announcement-title text-2xl font-bold text-gray-800 dark:text-white leading-tight mb-4">
+                                        {{ $item->judul }}
+                                    </h2>
+
+                                    <div class="date-badge mb-6">
+                                        <span class="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                            </svg>
+                                            {{ $item->created_at->format('d M Y') }}
+                                        </span>
+                                    </div>
+
+                                    <div class="mb-8 text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-3 text-base flex-grow">
+                                        {!! Str::limit(strip_tags($item->isi), 150, '...') !!}
+                                    </div>
+
+                                    <div class="mt-auto pt-6">
+                                        <a href="{{ route('pengumuman.show', $item->id) }}" class="btn-detail inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:gap-3 transition-all duration-300">
+                                            <span>Lihat Detail</span>
+                                            <svg class="w-5 h-5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    
+                    <!-- Navigation buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    
+                    <!-- Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            @endif
         </div>
     </section>
 
@@ -356,51 +449,69 @@
                 <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Tenaga pendidik profesional yang berdedikasi untuk masa depan siswa.</p>
             </div>
             
-            <div class="relative">
-                <!-- Navigation Buttons -->
-                <button id="prevBtn" class="nav-btn left-0">
-                    <i class="fas fa-chevron-left text-blue-600 dark:text-blue-400"></i>
-                </button>
-                <button id="nextBtn" class="nav-btn right-0">
-                    <i class="fas fa-chevron-right text-blue-600 dark:text-blue-400"></i>
-                </button>
-                
-                <!-- Teachers Container -->
-                <div id="teachersContainer" class="teachers-container flex overflow-x-auto gap-6 pb-4 px-2 scroll-smooth" style="scrollbar-width: none;">
-                    @foreach ($gurus as $guru)
-                    <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 1.5s;">
-                        <div class="p-4">
-                            <div class="text-center mb-4">
-                                    <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">Wali Kelas</span>
-                            </div>
-                            <div class="flex justify-center mb-4">
-                                <img src="{{ asset('storage/gurus/' . $guru->foto) }}   " alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
-                            </div>
-                                <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">{{ $guru->nama }}</h4>
-                                <p class="text-gray-600 dark:text-gray-300 text-center mb-4">Guru Kelas 2B</p>
-                                <div class="hidden teacher-details">
-                                    <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                                        <p><span class="font-semibold">NIP:</span>{{ $guru->nip }}</p>
-                                        <p><span class="font-semibold">Aktif:</span> 2020</p>
-                                        <p><span class="font-semibold">Jabatan:</span>{{ $guru->jabatan }}</p>
-                                        <p><span class="font-semibold">Bidang Studi:</span> {{ $guru->bidang_studi }}</p>
-                                        <p><span class="font-semibold">Domisili:</span> Tegal</p>
-                                    </div>
-                                </div>
-                                <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
-                                    Detail
-                                </button>
-                        </div>
+            @if($gurus->isEmpty())
+                <!-- Empty State for Teachers -->
+                <div class="text-center py-12">
+                    <div class="inline-flex items-center justify-center w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-full mb-6">
+                        <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
                     </div>
-                    @endforeach
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Belum Ada Data Guru</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-lg mb-8">Data guru dan staff akan segera diupdate. Silakan kembali lagi nanti!</p>
+                    <button class="px-6 py-3 bg-blue-600 dark:bg-blue-700 text-white rounded-full font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-300">
+                        Hubungi Admin
+                    </button>
                 </div>
-                
-                
-                <!-- Loading indicator for infinite scroll -->
-                <div id="loadingIndicator" class="loading-indicator">
-                    <i class="fas fa-spinner fa-spin mr-2"></i> Memuat guru lainnya...
+            @else
+                <div class="relative">
+                    <!-- Navigation Buttons -->
+                    <button id="prevBtn" class="nav-btn left-0">
+                        <i class="fas fa-chevron-left text-blue-600 dark:text-blue-400"></i>
+                    </button>
+                    <button id="nextBtn" class="nav-btn right-0">
+                        <i class="fas fa-chevron-right text-blue-600 dark:text-blue-400"></i>
+                    </button>
+                    
+                    <!-- Teachers Container -->
+                    <div id="teachersContainer" class="teachers-container flex overflow-x-auto gap-6 pb-4 px-2 scroll-smooth" style="scrollbar-width: none;">
+                        @foreach ($gurus as $guru)
+                        <div class="teacher-card glass-card rounded-xl shadow-md hover-lift flex-shrink-0 fade-in" style="transition-delay: 1.5s;">
+                            <div class="p-4">
+                               <div class="text-center mb-4">
+  <span class="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full">
+    {{ $guru->jabatan }}
+  </span>
+</div>
+
+                                <div class="flex justify-center mb-4">
+                                    <img src="{{ asset('storage/gurus/' . $guru->foto) }}" alt="Guru" class="w-24 h-24 rounded-full object-cover border-4 border-blue-200 dark:border-blue-800">
+                                </div>
+                                    <h4 class="text-xl font-bold text-gray-800 dark:text-white text-center mb-2">{{ $guru->nama }}</h4>
+                                    <div class="hidden teacher-details">
+                                        <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                            <p><span class="font-semibold">NIP:</span>{{ $guru->nip }}</p>
+                                            <p><span class="font-semibold">Aktif:</span> 2020</p>
+                                            <p><span class="font-semibold">Jabatan:</span>{{ $guru->jabatan }}</p>
+                                            <p><span class="font-semibold">Bidang Studi:</span> {{ $guru->bidang_studi }}</p>
+                                            <p><span class="font-semibold">Domisili:</span> Tegal</p>
+                                        </div>
+                                    </div>
+                                    <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors duration-300 detail-btn">
+                                        Detail
+                                    </button>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    
+                    
+                    <!-- Loading indicator for infinite scroll -->
+                    <div id="loadingIndicator" class="loading-indicator">
+                        <i class="fas fa-spinner fa-spin mr-2"></i> Memuat guru lainnya...
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </section>
 
@@ -472,10 +583,10 @@
             </div>
         </div>
     </section>
-
-    <x-footer></x-footer>
-
+<x-footer />
     <!-- JavaScript -->
+    <!-- Tambahkan Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         // Dark Mode Script
         const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -559,7 +670,7 @@
             });
         });
 
-        // Teacher carousel navigation
+        // Teacher carousel navigation - only initialize if there are teachers
         const teachersContainer = document.getElementById('teachersContainer');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
@@ -647,7 +758,6 @@
                         <div class="hidden teacher-details">
                             <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                                 <p><span class="font-semibold">NIP:</span> ${Math.floor(1000000000000000 + Math.random() * 9000000000000000)}</p>
-                                <p><span class="font-semibold">Aktif:</span> ${2010 + Math.floor(Math.random() * 13)}</p>
                                 <p><span class="font-semibold">Jabatan:</span> ${randomPosition}</p>
                                 <p><span class="font-semibold">Status:</span> PNS</p>
                                 <p><span class="font-semibold">Domisili:</span> Tegal</p>
@@ -677,6 +787,55 @@
                 return card;
             }
         }
+
+        // Initialize Swiper for Pengumuman Section
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.swiper-pengumuman', {
+                // Optional parameters
+                direction: 'horizontal',
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 20,
+                
+                // Breakpoints for responsive design
+                breakpoints: {
+                    // When window width is >= 640px
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    // When window width is >= 1024px
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30
+                    }
+                },
+                
+                // Navigation arrows
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                
+                // Pagination
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                
+                // Enable autoplay
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                
+                // Effect
+                effect: 'slide',
+                
+                // Speed
+                speed: 600,
+            });
+        });
     </script>
 </body>
 </html>
